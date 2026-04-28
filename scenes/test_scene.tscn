@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ru0tp3sc0c7d"]
+
+[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="1_g7g4h"]
+[ext_resource type="PackedScene" uid="uid://b070e13xnndif" path="res://prefabs/player_ship.tscn" id="2_j8ivh"]
+
+[node name="TestScene" type="Node2D" unique_id=762031175]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=282775670]
+position = Vector2(1193, 411)
+scale = Vector2(19.640625, 7.421875)
+texture = ExtResource("1_g7g4h")
+
+[node name="PlayerShip" parent="." unique_id=1089880255 instance=ExtResource("2_j8ivh")]
+position = Vector2(997, 907)

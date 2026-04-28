@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b070e13xnndif"]
+
+[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="1_ons34"]
+[ext_resource type="Script" uid="uid://c48p3t8du48vm" path="res://scripts/player_ship_controller_component.gd" id="2_iwps3"]
+[ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/ship_data_component.gd" id="3_fto5i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yfrvl"]
+size = Vector2(128, 128)
+
+[node name="PlayerShip" type="CharacterBody2D" unique_id=1089880255]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1036919982]
+texture = ExtResource("1_ons34")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85070103]
+shape = SubResource("RectangleShape2D_yfrvl")
+
+[node name="PlayerShipControllerComponent" type="Node" parent="." unique_id=573145881 node_paths=PackedStringArray("ship_data_component", "ship_body")]
+script = ExtResource("2_iwps3")
+ship_data_component = NodePath("../ShipDataComponent")
+ship_body = NodePath("..")
+
+[node name="ShipDataComponent" type="Node" parent="." unique_id=1005858283]
+script = ExtResource("3_fto5i")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1722100171]
