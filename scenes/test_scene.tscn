@@ -3,12 +3,45 @@
 [ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="1_g7g4h"]
 [ext_resource type="PackedScene" uid="uid://b070e13xnndif" path="res://prefabs/player_ship.tscn" id="2_j8ivh"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
+size = Vector2(4243, 9718)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8ivh"]
+size = Vector2(12197, 3722)
+
 [node name="TestScene" type="Node2D" unique_id=762031175]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=282775670]
-position = Vector2(1193, 411)
+position = Vector2(-39, -38.99997)
 scale = Vector2(19.640625, 7.421875)
 texture = ExtResource("1_g7g4h")
 
 [node name="PlayerShip" parent="." unique_id=1089880255 instance=ExtResource("2_j8ivh")]
-position = Vector2(997, 907)
+position = Vector2(-3, 11)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=122638207]
+zoom = Vector2(0.5, 0.5)
+
+[node name="PlayableAreaBorderX" type="Area2D" parent="." unique_id=1390804149]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="PlayableAreaBorderX" unique_id=1056715224]
+position = Vector2(4000, 38.5)
+shape = SubResource("RectangleShape2D_nd71p")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="PlayableAreaBorderX" unique_id=826574996]
+position = Vector2(-4000, -21)
+shape = SubResource("RectangleShape2D_nd71p")
+
+[node name="PlayableAreaBorderY" type="Area2D" parent="." unique_id=953603421]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayableAreaBorderY" unique_id=1252237711]
+position = Vector2(-16.5, -3000)
+shape = SubResource("RectangleShape2D_j8ivh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayableAreaBorderY" unique_id=205358434]
+position = Vector2(1.5, 3000)
+shape = SubResource("RectangleShape2D_j8ivh")

@@ -3,13 +3,20 @@
 [ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="1_ons34"]
 [ext_resource type="Script" uid="uid://c48p3t8du48vm" path="res://scripts/player_ship_controller_component.gd" id="2_iwps3"]
 [ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/ship_data_component.gd" id="3_fto5i"]
+[ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/map_edge_overflow_component.gd" id="4_iwps3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfrvl"]
 size = Vector2(128, 128)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fto5i"]
+size = Vector2(127, 128)
+
 [node name="PlayerShip" type="CharacterBody2D" unique_id=1089880255]
+collision_layer = 6
+collision_mask = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1036919982]
+rotation = 1.5707964
 texture = ExtResource("1_ons34")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85070103]
@@ -22,5 +29,28 @@ ship_body = NodePath("..")
 
 [node name="ShipDataComponent" type="Node" parent="." unique_id=1005858283]
 script = ExtResource("3_fto5i")
+ship_speed = 3000.0
+ship_acceleration = 20
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1722100171]
+[node name="MapEdgeOverflowComponent" type="Node" parent="." unique_id=116837297 node_paths=PackedStringArray("ship_body")]
+script = ExtResource("4_iwps3")
+ship_body = NodePath("..")
+
+[node name="MapEdgeOverflowAreaX" type="Area2D" parent="." unique_id=1097239885]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapEdgeOverflowAreaX" unique_id=1191740819]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_fto5i")
+
+[node name="MapEdgeOverflowAreaY" type="Area2D" parent="." unique_id=1297782328]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapEdgeOverflowAreaY" unique_id=331480465]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_fto5i")
+
+[connection signal="area_entered" from="MapEdgeOverflowAreaX" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_x"]
+[connection signal="area_entered" from="MapEdgeOverflowAreaY" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_y"]

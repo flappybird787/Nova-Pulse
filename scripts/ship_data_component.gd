@@ -2,7 +2,7 @@ extends Node
 class_name ShipDataComponent
 
 ## the speed that the ship moves forward
-@export var ship_speed = 0
+@export var ship_speed = 0.0
 
 ## the health of the ship hull
 @export var ship_health = 0
