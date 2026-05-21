@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://b070e13xnndif"]
 
 [ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="1_ons34"]
-[ext_resource type="Script" uid="uid://c48p3t8du48vm" path="res://scripts/player_ship_controller_component.gd" id="2_iwps3"]
-[ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/ship_data_component.gd" id="3_fto5i"]
-[ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/map_edge_overflow_component.gd" id="4_iwps3"]
+[ext_resource type="Script" uid="uid://lshpwtol7dpf" path="res://scripts/player_ship.gd" id="1_yfrvl"]
+[ext_resource type="Script" uid="uid://c48p3t8du48vm" path="res://scripts/components/player_ship_controller_component.gd" id="2_iwps3"]
+[ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="3_fto5i"]
+[ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="4_iwps3"]
+[ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="5_fto5i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfrvl"]
 size = Vector2(128, 128)
@@ -14,6 +16,7 @@ size = Vector2(127, 128)
 [node name="PlayerShip" type="CharacterBody2D" unique_id=1089880255]
 collision_layer = 70
 collision_mask = 6
+script = ExtResource("1_yfrvl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1036919982]
 rotation = 1.5707964
@@ -36,6 +39,15 @@ ship_acceleration = 20
 script = ExtResource("4_iwps3")
 ship_body = NodePath("..")
 
+[node name="HealthComponent" type="Node" parent="." unique_id=2028290838 node_paths=PackedStringArray("shield_label", "health_label")]
+script = ExtResource("5_fto5i")
+health = 50
+max_health = 60
+shields = 60
+max_shields = 60
+shield_label = NodePath("../CanvasLayer/PlayerShieldLabel")
+health_label = NodePath("../CanvasLayer/PlayerHealthLabel")
+
 [node name="MapEdgeOverflowAreaX" type="Area2D" parent="." unique_id=1097239885]
 collision_layer = 0
 collision_mask = 8
@@ -51,6 +63,34 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapEdgeOverflowAreaY" unique_id=331480465]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_fto5i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1128474250]
+
+[node name="PlayerHealthLabel" type="Label" parent="CanvasLayer" unique_id=319445835]
+anchors_preset = -1
+anchor_left = 0.008
+anchor_top = 0.010000001
+anchor_right = 0.008
+anchor_bottom = 0.010000001
+offset_left = 0.51999855
+offset_top = -0.40000057
+offset_right = 193.52
+offset_bottom = 42.6
+theme_override_font_sizes/font_size = 30
+text = "test"
+
+[node name="PlayerShieldLabel" type="Label" parent="CanvasLayer" unique_id=261185609]
+anchors_preset = -1
+anchor_left = 0.008
+anchor_top = 0.041
+anchor_right = 0.008
+anchor_bottom = 0.041
+offset_left = 0.51999855
+offset_top = 13.959999
+offset_right = 193.52
+offset_bottom = 56.96
+theme_override_font_sizes/font_size = 30
+text = "test"
 
 [connection signal="area_entered" from="MapEdgeOverflowAreaX" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_x"]
 [connection signal="area_entered" from="MapEdgeOverflowAreaY" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_y"]

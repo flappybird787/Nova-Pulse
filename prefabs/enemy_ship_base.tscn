@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://c73jwn315phf8"]
 
 [ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="1_k5pqm"]
-[ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/ship_data_component.gd" id="2_lxkpm"]
-[ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/map_edge_overflow_component.gd" id="3_i12am"]
+[ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="2_lxkpm"]
+[ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="3_i12am"]
 [ext_resource type="Script" uid="uid://byfkxe3bur7me" path="res://scripts/state_machine_manager.gd" id="4_lxkpm"]
 [ext_resource type="Script" uid="uid://bek72p5pasbro" path="res://scripts/states/attacking_state.gd" id="5_i12am"]
+[ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="6_l0son"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0son"]
 size = Vector2(128, 128)
@@ -31,6 +32,27 @@ shape = SubResource("RectangleShape2D_l0son")
 script = ExtResource("2_lxkpm")
 ship_speed = 300.0
 ship_agility = 2
+
+[node name="PlayerHealthLabelPivot" type="Control" parent="." unique_id=1286020171]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerHealthLabel" type="Label" parent="PlayerHealthLabelPivot" unique_id=1438954244]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.008
+anchor_top = 0.010000001
+anchor_right = 0.008
+anchor_bottom = 0.010000001
+offset_left = -97.32
+offset_top = -119.399994
+offset_right = 95.680016
+offset_bottom = -76.4
+theme_override_font_sizes/font_size = 30
+text = "test"
+horizontal_alignment = 1
 
 [node name="MapEdgeOverflowComponent" type="Node" parent="." unique_id=1781027639 node_paths=PackedStringArray("ship_body")]
 script = ExtResource("3_i12am")
@@ -69,6 +91,17 @@ collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" unique_id=1523542974]
 shape = SubResource("CircleShape2D_i12am")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1717269673]
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("shield_label", "health_label", "health_label_pivot")]
+script = ExtResource("6_l0son")
+health = 50
+max_health = 60
+shield_label = NodePath("")
+health_label = NodePath("../PlayerHealthLabelPivot/PlayerHealthLabel")
+health_label_pivot = NodePath("../PlayerHealthLabelPivot")
+handle_label_transforms = true
 
 [connection signal="area_entered" from="MapEdgeOverflowAreaX" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_x"]
 [connection signal="area_entered" from="MapEdgeOverflowAreaY" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_y"]
