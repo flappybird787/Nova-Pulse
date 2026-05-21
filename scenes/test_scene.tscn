@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ru0tp3sc0c7d"]
 
-[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="1_g7g4h"]
 [ext_resource type="PackedScene" uid="uid://b070e13xnndif" path="res://prefabs/player_ship.tscn" id="2_j8ivh"]
+[ext_resource type="PackedScene" uid="uid://c73jwn315phf8" path="res://prefabs/enemy_ship_base.tscn" id="2_nd71p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(4243, 9718)
@@ -10,11 +10,6 @@ size = Vector2(4243, 9718)
 size = Vector2(12197, 3722)
 
 [node name="TestScene" type="Node2D" unique_id=762031175]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=282775670]
-position = Vector2(-39, -38.99997)
-scale = Vector2(19.640625, 7.421875)
-texture = ExtResource("1_g7g4h")
 
 [node name="PlayerShip" parent="." unique_id=1089880255 instance=ExtResource("2_j8ivh")]
 position = Vector2(-3, 11)
@@ -45,3 +40,6 @@ shape = SubResource("RectangleShape2D_j8ivh")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayableAreaBorderY" unique_id=205358434]
 position = Vector2(1.5, 3000)
 shape = SubResource("RectangleShape2D_j8ivh")
+
+[node name="enemy_ship_base" parent="." unique_id=1776559298 instance=ExtResource("2_nd71p")]
+position = Vector2(1343, 631)

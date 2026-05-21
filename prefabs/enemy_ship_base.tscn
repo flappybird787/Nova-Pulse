@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://c73jwn315phf8"]
+
+[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="1_k5pqm"]
+[ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/ship_data_component.gd" id="2_lxkpm"]
+[ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/map_edge_overflow_component.gd" id="3_i12am"]
+[ext_resource type="Script" uid="uid://byfkxe3bur7me" path="res://scripts/state_machine_manager.gd" id="4_lxkpm"]
+[ext_resource type="Script" uid="uid://bek72p5pasbro" path="res://scripts/states/attacking_state.gd" id="5_i12am"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0son"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a71dp"]
+size = Vector2(127, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i12am"]
+radius = 3252.5996
+
+[node name="enemy_ship_base" type="CharacterBody2D" unique_id=1776559298]
+collision_layer = 37
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=333681641]
+modulate = Color(1, 0, 0, 1)
+rotation = 1.5707964
+texture = ExtResource("1_k5pqm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594214138]
+shape = SubResource("RectangleShape2D_l0son")
+
+[node name="ShipDataComponent" type="Node" parent="." unique_id=327887610]
+script = ExtResource("2_lxkpm")
+ship_speed = 300.0
+ship_agility = 2
+
+[node name="MapEdgeOverflowComponent" type="Node" parent="." unique_id=1781027639 node_paths=PackedStringArray("ship_body")]
+script = ExtResource("3_i12am")
+ship_body = NodePath("..")
+
+[node name="StateMachineManager" type="Node" parent="." unique_id=1065371948]
+script = ExtResource("4_lxkpm")
+
+[node name="AttackingState" type="Node" parent="StateMachineManager" unique_id=357116728 node_paths=PackedStringArray("ship_data_component", "ship_base", "state_machine_manager")]
+script = ExtResource("5_i12am")
+ship_data_component = NodePath("../../ShipDataComponent")
+ship_base = NodePath("../..")
+state_machine_manager = NodePath("..")
+state_name = "ATTACKING"
+metadata/_custom_type_script = "uid://bmemjl566ltus"
+
+[node name="MapEdgeOverflowAreaX" type="Area2D" parent="." unique_id=1658422668]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapEdgeOverflowAreaX" unique_id=11662848]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_a71dp")
+
+[node name="MapEdgeOverflowAreaY" type="Area2D" parent="." unique_id=1291504183]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapEdgeOverflowAreaY" unique_id=1993573957]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_a71dp")
+
+[node name="AttackRange" type="Area2D" parent="." unique_id=824184974]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange" unique_id=1523542974]
+shape = SubResource("CircleShape2D_i12am")
+
+[connection signal="area_entered" from="MapEdgeOverflowAreaX" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_x"]
+[connection signal="area_entered" from="MapEdgeOverflowAreaY" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_y"]
+[connection signal="body_entered" from="AttackRange" to="StateMachineManager/AttackingState" method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="StateMachineManager/AttackingState" method="_on_attack_range_body_exited"]
