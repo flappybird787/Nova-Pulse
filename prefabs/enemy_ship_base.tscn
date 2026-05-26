@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c73jwn315phf8"]
 
+[ext_resource type="Script" uid="uid://ctutk1j64rj07" path="res://scripts/enemy_ship_base.gd" id="1_a71dp"]
 [ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="1_k5pqm"]
 [ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="2_lxkpm"]
 [ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="3_i12am"]
@@ -16,9 +17,11 @@ size = Vector2(127, 128)
 [sub_resource type="CircleShape2D" id="CircleShape2D_i12am"]
 radius = 3252.5996
 
-[node name="enemy_ship_base" type="CharacterBody2D" unique_id=1776559298]
+[node name="enemy_ship_base" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component")]
 collision_layer = 37
 collision_mask = 5
+script = ExtResource("1_a71dp")
+health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=333681641]
 modulate = Color(1, 0, 0, 1)

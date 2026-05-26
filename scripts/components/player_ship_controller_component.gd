@@ -6,19 +6,20 @@ extends Node
 ## the characterbody2d of the ship
 @export var ship_body : CharacterBody2D
 
+@export var attack_instantiator_component : AttackInstantiatorComponent
+
 var velocity : Vector2
 
 func _physics_process(delta: float) -> void:
 	get_player_input()
 	
-	
 	dampen_velocity(delta)
 	
 	limit_velocity(ship_data_component.ship_speed)
-
 	
 	ship_body.velocity = velocity
 	ship_body.move_and_slide()
+
 
 func get_player_input():
 	# 1. Rotate the ship to face the mouse first
@@ -43,6 +44,9 @@ func get_player_input():
 
 	# 4. Apply acceleration
 	velocity += move_dir * ship_data_component.ship_acceleration
+	
+	if Input.is_action_pressed("primary_attack"):
+		attack_instantiator_component.instantiate_attack()
 
 func limit_velocity(max_velocity):
 	if velocity.x > max_velocity:
