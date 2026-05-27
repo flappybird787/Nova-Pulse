@@ -15,7 +15,7 @@ size = Vector2(128, 128)
 size = Vector2(127, 128)
 
 [node name="PlayerShip" type="CharacterBody2D" unique_id=1089880255 node_paths=PackedStringArray("health_component")]
-collision_layer = 70
+collision_layer = 198
 collision_mask = 6
 script = ExtResource("1_yfrvl")
 health_component = NodePath("HealthComponent")
@@ -45,10 +45,10 @@ ship_body = NodePath("..")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=2028290838 node_paths=PackedStringArray("shield_label", "health_label")]
 script = ExtResource("5_fto5i")
-health = 60
-max_health = 60
-shields = 70
-max_shields = 60
+health = 50
+max_health = 50
+shields = 50
+max_shields = 50
 shield_label = NodePath("../CanvasLayer/PlayerShieldLabel")
 health_label = NodePath("../CanvasLayer/PlayerHealthLabel")
 
@@ -109,9 +109,14 @@ damage = 5
 rotation = -1.5707964
 
 [node name="PrimaryWeaponCooldownTimer" type="Timer" parent="." unique_id=1266770065]
-wait_time = 0.1
+wait_time = 0.3
 one_shot = true
+
+[node name="HealingTimer" type="Timer" parent="." unique_id=1471007299]
+wait_time = 0.7
+autostart = true
 
 [connection signal="area_entered" from="MapEdgeOverflowAreaX" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_x"]
 [connection signal="area_entered" from="MapEdgeOverflowAreaY" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_y"]
 [connection signal="timeout" from="PrimaryWeaponCooldownTimer" to="PlayerShipControllerComponent" method="_on_timer_timeout"]
+[connection signal="timeout" from="HealingTimer" to="HealthComponent" method="_on_healing_timer_timeout"]
