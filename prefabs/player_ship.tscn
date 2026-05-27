@@ -14,10 +14,11 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fto5i"]
 size = Vector2(127, 128)
 
-[node name="PlayerShip" type="CharacterBody2D" unique_id=1089880255]
+[node name="PlayerShip" type="CharacterBody2D" unique_id=1089880255 node_paths=PackedStringArray("health_component")]
 collision_layer = 70
 collision_mask = 6
 script = ExtResource("1_yfrvl")
+health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1036919982]
 rotation = 1.5707964
@@ -26,11 +27,12 @@ texture = ExtResource("1_ons34")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85070103]
 shape = SubResource("RectangleShape2D_yfrvl")
 
-[node name="PlayerShipControllerComponent" type="Node" parent="." unique_id=573145881 node_paths=PackedStringArray("ship_data_component", "ship_body", "attack_instantiator_component")]
+[node name="PlayerShipControllerComponent" type="Node" parent="." unique_id=573145881 node_paths=PackedStringArray("ship_data_component", "ship_body", "attack_instantiator_component", "primary_weapon_cooldown_timer")]
 script = ExtResource("2_iwps3")
 ship_data_component = NodePath("../ShipDataComponent")
 ship_body = NodePath("..")
 attack_instantiator_component = NodePath("../AttackInstantiatorComponent")
+primary_weapon_cooldown_timer = NodePath("../PrimaryWeaponCooldownTimer")
 
 [node name="ShipDataComponent" type="Node" parent="." unique_id=1005858283]
 script = ExtResource("3_fto5i")
@@ -43,9 +45,9 @@ ship_body = NodePath("..")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=2028290838 node_paths=PackedStringArray("shield_label", "health_label")]
 script = ExtResource("5_fto5i")
-health = 50
+health = 60
 max_health = 60
-shields = 60
+shields = 70
 max_shields = 60
 shield_label = NodePath("../CanvasLayer/PlayerShieldLabel")
 health_label = NodePath("../CanvasLayer/PlayerHealthLabel")
@@ -94,13 +96,22 @@ offset_bottom = 56.96
 theme_override_font_sizes/font_size = 30
 text = "test"
 
-[node name="AttackInstantiatorComponent" type="Node" parent="." unique_id=1909240710 node_paths=PackedStringArray("attack_point")]
+[node name="AttackInstantiatorComponent" type="Node" parent="." unique_id=1909240710 node_paths=PackedStringArray("attack_point", "physics_body")]
 script = ExtResource("7_xkgcq")
 attack_point = NodePath("../AttackPoint")
+physics_body = NodePath("..")
 type = "PLAYER"
+attack_type = "BLASTER"
+speed = 1200
+damage = 5
 
 [node name="AttackPoint" type="Marker2D" parent="." unique_id=1700526706]
 rotation = -1.5707964
 
+[node name="PrimaryWeaponCooldownTimer" type="Timer" parent="." unique_id=1266770065]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="area_entered" from="MapEdgeOverflowAreaX" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_x"]
 [connection signal="area_entered" from="MapEdgeOverflowAreaY" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_y"]
+[connection signal="timeout" from="PrimaryWeaponCooldownTimer" to="PlayerShipControllerComponent" method="_on_timer_timeout"]

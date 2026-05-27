@@ -30,5 +30,14 @@ func _process(delta: float) -> void:
 	if handle_label_transforms:
 		handle_label_gui()
 
+func deal_damage(amount: int):
+	for i in range(amount):
+		if max_shields != 0 and shields > 0:
+			shields -= 1
+		
+		else:
+			health -= 1
+
+
 func handle_label_gui():
 	health_label_pivot.rotation = -get_parent().rotation

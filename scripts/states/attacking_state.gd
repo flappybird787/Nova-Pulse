@@ -3,11 +3,17 @@ class_name AttackingState
 
 
 @export var can_attack = false
+@export var can_fire = false
 
 @export var ship_data_component : ShipDataComponent
 @export var ship_base : CharacterBody2D
 
+@export var attack_instantiator_component : AttackInstantiatorComponent
+
 var target
+
+@export var weapons_cooldown_timer : Timer
+var weapon_on_cooldown = false
 
 func _process(delta: float) -> void:
 	
@@ -19,6 +25,11 @@ func _process(delta: float) -> void:
 
 	if state_machine_manager.current_state == state_name:
 		attack(ship_base, target.global_position, delta, ship_data_component.ship_speed, ship_data_component.ship_agility)
+
+		if can_fire and !weapon_on_cooldown:
+			attack_instantiator_component.instantiate_attack()
+			weapon_on_cooldown = true
+			weapons_cooldown_timer.start()
 
 func attack(
 	node: Node2D, 
@@ -71,3 +82,15 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 func _on_attack_range_body_exited(body: Node2D) -> void:
 	can_attack = false
 	target = null
+
+
+func _on_fire_range_body_entered(body: Node2D) -> void:
+	can_fire = true
+
+
+func _on_fire_range_body_exited(body: Node2D) -> void:
+	can_fire = false
+
+
+func _on_weapon_cooldown_timer_timeout() -> void:
+	weapon_on_cooldown = false

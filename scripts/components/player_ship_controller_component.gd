@@ -10,6 +10,9 @@ extends Node
 
 var velocity : Vector2
 
+var can_fire = true
+@export var primary_weapon_cooldown_timer : Timer
+
 func _physics_process(delta: float) -> void:
 	get_player_input()
 	
@@ -46,7 +49,11 @@ func get_player_input():
 	velocity += move_dir * ship_data_component.ship_acceleration
 	
 	if Input.is_action_pressed("primary_attack"):
-		attack_instantiator_component.instantiate_attack()
+		if can_fire:
+			attack_instantiator_component.instantiate_attack()
+			can_fire = false
+			primary_weapon_cooldown_timer.start()
+			
 
 func limit_velocity(max_velocity):
 	if velocity.x > max_velocity:
@@ -69,3 +76,7 @@ func dampen_velocity(delta, friction: float = 0.01):
 		# Optional: Snap to zero if velocity is very low to prevent "infinite" sliding
 		if velocity.length() < 0.1:
 			velocity = Vector2.ZERO
+
+
+func _on_timer_timeout() -> void:
+	can_fire = true
