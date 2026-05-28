@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b070e13xnndif" path="res://prefabs/player_ship.tscn" id="2_j8ivh"]
 [ext_resource type="PackedScene" uid="uid://c73jwn315phf8" path="res://prefabs/enemy_ship_base.tscn" id="2_nd71p"]
 [ext_resource type="Script" uid="uid://ddsge25h4bww1" path="res://scripts/components/xp_component.gd" id="3_nd71p"]
+[ext_resource type="Script" uid="uid://cbagpr7b1t6bb" path="res://scripts/components/attack_instantiator_component.gd" id="4_7ddre"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(4243, 9718)
@@ -42,8 +43,15 @@ shape = SubResource("RectangleShape2D_j8ivh")
 position = Vector2(1.5, 3000)
 shape = SubResource("RectangleShape2D_j8ivh")
 
-[node name="enemy_ship_base" parent="." unique_id=1776559298 instance=ExtResource("2_nd71p")]
-position = Vector2(1343, 631)
-
 [node name="XPComponent" type="Node" parent="." unique_id=381059157]
 script = ExtResource("3_nd71p")
+
+[node name="AttackInstantiatorComponent" type="Node" parent="." unique_id=44602759]
+script = ExtResource("4_7ddre")
+metadata/_custom_type_script = "uid://cbagpr7b1t6bb"
+
+[node name="enemy_ship_base" parent="." unique_id=1776559298 instance=ExtResource("2_nd71p")]
+position = Vector2(968, 786)
+
+[node name="enemy_ship_base2" parent="." unique_id=1150936603 instance=ExtResource("2_nd71p")]
+position = Vector2(-731, 781)

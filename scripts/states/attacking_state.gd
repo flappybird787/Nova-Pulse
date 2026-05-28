@@ -8,12 +8,12 @@ class_name AttackingState
 @export var ship_data_component : ShipDataComponent
 @export var ship_base : CharacterBody2D
 
-@export var attack_instantiator_component : AttackInstantiatorComponent
-
 var target
 
 @export var weapons_cooldown_timer : Timer
 var weapon_on_cooldown = false
+
+@export var attack_trigger_component : AttackTriggerComponent
 
 func _process(delta: float) -> void:
 	
@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 		attack(ship_base, target.global_position, delta, ship_data_component.ship_speed, ship_data_component.ship_agility)
 
 		if can_fire and !weapon_on_cooldown:
-			attack_instantiator_component.instantiate_attack()
+			attack_trigger_component.trigger_attack()
 			weapon_on_cooldown = true
 			weapons_cooldown_timer.start()
 

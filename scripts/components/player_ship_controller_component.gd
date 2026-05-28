@@ -13,6 +13,8 @@ var velocity : Vector2
 var can_fire = true
 @export var primary_weapon_cooldown_timer : Timer
 
+@export var attack_trigger_component : AttackTriggerComponent
+
 func _physics_process(delta: float) -> void:
 	get_player_input()
 	
@@ -50,7 +52,7 @@ func get_player_input():
 	
 	if Input.is_action_pressed("primary_attack"):
 		if can_fire:
-			attack_instantiator_component.instantiate_attack()
+			attack_trigger_component.trigger_attack()
 			can_fire = false
 			primary_weapon_cooldown_timer.start()
 			

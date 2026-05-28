@@ -8,7 +8,8 @@
 [ext_resource type="Script" uid="uid://bek72p5pasbro" path="res://scripts/states/attacking_state.gd" id="5_i12am"]
 [ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="6_l0son"]
 [ext_resource type="Script" uid="uid://cm2jchhaaqnpt" path="res://scripts/components/death_component.gd" id="8_sy2du"]
-[ext_resource type="Script" uid="uid://cbagpr7b1t6bb" path="res://scripts/components/attack_instantiator_component.gd" id="9_b8mar"]
+[ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="9_jki17"]
+[ext_resource type="PackedScene" uid="uid://1w1yjyyiatuf" path="res://prefabs/bullet.tscn" id="10_8v3n5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0son"]
 size = Vector2(128, 128)
@@ -74,12 +75,12 @@ ship_body = NodePath("..")
 [node name="StateMachineManager" type="Node" parent="." unique_id=1065371948]
 script = ExtResource("4_lxkpm")
 
-[node name="AttackingState" type="Node" parent="StateMachineManager" unique_id=357116728 node_paths=PackedStringArray("ship_data_component", "ship_base", "attack_instantiator_component", "weapons_cooldown_timer", "state_machine_manager")]
+[node name="AttackingState" type="Node" parent="StateMachineManager" unique_id=357116728 node_paths=PackedStringArray("ship_data_component", "ship_base", "weapons_cooldown_timer", "attack_trigger_component", "state_machine_manager")]
 script = ExtResource("5_i12am")
 ship_data_component = NodePath("../../ShipDataComponent")
 ship_base = NodePath("../..")
-attack_instantiator_component = NodePath("../../AttackInstantiatorComponent")
 weapons_cooldown_timer = NodePath("../../WeaponCooldownTimer")
+attack_trigger_component = NodePath("../../AttackTriggerComponent")
 state_machine_manager = NodePath("..")
 state_name = "ATTACKING"
 metadata/_custom_type_script = "uid://bmemjl566ltus"
@@ -98,15 +99,13 @@ script = ExtResource("8_sy2du")
 health_component = NodePath("../HealthComponent")
 root = NodePath("..")
 
-[node name="AttackInstantiatorComponent" type="Node" parent="." unique_id=940520612 node_paths=PackedStringArray("attack_point", "physics_body")]
-script = ExtResource("9_b8mar")
-attack_point = NodePath("../AttackPoint")
+[node name="AttackTriggerComponent" type="Node" parent="." unique_id=1173456750 node_paths=PackedStringArray("position", "physics_body")]
+script = ExtResource("9_jki17")
+attack_scene = ExtResource("10_8v3n5")
+position = NodePath("../AttackPoint")
 physics_body = NodePath("..")
-type = "ENEMY"
-attack_type = "BLASTER"
-speed = 1200
-damage = 4
-metadata/_custom_type_script = "uid://cbagpr7b1t6bb"
+attack_team = "ENEMY"
+metadata/_custom_type_script = "uid://2fvomf084pna"
 
 [node name="MapEdgeOverflowAreaX" type="Area2D" parent="." unique_id=1658422668]
 collision_layer = 0

@@ -6,7 +6,8 @@
 [ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="3_fto5i"]
 [ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="4_iwps3"]
 [ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="5_fto5i"]
-[ext_resource type="Script" uid="uid://cbagpr7b1t6bb" path="res://scripts/components/attack_instantiator_component.gd" id="7_xkgcq"]
+[ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="7_xkgcq"]
+[ext_resource type="PackedScene" uid="uid://1w1yjyyiatuf" path="res://prefabs/bullet.tscn" id="8_i7w2u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfrvl"]
 size = Vector2(128, 128)
@@ -27,12 +28,13 @@ texture = ExtResource("1_ons34")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85070103]
 shape = SubResource("RectangleShape2D_yfrvl")
 
-[node name="PlayerShipControllerComponent" type="Node" parent="." unique_id=573145881 node_paths=PackedStringArray("ship_data_component", "ship_body", "attack_instantiator_component", "primary_weapon_cooldown_timer")]
+[node name="PlayerShipControllerComponent" type="Node" parent="." unique_id=573145881 node_paths=PackedStringArray("ship_data_component", "ship_body", "attack_instantiator_component", "primary_weapon_cooldown_timer", "attack_trigger_component")]
 script = ExtResource("2_iwps3")
 ship_data_component = NodePath("../ShipDataComponent")
 ship_body = NodePath("..")
-attack_instantiator_component = NodePath("../AttackInstantiatorComponent")
+attack_instantiator_component = NodePath("")
 primary_weapon_cooldown_timer = NodePath("../PrimaryWeaponCooldownTimer")
+attack_trigger_component = NodePath("../AttackTriggerComponent")
 
 [node name="ShipDataComponent" type="Node" parent="." unique_id=1005858283]
 script = ExtResource("3_fto5i")
@@ -51,6 +53,13 @@ shields = 50
 max_shields = 50
 shield_label = NodePath("../CanvasLayer/PlayerShieldLabel")
 health_label = NodePath("../CanvasLayer/PlayerHealthLabel")
+
+[node name="AttackTriggerComponent" type="Node" parent="." unique_id=1850881911 node_paths=PackedStringArray("position", "physics_body")]
+script = ExtResource("7_xkgcq")
+attack_scene = ExtResource("8_i7w2u")
+position = NodePath("../AttackPoint")
+physics_body = NodePath("..")
+attack_team = "PLAYER"
 
 [node name="MapEdgeOverflowAreaX" type="Area2D" parent="." unique_id=1097239885]
 collision_layer = 0
@@ -95,15 +104,6 @@ offset_right = 193.52
 offset_bottom = 56.96
 theme_override_font_sizes/font_size = 30
 text = "test"
-
-[node name="AttackInstantiatorComponent" type="Node" parent="." unique_id=1909240710 node_paths=PackedStringArray("attack_point", "physics_body")]
-script = ExtResource("7_xkgcq")
-attack_point = NodePath("../AttackPoint")
-physics_body = NodePath("..")
-type = "PLAYER"
-attack_type = "BLASTER"
-speed = 1200
-damage = 5
 
 [node name="AttackPoint" type="Marker2D" parent="." unique_id=1700526706]
 rotation = -1.5707964
