@@ -17,3 +17,8 @@ func _physics_process(delta: float) -> void:
 func _on_player_detection_area_body_entered(body: Node2D) -> void:
 	player_in_range = true
 	player = body
+
+
+func _on_player_absorbtion_area_body_entered(body: Node2D) -> void:
+	GameManager.player_xp += xp_amount
+	queue_free()

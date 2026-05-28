@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 EventBus="*uid://c8v46lg8qoy60"
+GameManager="*uid://c6i2ovndywkbw"
 
 [display]
 
