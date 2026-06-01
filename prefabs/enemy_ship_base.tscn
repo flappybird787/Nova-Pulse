@@ -85,14 +85,10 @@ state_machine_manager = NodePath("..")
 state_name = "ATTACKING"
 metadata/_custom_type_script = "uid://bmemjl566ltus"
 
-[node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("shield_label", "health_label", "health_label_pivot")]
+[node name="HealthComponent" type="Node" parent="." unique_id=1245034984]
 script = ExtResource("6_l0son")
 health = 15
 max_health = 15
-shield_label = NodePath("")
-health_label = NodePath("../PlayerHealthLabelPivot/PlayerHealthLabel")
-health_label_pivot = NodePath("../PlayerHealthLabelPivot")
-handle_label_transforms = true
 
 [node name="DeathComponent" type="Node" parent="." unique_id=3514482 node_paths=PackedStringArray("health_component", "root")]
 script = ExtResource("8_sy2du")

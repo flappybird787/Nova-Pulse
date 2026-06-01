@@ -16,13 +16,16 @@ class_name GUIManagerComponent
 ## handles the transform of a label, such as a health bar floating above an enemy
 @export var is_enemy_gui = false
 
+func _ready() -> void:
+	EventBus.xp_changed.connect(handle_xp_labels)
+	
+
 func _process(delta: float) -> void:
 	handle_health_labels()
-	handle_xp_labels()
 
 
-func handle_xp_labels():
-	xp_label.text = str(GameManager.player_xp, " xp")
+func handle_xp_labels(xp_amount, xp_to_next_level):
+	xp_label.text = str(xp_amount,"/", xp_to_next_level, " xp")
 
 
 func handle_health_labels():

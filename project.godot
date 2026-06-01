@@ -19,6 +19,7 @@ config/icon="res://assets/icon.svg"
 
 EventBus="*uid://c8v46lg8qoy60"
 GameManager="*uid://c6i2ovndywkbw"
+PlayerUpgradeManager="*uid://cn1f3g15q2cpr"
 
 [display]
 

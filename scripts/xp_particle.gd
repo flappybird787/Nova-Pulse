@@ -20,5 +20,6 @@ func _on_player_detection_area_body_entered(body: Node2D) -> void:
 
 
 func _on_player_absorbtion_area_body_entered(body: Node2D) -> void:
-	GameManager.player_xp += xp_amount
+	PlayerUpgradeManager.gain_xp(xp_amount)
+	#print(GameManager.player_xp)
 	queue_free()

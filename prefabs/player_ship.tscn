@@ -29,11 +29,10 @@ texture = ExtResource("1_ons34")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85070103]
 shape = SubResource("RectangleShape2D_yfrvl")
 
-[node name="PlayerShipControllerComponent" type="Node" parent="." unique_id=573145881 node_paths=PackedStringArray("ship_data_component", "ship_body", "attack_instantiator_component", "primary_weapon_cooldown_timer", "attack_trigger_component")]
+[node name="PlayerShipControllerComponent" type="Node" parent="." unique_id=573145881 node_paths=PackedStringArray("ship_data_component", "ship_body", "primary_weapon_cooldown_timer", "attack_trigger_component")]
 script = ExtResource("2_iwps3")
 ship_data_component = NodePath("../ShipDataComponent")
 ship_body = NodePath("..")
-attack_instantiator_component = NodePath("")
 primary_weapon_cooldown_timer = NodePath("../PrimaryWeaponCooldownTimer")
 attack_trigger_component = NodePath("../AttackTriggerComponent")
 

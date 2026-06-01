@@ -8,8 +8,8 @@ class_name StateMachineManager
 @export var next_state: String
 
 
-func _process(delta: float) -> void:
-	print("current state: ", current_state, " next state: ", next_state)
+#func _process(delta: float) -> void:
+	#print("current state: ", current_state, " next state: ", next_state)
 
 
 func set_state(state_to_set, next_state_to_set, interrupt_current = false):
