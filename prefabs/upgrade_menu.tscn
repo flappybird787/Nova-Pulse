@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cgwrjfokpw8st"]
+
+[ext_resource type="Script" uid="uid://bg74023w0kain" path="res://scripts/GUI/upgrade_menu.gd" id="1_taer5"]
+[ext_resource type="PackedScene" uid="uid://g5kp03i611a3" path="res://prefabs/upgrade_card.tscn" id="2_03yiy"]
+[ext_resource type="Script" uid="uid://dwj4nrs15y4ye" path="res://scripts/data/upgrade_base.gd" id="3_q38cm"]
+
+[sub_resource type="Resource" id="Resource_tpjxa"]
+script = ExtResource("3_q38cm")
+upgrade_type = 2
+upgrade_name = "Stronger Hull"
+upgrade_description = "This upgrade uses reinforced alloys to boost the strength of the hull"
+metadata/_custom_type_script = "uid://dwj4nrs15y4ye"
+
+[node name="UpgradeMenu" type="Control" unique_id=1439419694 node_paths=PackedStringArray("card_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_taer5")
+upgrade_card_scene = ExtResource("2_03yiy")
+available_upgrades = Array[ExtResource("3_q38cm")]([SubResource("Resource_tpjxa")])
+card_container = NodePath("CardContainer")
+
+[node name="CardContainer" type="HBoxContainer" parent="." unique_id=329709265]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="." unique_id=1718785740]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 25.0
+offset_right = -24.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2

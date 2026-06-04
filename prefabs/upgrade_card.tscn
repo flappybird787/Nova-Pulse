@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://g5kp03i611a3"]
+
+[ext_resource type="Script" uid="uid://bbylb0i3ivdnq" path="res://scripts/GUI/upgrade_card.gd" id="1_xhwot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhwot"]
+
+[node name="UpgradeCard" type="Button" unique_id=1227024381 node_paths=PackedStringArray("upgrade_name_label", "upgrade_description_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xhwot")
+upgrade_name_label = NodePath("Panel/UpgradeName")
+upgrade_description_label = NodePath("Panel/UpgradeDescription")
+
+[node name="Panel" type="Panel" parent="." unique_id=1273353834]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.061000004
+anchor_bottom = 0.16000001
+offset_right = 153.84
+offset_bottom = 192.59999
+theme_override_styles/panel = SubResource("StyleBoxFlat_xhwot")
+
+[node name="UpgradeName" type="Label" parent="Panel" unique_id=1786983332]
+layout_mode = 0
+offset_right = 43.0
+offset_bottom = 23.0
+text = "test 1"
+
+[node name="UpgradeDescription" type="Label" parent="Panel" unique_id=1853484377]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 43.0
+offset_bottom = 65.0
+text = "test 2
+"

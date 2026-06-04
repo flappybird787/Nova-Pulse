@@ -1,0 +1,12 @@
+extends Resource
+class_name UpgradeBase
+
+@export_enum("WEAPON", "SHIELD", "HEALTH", "DAMAGE") var upgrade_type
+
+@export var upgrade_name : String
+
+@export var upgrade_description : String
+
+@export var icon : Image
+
+@export var art : Image

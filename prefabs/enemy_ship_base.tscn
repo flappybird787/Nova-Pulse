@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c73jwn315phf8"]
 
-[ext_resource type="Script" uid="uid://ctutk1j64rj07" path="res://scripts/enemy_ship_base.gd" id="1_a71dp"]
+[ext_resource type="Script" uid="uid://ctutk1j64rj07" path="res://scripts/node_controllers/enemy_ship_base.gd" id="1_a71dp"]
 [ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="1_k5pqm"]
 [ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="2_lxkpm"]
 [ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="3_i12am"]
-[ext_resource type="Script" uid="uid://byfkxe3bur7me" path="res://scripts/state_machine_manager.gd" id="4_lxkpm"]
+[ext_resource type="Script" uid="uid://byfkxe3bur7me" path="res://scripts/game_managers/state_machine_manager.gd" id="4_lxkpm"]
 [ext_resource type="Script" uid="uid://bek72p5pasbro" path="res://scripts/states/attacking_state.gd" id="5_i12am"]
 [ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="6_l0son"]
 [ext_resource type="Script" uid="uid://cm2jchhaaqnpt" path="res://scripts/components/death_component.gd" id="8_sy2du"]

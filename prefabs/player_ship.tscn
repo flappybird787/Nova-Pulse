@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b070e13xnndif"]
 
 [ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="1_ons34"]
-[ext_resource type="Script" uid="uid://lshpwtol7dpf" path="res://scripts/player_ship.gd" id="1_yfrvl"]
+[ext_resource type="Script" uid="uid://lshpwtol7dpf" path="res://scripts/node_controllers/player_ship.gd" id="1_yfrvl"]
 [ext_resource type="Script" uid="uid://c48p3t8du48vm" path="res://scripts/components/player_ship_controller_component.gd" id="2_iwps3"]
 [ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="3_fto5i"]
 [ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="4_iwps3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="7_xkgcq"]
 [ext_resource type="PackedScene" uid="uid://1w1yjyyiatuf" path="res://prefabs/bullet.tscn" id="8_i7w2u"]
 [ext_resource type="Script" uid="uid://cbckntufcfkox" path="res://scripts/components/gui_manager_component.gd" id="9_gehul"]
+[ext_resource type="PackedScene" uid="uid://cgwrjfokpw8st" path="res://prefabs/upgrade_menu.tscn" id="10_ksl8n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfrvl"]
 size = Vector2(128, 128)
@@ -59,12 +60,13 @@ position = NodePath("../AttackPoint")
 physics_body = NodePath("..")
 attack_team = "PLAYER"
 
-[node name="GUIManagerComponent" type="Node" parent="." unique_id=1677021560 node_paths=PackedStringArray("health_component", "shield_label", "health_label", "xp_label")]
+[node name="GUIManagerComponent" type="Node" parent="." unique_id=1677021560 node_paths=PackedStringArray("health_component", "shield_label", "health_label", "xp_label", "player_labels")]
 script = ExtResource("9_gehul")
 health_component = NodePath("../HealthComponent")
-shield_label = NodePath("../CanvasLayer/PlayerShieldLabel")
-health_label = NodePath("../CanvasLayer/PlayerHealthLabel")
-xp_label = NodePath("../CanvasLayer/PlayerXPLabel")
+shield_label = NodePath("../CanvasLayer/PlayerLabels/PlayerShieldLabel")
+health_label = NodePath("../CanvasLayer/PlayerLabels/PlayerHealthLabel")
+xp_label = NodePath("../CanvasLayer/PlayerLabels/PlayerXPLabel")
+player_labels = NodePath("../CanvasLayer/PlayerLabels")
 
 [node name="MapEdgeOverflowAreaX" type="Area2D" parent="." unique_id=1097239885]
 collision_layer = 0
@@ -84,42 +86,53 @@ shape = SubResource("RectangleShape2D_fto5i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1128474250]
 
-[node name="PlayerHealthLabel" type="Label" parent="CanvasLayer" unique_id=319445835]
+[node name="UpgradeMenu" parent="CanvasLayer" unique_id=1439419694 instance=ExtResource("10_ksl8n")]
+
+[node name="PlayerLabels" type="Control" parent="CanvasLayer" unique_id=647223102]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerHealthLabel" type="Label" parent="CanvasLayer/PlayerLabels" unique_id=319445835]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.008
 anchor_top = 0.010000001
 anchor_right = 0.008
 anchor_bottom = 0.010000001
-offset_left = 0.51999855
-offset_top = -0.40000057
-offset_right = 193.52
-offset_bottom = 42.6
+offset_left = 20.68
+offset_top = 13.6
+offset_right = 213.68001
+offset_bottom = 56.6
 theme_override_font_sizes/font_size = 30
 text = "test"
 
-[node name="PlayerShieldLabel" type="Label" parent="CanvasLayer" unique_id=261185609]
+[node name="PlayerShieldLabel" type="Label" parent="CanvasLayer/PlayerLabels" unique_id=261185609]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.008
 anchor_top = 0.041
 anchor_right = 0.008
 anchor_bottom = 0.041
-offset_left = 0.51999855
-offset_top = 13.959999
-offset_right = 193.52
-offset_bottom = 56.96
+offset_left = 20.68
+offset_top = 71.36
+offset_right = 213.68001
+offset_bottom = 114.36
 theme_override_font_sizes/font_size = 30
 text = "test"
 
-[node name="PlayerXPLabel" type="Label" parent="CanvasLayer" unique_id=208495225]
+[node name="PlayerXPLabel" type="Label" parent="CanvasLayer/PlayerLabels" unique_id=208495225]
+layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.008
 anchor_top = 0.041
 anchor_right = 0.008
 anchor_bottom = 0.041
-offset_left = 0.51999855
-offset_top = 71.96
-offset_right = 193.52
-offset_bottom = 114.96
+offset_left = 20.68
+offset_top = 129.36
+offset_right = 213.68001
+offset_bottom = 172.36
 theme_override_font_sizes/font_size = 30
 text = "test"
 

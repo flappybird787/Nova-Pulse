@@ -13,16 +13,28 @@ class_name GUIManagerComponent
 
 @export var health_label_pivot : Control
 
+@export var player_labels : Control
+
 ## handles the transform of a label, such as a health bar floating above an enemy
 @export var is_enemy_gui = false
 
+var showing : bool = true
+
 func _ready() -> void:
 	EventBus.xp_changed.connect(handle_xp_labels)
-	
+	EventBus.game_paused.connect(handle_labels_visibility)
 
 func _process(delta: float) -> void:
 	handle_health_labels()
 
+func handle_labels_visibility(paused : bool):
+	if !paused:
+		player_labels.show()
+		print("showing")
+	
+	if paused:
+		player_labels.hide()
+		print("showing 1")
 
 func handle_xp_labels(xp_amount, xp_to_next_level):
 	xp_label.text = str(xp_amount,"/", xp_to_next_level, " xp")
