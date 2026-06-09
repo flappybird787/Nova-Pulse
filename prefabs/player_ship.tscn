@@ -52,6 +52,7 @@ health = 50
 max_health = 50
 shields = 50
 max_shields = 50
+is_player = null
 
 [node name="AttackTriggerComponent" type="Node" parent="." unique_id=1850881911 node_paths=PackedStringArray("position", "physics_body")]
 script = ExtResource("7_xkgcq")

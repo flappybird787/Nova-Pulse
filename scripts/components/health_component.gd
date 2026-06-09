@@ -9,6 +9,12 @@ class_name HealthComponent
 
 @export var max_shields : int
 
+@export var is_player : bool = false
+
+
+func _ready() -> void:
+	EventBus.upgrade_chosen.connect(apply_upgrade)
+
 
 func deal_damage(amount: int):
 	for i in range(amount):
@@ -30,3 +36,13 @@ func heal(amount):
 
 func _on_healing_timer_timeout() -> void:
 	heal(1)
+
+
+func apply_upgrade(upgrade: UpgradeBase):
+	if upgrade.upgrade_name == "Hull Booster":
+		max_health += 15
+		health += 15
+	
+	if upgrade.upgrade_name == "Shield Booster":
+		max_shields += 15
+		shields += 15

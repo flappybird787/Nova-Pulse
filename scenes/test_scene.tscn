@@ -50,8 +50,14 @@ script = ExtResource("3_nd71p")
 script = ExtResource("4_7ddre")
 metadata/_custom_type_script = "uid://cbagpr7b1t6bb"
 
+[node name="enemy_ship_base4" parent="." unique_id=1849047345 instance=ExtResource("2_nd71p")]
+position = Vector2(1602, 313)
+
 [node name="enemy_ship_base" parent="." unique_id=1776559298 instance=ExtResource("2_nd71p")]
-position = Vector2(968, 786)
+position = Vector2(609, 833)
+
+[node name="enemy_ship_base3" parent="." unique_id=758258723 instance=ExtResource("2_nd71p")]
+position = Vector2(968, 588)
 
 [node name="enemy_ship_base2" parent="." unique_id=1150936603 instance=ExtResource("2_nd71p")]
 position = Vector2(-731, 781)

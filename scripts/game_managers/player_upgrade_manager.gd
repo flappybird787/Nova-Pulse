@@ -5,6 +5,7 @@ extends Node
 func _ready() -> void:
 	xp_to_next_level = calculate_xp_needed()
 	EventBus.gain_xp.connect(gain_xp)
+	EventBus.upgrade_chosen.connect(apply_upgrade)
 	
 	EventBus.xp_changed.emit(GameManager.player_xp, xp_to_next_level)
 
@@ -33,4 +34,8 @@ func gain_xp(amount : int):
 
 func calculate_xp_needed():
 	return GameManager.player_level * 4
-	
+
+
+func apply_upgrade(upgrade : UpgradeBase):
+	get_tree().paused = false
+	EventBus.game_paused.emit(false)

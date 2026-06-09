@@ -7,8 +7,15 @@
 [sub_resource type="Resource" id="Resource_tpjxa"]
 script = ExtResource("3_q38cm")
 upgrade_type = 2
-upgrade_name = "Stronger Hull"
+upgrade_name = "Hull Booster"
 upgrade_description = "This upgrade uses reinforced alloys to boost the strength of the hull"
+metadata/_custom_type_script = "uid://dwj4nrs15y4ye"
+
+[sub_resource type="Resource" id="Resource_taer5"]
+script = ExtResource("3_q38cm")
+upgrade_type = 1
+upgrade_name = "Shield Booster"
+upgrade_description = "This upgrade enhances the shield generator"
 metadata/_custom_type_script = "uid://dwj4nrs15y4ye"
 
 [node name="UpgradeMenu" type="Control" unique_id=1439419694 node_paths=PackedStringArray("card_container")]
@@ -20,13 +27,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_taer5")
 upgrade_card_scene = ExtResource("2_03yiy")
-available_upgrades = Array[ExtResource("3_q38cm")]([SubResource("Resource_tpjxa")])
-card_container = NodePath("CardContainer")
-
-[node name="CardContainer" type="HBoxContainer" parent="." unique_id=329709265]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+available_upgrades = Array[ExtResource("3_q38cm")]([SubResource("Resource_tpjxa"), SubResource("Resource_taer5")])
+card_container = NodePath("Panel/CardContainer")
 
 [node name="Panel" type="Panel" parent="." unique_id=1718785740]
 layout_mode = 1
@@ -39,3 +41,16 @@ offset_right = -24.0
 offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CardContainer" type="HBoxContainer" parent="Panel" unique_id=329709265]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 51.0
+offset_top = 55.0
+offset_right = -51.0
+offset_bottom = -693.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40

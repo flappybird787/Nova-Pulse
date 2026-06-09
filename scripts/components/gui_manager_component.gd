@@ -30,11 +30,9 @@ func _process(delta: float) -> void:
 func handle_labels_visibility(paused : bool):
 	if !paused:
 		player_labels.show()
-		print("showing")
 	
 	if paused:
 		player_labels.hide()
-		print("showing 1")
 
 func handle_xp_labels(xp_amount, xp_to_next_level):
 	xp_label.text = str(xp_amount,"/", xp_to_next_level, " xp")
