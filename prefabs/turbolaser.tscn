@@ -9,7 +9,7 @@ size = Vector2(20, 84)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ycml"]
 size = Vector2(70, 84)
 
-[node name="Bullet" type="CharacterBody2D" unique_id=1337109926 node_paths=PackedStringArray("left", "right")]
+[node name="Turbolaser" type="CharacterBody2D" unique_id=1337109926 node_paths=PackedStringArray("left", "right")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_8ycml")

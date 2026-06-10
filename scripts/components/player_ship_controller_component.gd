@@ -96,3 +96,6 @@ func apply_upgrades(upgrade : UpgradeBase):
 		
 		else:
 			primary_weapon_cooldown_timer.wait_time = 0.1
+
+	if upgrade.upgrade_name == "Railgun":
+		primary_weapon_cooldown_timer.wait_time *= 2

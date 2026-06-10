@@ -26,3 +26,6 @@ func apply_upgrades(upgrade : UpgradeBase):
 	
 	if upgrade.upgrade_name == "Turbolaser":
 		attack_scene = load("res://prefabs/turbolaser.tscn")
+	
+	if upgrade.upgrade_name == "Railgun":
+		attack_scene = load("res://prefabs/railgun.tscn")
