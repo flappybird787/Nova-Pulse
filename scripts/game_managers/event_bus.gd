@@ -16,4 +16,5 @@ signal game_paused(paused : bool)
 # velocity is the velocity of the parent body,
 # attack_scene is the packed scene to instantiate,
 # attack_team is the team to attack, eg ENEMY would be fired from an enemy and PLAYER would be fired from player
-signal fire_attack(transform: Transform2D, velocity: Vector2, attack_scene: PackedScene, attack_team: String)
+# damage_multiplier is the multiplier for the damage
+signal fire_attack(transform: Transform2D, velocity: Vector2, attack_scene: PackedScene, attack_team: String, damage_multiplier : int)

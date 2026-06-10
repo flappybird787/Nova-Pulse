@@ -3,7 +3,7 @@ class_name UpgradeMenu
 
 @export var upgrade_card_scene : PackedScene
 
-@export var available_upgrades : Array[UpgradeBase]
+@export var available_upgrades : Array
 
 @export var card_container : HBoxContainer
 
@@ -11,6 +11,8 @@ func _ready() -> void:
 	EventBus.leveled_up.connect(display_upgrades)
 	EventBus.game_paused.connect(handle_visibility)
 	hide()
+	
+	available_upgrades = Upgrades.all_upgrades
 
 
 func display_upgrades(level : int):

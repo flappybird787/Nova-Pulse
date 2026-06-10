@@ -50,9 +50,10 @@ ship_body = NodePath("..")
 script = ExtResource("5_fto5i")
 health = 50
 max_health = 50
+health_regen = 3
 shields = 50
 max_shields = 50
-is_player = null
+shield_regen = 3
 
 [node name="AttackTriggerComponent" type="Node" parent="." unique_id=1850881911 node_paths=PackedStringArray("position", "physics_body")]
 script = ExtResource("7_xkgcq")

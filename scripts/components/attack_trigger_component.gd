@@ -10,6 +10,16 @@ class_name AttackTriggerComponent
 ## set this to ENEMY for fired from an enemy or PLAYER for fired from the player
 @export var attack_team : String
 
+@export var damage_multiplier : int = 1
+
+func _ready() -> void:
+	EventBus.upgrade_chosen.connect(apply_upgrades)
+
 
 func trigger_attack():
-	EventBus.fire_attack.emit(position.global_transform, physics_body.velocity, attack_scene, attack_team)
+	EventBus.fire_attack.emit(position.global_transform, physics_body.velocity, attack_scene, attack_team, damage_multiplier)
+
+
+func apply_upgrades(upgrade : UpgradeBase):
+	if upgrade.upgrade_name == "Damage Booster":
+		damage_multiplier += 1
