@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cim1clktyjwwt"]
+
+[ext_resource type="Script" uid="uid://brmx4qpre0kqu" path="res://scripts/node_controllers/missile.gd" id="1_kd0w6"]
+[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="2_28vpk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44iiu"]
+size = Vector2(20, 84)
+
+[node name="Missile" type="CharacterBody2D" unique_id=1337109926]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_kd0w6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=106435143]
+shape = SubResource("RectangleShape2D_44iiu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1493556652]
+position = Vector2(-1.9073486e-06, -3.0398369e-06)
+scale = Vector2(0.15625, 0.65625)
+texture = ExtResource("2_28vpk")
+
+[node name="Timer" type="Timer" parent="." unique_id=453438577]
+wait_time = 5.0
+autostart = true
+
+[node name="EnemyArea" type="Area2D" parent="." unique_id=1830245049]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyArea" unique_id=936004793]
+shape = SubResource("RectangleShape2D_44iiu")
+
+[node name="PlayerArea" type="Area2D" parent="." unique_id=1035859050]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea" unique_id=114436624]
+shape = SubResource("RectangleShape2D_44iiu")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="EnemyArea" to="." method="_on_enemy_area_body_entered"]
+[connection signal="body_entered" from="PlayerArea" to="." method="_on_player_area_body_entered"]
