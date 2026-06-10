@@ -11,8 +11,14 @@ func _ready() -> void:
 	EventBus.leveled_up.connect(display_upgrades)
 	EventBus.game_paused.connect(handle_visibility)
 	hide()
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	available_upgrades = Upgrades.all_upgrades
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("reroll_upgrade"):
+		display_upgrades(1)
 
 
 func display_upgrades(level : int):

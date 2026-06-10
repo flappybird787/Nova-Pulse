@@ -15,3 +15,13 @@ class_name ShipDataComponent
 
 ## how fast the ship accelerates forwards
 @export var ship_acceleration = 0
+
+
+func _ready() -> void:
+	EventBus.upgrade_chosen.connect(apply_upgrades)
+
+
+func apply_upgrades(upgrade : UpgradeBase):
+	if upgrade.upgrade_name == "Speed Booster":
+		ship_speed *= 1.2
+		ship_acceleration += 5

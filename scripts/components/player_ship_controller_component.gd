@@ -15,6 +15,11 @@ var can_fire = true
 
 @export var attack_trigger_component : AttackTriggerComponent
 
+
+func _ready() -> void:
+	EventBus.upgrade_chosen.connect(apply_upgrades)
+
+
 func _physics_process(delta: float) -> void:
 	get_player_input()
 	
@@ -82,3 +87,12 @@ func dampen_velocity(delta, friction: float = 0.01):
 
 func _on_timer_timeout() -> void:
 	can_fire = true
+
+
+func apply_upgrades(upgrade : UpgradeBase):
+	if upgrade.upgrade_name == "Fire Rate Booster":
+		if primary_weapon_cooldown_timer.wait_time >= 0.1:
+			primary_weapon_cooldown_timer.wait_time *= 0.5
+		
+		else:
+			primary_weapon_cooldown_timer.wait_time = 0.1
