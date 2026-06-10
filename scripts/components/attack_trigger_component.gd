@@ -1,7 +1,7 @@
 extends Node
 class_name AttackTriggerComponent
 
-@export var attack_scene : PackedScene 
+@export var attack_scene : PackedScene = load("res://prefabs/bullet.tscn")
 
 @export var position : Marker2D
 
@@ -23,3 +23,6 @@ func trigger_attack():
 func apply_upgrades(upgrade : UpgradeBase):
 	if upgrade.upgrade_name == "Damage Booster":
 		damage_multiplier += 1
+	
+	if upgrade.upgrade_name == "Turbolaser":
+		attack_scene = load("res://prefabs/turbolaser.tscn")

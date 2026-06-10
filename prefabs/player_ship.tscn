@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="4_iwps3"]
 [ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="5_fto5i"]
 [ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="7_xkgcq"]
-[ext_resource type="PackedScene" uid="uid://1w1yjyyiatuf" path="res://prefabs/bullet.tscn" id="8_i7w2u"]
 [ext_resource type="Script" uid="uid://cbckntufcfkox" path="res://scripts/components/gui_manager_component.gd" id="9_gehul"]
 [ext_resource type="PackedScene" uid="uid://cgwrjfokpw8st" path="res://prefabs/upgrade_menu.tscn" id="10_ksl8n"]
 
@@ -57,7 +56,6 @@ shield_regen = 3
 
 [node name="AttackTriggerComponent" type="Node" parent="." unique_id=1850881911 node_paths=PackedStringArray("position", "physics_body")]
 script = ExtResource("7_xkgcq")
-attack_scene = ExtResource("8_i7w2u")
 position = NodePath("../AttackPoint")
 physics_body = NodePath("..")
 attack_team = "PLAYER"
@@ -142,7 +140,7 @@ text = "test"
 rotation = -1.5707964
 
 [node name="PrimaryWeaponCooldownTimer" type="Timer" parent="." unique_id=1266770065]
-wait_time = 0.3
+wait_time = 0.25
 one_shot = true
 
 [node name="HealingTimer" type="Timer" parent="." unique_id=1471007299]
