@@ -18,6 +18,8 @@ class_name ShipDataComponent
 
 @export var is_player = false
 
+@export var slowed_speed = 1.0
+
 
 func _ready() -> void:
 	if is_player:

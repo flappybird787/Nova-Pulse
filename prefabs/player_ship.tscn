@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cim1clktyjwwt" path="res://prefabs/missile.tscn" id="8_ksl8n"]
 [ext_resource type="Script" uid="uid://cbckntufcfkox" path="res://scripts/components/gui_manager_component.gd" id="9_gehul"]
 [ext_resource type="PackedScene" uid="uid://cgwrjfokpw8st" path="res://prefabs/upgrade_menu.tscn" id="10_ksl8n"]
+[ext_resource type="Script" uid="uid://fkgpnmup3hiv" path="res://scripts/components/collision_manager_component.gd" id="10_rf2va"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfrvl"]
 size = Vector2(128, 128)
@@ -18,8 +19,8 @@ size = Vector2(128, 128)
 size = Vector2(127, 128)
 
 [node name="PlayerShip" type="CharacterBody2D" unique_id=1089880255 node_paths=PackedStringArray("health_component")]
-collision_layer = 198
-collision_mask = 6
+collision_layer = 194
+collision_mask = 2
 script = ExtResource("1_yfrvl")
 health_component = NodePath("HealthComponent")
 
@@ -71,6 +72,12 @@ health_label = NodePath("../CanvasLayer/PlayerLabels/PlayerHealthLabel")
 xp_label = NodePath("../CanvasLayer/PlayerLabels/PlayerXPLabel")
 player_labels = NodePath("../CanvasLayer/PlayerLabels")
 
+[node name="CollisionManagerComponent" type="Node" parent="." unique_id=981425801 node_paths=PackedStringArray("health_component", "ship_data_component", "ship_body")]
+script = ExtResource("10_rf2va")
+health_component = NodePath("../HealthComponent")
+ship_data_component = NodePath("../ShipDataComponent")
+ship_body = NodePath("..")
+
 [node name="MapEdgeOverflowAreaX" type="Area2D" parent="." unique_id=1097239885]
 collision_layer = 0
 collision_mask = 8
@@ -84,6 +91,14 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapEdgeOverflowAreaY" unique_id=331480465]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_fto5i")
+
+[node name="ShipCollisionArea" type="Area2D" parent="." unique_id=1811089235]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipCollisionArea" unique_id=150657875]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_fto5i")
 
@@ -151,5 +166,6 @@ autostart = true
 
 [connection signal="area_entered" from="MapEdgeOverflowAreaX" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_x"]
 [connection signal="area_entered" from="MapEdgeOverflowAreaY" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_y"]
+[connection signal="body_entered" from="ShipCollisionArea" to="CollisionManagerComponent" method="_on_ship_collision_area_body_entered"]
 [connection signal="timeout" from="PrimaryWeaponCooldownTimer" to="PlayerShipControllerComponent" method="_on_timer_timeout"]
 [connection signal="timeout" from="HealingTimer" to="HealthComponent" method="_on_healing_timer_timeout"]

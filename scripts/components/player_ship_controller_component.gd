@@ -1,12 +1,11 @@
 extends Node
+class_name  PlayerShipControllerComponent
 
 ## the ship data component for getting ship properties
 @export var ship_data_component : ShipDataComponent
 
 ## the characterbody2d of the ship
 @export var ship_body : CharacterBody2D
-
-@export var attack_instantiator_component : AttackInstantiatorComponent
 
 var velocity : Vector2
 
@@ -28,7 +27,16 @@ func _physics_process(delta: float) -> void:
 	limit_velocity(ship_data_component.ship_speed)
 	
 	ship_body.velocity = velocity
+	
 	ship_body.move_and_slide()
+
+
+func apply_collision_speed_penalty(speed):
+	var speed_to_apply = speed
+	var current_speed = ship_body.velocity.length()
+	var new_speed = max(0.0, current_speed - speed_to_apply)
+	
+	ship_body.velocity = ship_body.velocity.normalized() * new_speed
 
 
 func get_player_input():
@@ -53,14 +61,14 @@ func get_player_input():
 		move_dir = move_dir.normalized()
 
 	# 4. Apply acceleration
-	velocity += move_dir * ship_data_component.ship_acceleration
+	velocity += move_dir * ship_data_component.ship_acceleration 
 	
 	if Input.is_action_pressed("primary_attack"):
 		if can_fire:
 			attack_trigger_component.trigger_attack()
 			can_fire = false
 			primary_weapon_cooldown_timer.start()
-			
+
 
 func limit_velocity(max_velocity):
 	if velocity.x > max_velocity:
