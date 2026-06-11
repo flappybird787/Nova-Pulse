@@ -13,7 +13,7 @@ class_name Turbolaser
 @export var right : Node2D
 
 func _physics_process(delta: float) -> void:
-	velocity = transform.y * speed
+	velocity = transform.x * speed
 	move_and_slide()
 
 

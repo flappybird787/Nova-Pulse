@@ -140,7 +140,6 @@ theme_override_font_sizes/font_size = 30
 text = "test"
 
 [node name="AttackPoint" type="Marker2D" parent="." unique_id=1700526706]
-rotation = -1.5707964
 
 [node name="PrimaryWeaponCooldownTimer" type="Timer" parent="." unique_id=1266770065]
 wait_time = 0.25

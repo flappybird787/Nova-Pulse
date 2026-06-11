@@ -38,7 +38,6 @@ texture = ExtResource("1_k5pqm")
 shape = SubResource("RectangleShape2D_l0son")
 
 [node name="AttackPoint" type="Marker2D" parent="." unique_id=2082869617]
-rotation = -1.5707964
 
 [node name="PlayerHealthLabelPivot" type="Control" parent="." unique_id=1286020171]
 layout_mode = 3

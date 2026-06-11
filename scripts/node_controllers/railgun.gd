@@ -9,7 +9,7 @@ class_name Railgun
 @export var type : String
 
 func _physics_process(delta: float) -> void:
-	velocity = transform.y * speed
+	velocity = transform.x * speed
 	
 	move_and_slide()
 

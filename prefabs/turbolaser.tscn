@@ -23,6 +23,7 @@ wait_time = 5.0
 autostart = true
 
 [node name="Left" type="Node2D" parent="." unique_id=396722885]
+rotation = 1.5707964
 
 [node name="LeftEnemyArea" type="Area2D" parent="Left" unique_id=1830245049]
 collision_layer = 0
@@ -45,6 +46,7 @@ scale = Vector2(0.15625, 0.65625)
 texture = ExtResource("2_fqjql")
 
 [node name="Right" type="Node2D" parent="." unique_id=1140013853]
+rotation = 1.5707964
 
 [node name="RightEnemyArea" type="Area2D" parent="Right" unique_id=2101788382]
 collision_layer = 0
@@ -67,6 +69,7 @@ scale = Vector2(0.15625, 0.65625)
 texture = ExtResource("2_fqjql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1254112299]
+rotation = 1.5707964
 shape = SubResource("RectangleShape2D_8ycml")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

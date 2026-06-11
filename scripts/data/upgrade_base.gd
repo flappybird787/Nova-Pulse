@@ -10,3 +10,5 @@ class_name UpgradeBase
 @export var icon : Image
 
 @export var art : Image
+
+@export var spread = 0

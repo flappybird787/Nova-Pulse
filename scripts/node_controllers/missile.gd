@@ -5,6 +5,12 @@ class_name Missile
 
 @export var speed = 0
 
+@export var starting_speed = 0
+
+@export var acceleration_curve : Curve
+
+@export var acceleration_time = 0
+
 @export var guidance_speed = 0
 
 ## set this to PLAYER or ENEMY
@@ -12,10 +18,21 @@ class_name Missile
 
 var target = null
 
+var time_alive = 0.0
+
 func _ready() -> void:
 	target = get_closest_enemy()
 
 func _physics_process(delta: float) -> void:
+	
+	time_alive += delta
+	var t: float = clamp(time_alive / acceleration_time, 0.0, 1.0)
+
+	# Sample the curve value (returns 0.0 to 1.0 based on your graph)
+	var curve_t: float = acceleration_curve.sample(t) if acceleration_curve else t
+
+	var current_speed: float = lerp(starting_speed, speed, curve_t)
+	
 	if is_instance_valid(target):
 		# 1. Find the angle to the target
 		var direction_to_target: Vector2 = (target.global_position - global_position).normalized()
@@ -25,7 +42,7 @@ func _physics_process(delta: float) -> void:
 		rotation = rotate_to_angle(rotation, target_angle, guidance_speed * delta)
 	
 	# 3. Move forward in the direction the missile is currently facing
-	velocity = Vector2.RIGHT.rotated(rotation) * speed
+	velocity = Vector2.RIGHT.rotated(rotation) * current_speed
 	move_and_slide()
 
 ## Helper function to rotate towards an angle without overshooting

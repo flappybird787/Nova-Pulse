@@ -12,16 +12,23 @@ class_name AttackTriggerComponent
 
 @export var damage_multiplier : int = 1
 
+@export var spread = 0
+
 func _ready() -> void:
 	if attack_team == "PLAYER":
 		EventBus.upgrade_chosen.connect(apply_upgrades)
 
 
 func trigger_attack():
+	position.rotation_degrees = randi_range(-spread, spread)
 	EventBus.fire_attack.emit(position.global_transform, physics_body.velocity, attack_scene, attack_team, damage_multiplier)
 
 
 func apply_upgrades(upgrade : UpgradeBase):
+	if upgrade.upgrade_type == "WEAPON":
+		spread = upgrade.spread
+		print("spread: ", spread)
+	
 	if upgrade.upgrade_name == "Damage Booster":
 		damage_multiplier += 1
 	
