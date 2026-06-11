@@ -17,7 +17,8 @@ class_name HealthComponent
 
 
 func _ready() -> void:
-	EventBus.upgrade_chosen.connect(apply_upgrade)
+	if is_player:
+		EventBus.upgrade_chosen.connect(apply_upgrade)
 
 
 func deal_damage(amount: int):

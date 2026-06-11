@@ -10,6 +10,9 @@ size = Vector2(20, 84)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_kd0w6")
+damage = 4
+speed = 1500
+guidance_speed = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=106435143]
 shape = SubResource("RectangleShape2D_44iiu")

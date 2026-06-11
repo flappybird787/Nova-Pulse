@@ -27,6 +27,10 @@ Upgrades="*uid://cuabm4pm58met"
 window/size/viewport_width=2560
 window/size/viewport_height=1440
 
+[global_group]
+
+ENEMIES="group that all targetable enemies are assigned to"
+
 [input]
 
 move_up={

@@ -8,7 +8,7 @@ var all_upgrade_data = [
 	{"type": "DAMAGE", "name": "Damage Booster", "description": "lore.txt", "icon" : Image, "art": Image},
 	{"type": "SHIP", "name": "Speed Booster", "description": "lore.txt", "icon" : Image, "art": Image},
 	{"type": "DAMAGE", "name": "Fire Rate Booster", "description": "lore.txt", "icon" : Image, "art": Image},
-	{"type": "WEAPON", "name": "Missile Launcher", "description": "lore.txt", "icon" : Image, "art": Image},
+	{"type": "WEAPON", "name": "Missile", "description": "lore.txt", "icon" : Image, "art": Image},
 	{"type": "WEAPON", "name": "Railgun", "description": "lore.txt", "icon" : Image, "art": Image},
 	{"type": "WEAPON", "name": "Turbolaser", "description": "lore.txt", "icon" : Image, "art": Image},
 	

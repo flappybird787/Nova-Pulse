@@ -23,7 +23,7 @@ radius = 3252.5996
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pmvo"]
 size = Vector2(20, 931)
 
-[node name="enemy_ship_base" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component")]
+[node name="enemy_ship_base" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component") groups=["ENEMIES"]]
 collision_layer = 37
 collision_mask = 5
 script = ExtResource("1_a71dp")

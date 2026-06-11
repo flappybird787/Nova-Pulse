@@ -13,7 +13,8 @@ class_name AttackTriggerComponent
 @export var damage_multiplier : int = 1
 
 func _ready() -> void:
-	EventBus.upgrade_chosen.connect(apply_upgrades)
+	if attack_team == "PLAYER":
+		EventBus.upgrade_chosen.connect(apply_upgrades)
 
 
 func trigger_attack():
@@ -29,3 +30,6 @@ func apply_upgrades(upgrade : UpgradeBase):
 	
 	if upgrade.upgrade_name == "Railgun":
 		attack_scene = load("res://prefabs/railgun.tscn")
+	
+	if upgrade.upgrade_name == "Missile":
+		attack_scene = load("res://prefabs/missile.tscn")

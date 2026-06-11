@@ -16,9 +16,12 @@ class_name ShipDataComponent
 ## how fast the ship accelerates forwards
 @export var ship_acceleration = 0
 
+@export var is_player = false
+
 
 func _ready() -> void:
-	EventBus.upgrade_chosen.connect(apply_upgrades)
+	if is_player:
+		EventBus.upgrade_chosen.connect(apply_upgrades)
 
 
 func apply_upgrades(upgrade : UpgradeBase):
