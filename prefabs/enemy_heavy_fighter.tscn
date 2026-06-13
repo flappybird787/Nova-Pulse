@@ -1,15 +1,15 @@
-[gd_scene format=3 uid="uid://dmwvllc8moedk"]
+[gd_scene format=3 uid="uid://dukkd5ydied5j"]
 
-[ext_resource type="Script" uid="uid://ctutk1j64rj07" path="res://scripts/node_controllers/enemy_ship_base.gd" id="1_db5qr"]
-[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="2_wf8wc"]
-[ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="3_ges4g"]
-[ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="4_nfvlw"]
-[ext_resource type="Script" uid="uid://byfkxe3bur7me" path="res://scripts/game_managers/state_machine_manager.gd" id="5_f6810"]
-[ext_resource type="Script" uid="uid://bek72p5pasbro" path="res://scripts/states/attacking_state.gd" id="6_he756"]
-[ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="7_vcvwn"]
-[ext_resource type="Script" uid="uid://cm2jchhaaqnpt" path="res://scripts/components/death_component.gd" id="8_mjnqr"]
-[ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="9_sueqv"]
-[ext_resource type="PackedScene" uid="uid://cim1clktyjwwt" path="res://prefabs/missile.tscn" id="10_db5qr"]
+[ext_resource type="Script" uid="uid://ctutk1j64rj07" path="res://scripts/node_controllers/enemy_ship_base.gd" id="1_r0t0g"]
+[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="2_3mahu"]
+[ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="3_up2ut"]
+[ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="4_rf33e"]
+[ext_resource type="Script" uid="uid://byfkxe3bur7me" path="res://scripts/game_managers/state_machine_manager.gd" id="5_mya75"]
+[ext_resource type="Script" uid="uid://bek72p5pasbro" path="res://scripts/states/attacking_state.gd" id="6_hfkwr"]
+[ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="7_vd12t"]
+[ext_resource type="Script" uid="uid://cm2jchhaaqnpt" path="res://scripts/components/death_component.gd" id="8_obet4"]
+[ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="9_6vxj2"]
+[ext_resource type="PackedScene" uid="uid://biux6iqd8ja3i" path="res://prefabs/turbolaser.tscn" id="10_r0t0g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0son"]
 size = Vector2(128, 128)
@@ -20,19 +20,19 @@ size = Vector2(127, 128)
 [sub_resource type="CircleShape2D" id="CircleShape2D_i12am"]
 radius = 3252.5996
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_db5qr"]
-points = PackedVector2Array(0, 0, 400, 1400, -400, 1400)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pmvo"]
+size = Vector2(20, 1327.5)
 
-[node name="enemy_ship_base" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component") groups=["ENEMY"]]
+[node name="enemy_heavy_fighter" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component") groups=["ENEMIES"]]
 collision_layer = 37
 collision_mask = 5
-script = ExtResource("1_db5qr")
+script = ExtResource("1_r0t0g")
 health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=333681641]
 modulate = Color(1, 0, 0, 1)
 rotation = 1.5707964
-texture = ExtResource("2_wf8wc")
+texture = ExtResource("2_3mahu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594214138]
 shape = SubResource("RectangleShape2D_l0son")
@@ -63,19 +63,19 @@ horizontal_alignment = 1
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1717269673]
 
 [node name="ShipDataComponent" type="Node" parent="." unique_id=327887610]
-script = ExtResource("3_ges4g")
-ship_speed = 300.0
-ship_agility = 1
+script = ExtResource("3_up2ut")
+ship_speed = 400.0
+ship_agility = 2
 
 [node name="MapEdgeOverflowComponent" type="Node" parent="." unique_id=1781027639 node_paths=PackedStringArray("ship_body")]
-script = ExtResource("4_nfvlw")
+script = ExtResource("4_rf33e")
 ship_body = NodePath("..")
 
 [node name="StateMachineManager" type="Node" parent="." unique_id=1065371948]
-script = ExtResource("5_f6810")
+script = ExtResource("5_mya75")
 
 [node name="AttackingState" type="Node" parent="StateMachineManager" unique_id=357116728 node_paths=PackedStringArray("ship_data_component", "ship_base", "weapons_cooldown_timer", "attack_trigger_component", "state_machine_manager")]
-script = ExtResource("6_he756")
+script = ExtResource("6_hfkwr")
 ship_data_component = NodePath("../../ShipDataComponent")
 ship_base = NodePath("../..")
 weapons_cooldown_timer = NodePath("../../WeaponCooldownTimer")
@@ -85,18 +85,18 @@ state_name = "ATTACKING"
 metadata/_custom_type_script = "uid://bmemjl566ltus"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1245034984]
-script = ExtResource("7_vcvwn")
-health = 10
-max_health = 10
+script = ExtResource("7_vd12t")
+health = 15
+max_health = 15
 
 [node name="DeathComponent" type="Node" parent="." unique_id=3514482 node_paths=PackedStringArray("health_component", "root")]
-script = ExtResource("8_mjnqr")
+script = ExtResource("8_obet4")
 health_component = NodePath("../HealthComponent")
 root = NodePath("..")
 
 [node name="AttackTriggerComponent" type="Node" parent="." unique_id=1173456750 node_paths=PackedStringArray("position", "physics_body")]
-script = ExtResource("9_sueqv")
-attack_scene = ExtResource("10_db5qr")
+script = ExtResource("9_6vxj2")
+attack_scene = ExtResource("10_r0t0g")
 position = NodePath("../AttackPoint")
 physics_body = NodePath("..")
 attack_team = "ENEMY"
@@ -130,8 +130,9 @@ collision_layer = 0
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireRange" unique_id=1271456785]
+position = Vector2(653.25, -8.665783e-06)
 rotation = -1.5707964
-shape = SubResource("ConvexPolygonShape2D_db5qr")
+shape = SubResource("RectangleShape2D_5pmvo")
 
 [node name="WeaponCooldownTimer" type="Timer" parent="." unique_id=1184776392]
 wait_time = 0.5

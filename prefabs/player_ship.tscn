@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="4_iwps3"]
 [ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="5_fto5i"]
 [ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="7_xkgcq"]
-[ext_resource type="PackedScene" uid="uid://cim1clktyjwwt" path="res://prefabs/missile.tscn" id="8_ksl8n"]
+[ext_resource type="PackedScene" uid="uid://1w1yjyyiatuf" path="res://prefabs/bullet.tscn" id="8_ksl8n"]
 [ext_resource type="Script" uid="uid://cbckntufcfkox" path="res://scripts/components/gui_manager_component.gd" id="9_gehul"]
 [ext_resource type="PackedScene" uid="uid://cgwrjfokpw8st" path="res://prefabs/upgrade_menu.tscn" id="10_ksl8n"]
 [ext_resource type="Script" uid="uid://fkgpnmup3hiv" path="res://scripts/components/collision_manager_component.gd" id="10_rf2va"]
@@ -56,6 +56,7 @@ health_regen = 3
 shields = 50
 max_shields = 50
 shield_regen = 3
+is_player = true
 
 [node name="AttackTriggerComponent" type="Node" parent="." unique_id=1850881911 node_paths=PackedStringArray("position", "physics_body")]
 script = ExtResource("7_xkgcq")
