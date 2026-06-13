@@ -31,14 +31,6 @@ func _physics_process(delta: float) -> void:
 	ship_body.move_and_slide()
 
 
-func apply_collision_speed_penalty(speed):
-	var speed_to_apply = speed
-	var current_speed = ship_body.velocity.length()
-	var new_speed = max(0.0, current_speed - speed_to_apply)
-	
-	ship_body.velocity = ship_body.velocity.normalized() * new_speed
-
-
 func get_player_input():
 	# 1. Rotate the ship to face the mouse first
 	ship_body.look_at(get_viewport().get_camera_2d().get_global_mouse_position())

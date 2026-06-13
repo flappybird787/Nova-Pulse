@@ -72,11 +72,12 @@ health_label = NodePath("../CanvasLayer/PlayerLabels/PlayerHealthLabel")
 xp_label = NodePath("../CanvasLayer/PlayerLabels/PlayerXPLabel")
 player_labels = NodePath("../CanvasLayer/PlayerLabels")
 
-[node name="CollisionManagerComponent" type="Node" parent="." unique_id=981425801 node_paths=PackedStringArray("health_component", "ship_data_component", "ship_body")]
+[node name="CollisionManagerComponent" type="Node" parent="." unique_id=981425801 node_paths=PackedStringArray("health_component", "ship_data_component", "ship_body", "ship_controller_component")]
 script = ExtResource("10_rf2va")
 health_component = NodePath("../HealthComponent")
 ship_data_component = NodePath("../ShipDataComponent")
 ship_body = NodePath("..")
+ship_controller_component = NodePath("../PlayerShipControllerComponent")
 
 [node name="MapEdgeOverflowAreaX" type="Area2D" parent="." unique_id=1097239885]
 collision_layer = 0
