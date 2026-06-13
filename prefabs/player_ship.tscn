@@ -18,7 +18,7 @@ size = Vector2(128, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fto5i"]
 size = Vector2(127, 128)
 
-[node name="PlayerShip" type="CharacterBody2D" unique_id=1089880255 node_paths=PackedStringArray("health_component")]
+[node name="PlayerShip" type="CharacterBody2D" unique_id=1089880255 node_paths=PackedStringArray("health_component") groups=["PLAYER"]]
 collision_layer = 194
 collision_mask = 2
 script = ExtResource("1_yfrvl")

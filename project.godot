@@ -29,7 +29,8 @@ window/size/viewport_height=1440
 
 [global_group]
 
-ENEMIES="group that all targetable enemies are assigned to"
+PLAYER=""
+ENEMY="group that all targetable enemies are assigned to"
 
 [input]
 

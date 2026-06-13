@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="2_28vpk"]
 
 [sub_resource type="Curve" id="Curve_kd0w6"]
-_data = [Vector2(0, 0.20279288), 0.0, 0.0, 0, 0, Vector2(0.47588423, 0.62902236), 2.3603523, 2.3603523, 0, 0, Vector2(0.56913185, 1), 2.9280367, 0.0, 0, 0]
+_data = [Vector2(0, 0.20279288), 0.0, 0.0, 0, 0, Vector2(0.689394, 0.54547405), 1.104247, 1.104247, 0, 0, Vector2(1, 1), 1.2698845, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44iiu"]
@@ -17,8 +17,8 @@ script = ExtResource("1_kd0w6")
 damage = 4
 speed = 3000
 acceleration_curve = SubResource("Curve_kd0w6")
-acceleration_time = 3
-guidance_speed = 2
+acceleration_time = 2
+guidance_speed = 0.05
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=106435143]
 rotation = 1.5707964

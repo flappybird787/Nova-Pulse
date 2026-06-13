@@ -11,7 +11,7 @@ class_name Missile
 
 @export var acceleration_time = 0
 
-@export var guidance_speed = 0
+@export var guidance_speed = 0.0
 
 ## set this to PLAYER or ENEMY
 @export var type : String
@@ -20,10 +20,16 @@ var target = null
 
 var time_alive = 0.0
 
-func _ready() -> void:
-	target = get_closest_enemy()
+var spawned = false
 
 func _physics_process(delta: float) -> void:
+	
+	if !spawned:
+		rotation_degrees += randi_range(-30, 30)
+		spawned = true
+	
+	if target == null:
+		target = get_closest_enemy(type)
 	
 	time_alive += delta
 	var t: float = clamp(time_alive / acceleration_time, 0.0, 1.0)
@@ -39,7 +45,7 @@ func _physics_process(delta: float) -> void:
 		var target_angle: float = direction_to_target.angle()
 		
 		# 2. Smoothly rotate towards the target angle
-		rotation = rotate_to_angle(rotation, target_angle, guidance_speed * delta)
+		rotation = rotate_to_angle(rotation, target_angle, guidance_speed * delta * velocity.length() / 100)
 	
 	# 3. Move forward in the direction the missile is currently facing
 	velocity = Vector2.RIGHT.rotated(rotation) * current_speed
@@ -71,9 +77,15 @@ func _on_enemy_area_body_entered(body: Node2D) -> void:
 		queue_free()
 
 
-func get_closest_enemy() -> Node2D:
-	var enemies: Array[Node] = get_tree().get_nodes_in_group("ENEMIES")
+func get_closest_enemy(group) -> Node2D:
+	var enemies : Array
+	if group == "PLAYER":
+		enemies = get_tree().get_nodes_in_group("ENEMY")
 	
+	elif group == "ENEMY":
+		enemies = get_tree().get_nodes_in_group("PLAYER")
+	
+	print("group: ", group, " enemies: ", enemies)
 	if enemies.is_empty():
 		return null
 	
