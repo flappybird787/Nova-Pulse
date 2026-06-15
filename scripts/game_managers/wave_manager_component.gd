@@ -54,3 +54,5 @@ func start_wave(wave_number : int):
 		scene_root.add_child(e)
 		e.global_position = Vector2(randi_range(-800, 800), randi_range(-800, 800))
 		active_enemies.append(e)
+	
+	EventBus.wave_started.emit(wave_number)

@@ -65,13 +65,14 @@ position = NodePath("../AttackPoint")
 physics_body = NodePath("..")
 attack_team = "PLAYER"
 
-[node name="GUIManagerComponent" type="Node" parent="." unique_id=1677021560 node_paths=PackedStringArray("health_component", "shield_label", "health_label", "xp_label", "player_labels")]
+[node name="GUIManagerComponent" type="Node" parent="." unique_id=1677021560 node_paths=PackedStringArray("health_component", "shield_label", "health_label", "xp_label", "player_labels", "wave_label")]
 script = ExtResource("9_gehul")
 health_component = NodePath("../HealthComponent")
 shield_label = NodePath("../CanvasLayer/PlayerLabels/PlayerShieldLabel")
 health_label = NodePath("../CanvasLayer/PlayerLabels/PlayerHealthLabel")
 xp_label = NodePath("../CanvasLayer/PlayerLabels/PlayerXPLabel")
 player_labels = NodePath("../CanvasLayer/PlayerLabels")
+wave_label = NodePath("../CanvasLayer/PlayerLabels/WaveLabel")
 
 [node name="CollisionManagerComponent" type="Node" parent="." unique_id=981425801 node_paths=PackedStringArray("health_component", "ship_data_component", "ship_body", "ship_controller_component")]
 script = ExtResource("10_rf2va")
@@ -110,9 +111,11 @@ shape = SubResource("RectangleShape2D_fto5i")
 
 [node name="PlayerLabels" type="Control" parent="CanvasLayer" unique_id=647223102]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PlayerHealthLabel" type="Label" parent="CanvasLayer/PlayerLabels" unique_id=319445835]
 layout_mode = 1
@@ -155,6 +158,17 @@ offset_right = 213.68001
 offset_bottom = 172.36
 theme_override_font_sizes/font_size = 30
 text = "test"
+
+[node name="WaveLabel" type="Label" parent="CanvasLayer/PlayerLabels" unique_id=1307350465]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -29.0
+offset_right = 29.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "WAVE 1"
 
 [node name="AttackPoint" type="Marker2D" parent="." unique_id=1700526706]
 

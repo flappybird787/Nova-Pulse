@@ -15,6 +15,8 @@ class_name GUIManagerComponent
 
 @export var player_labels : Control
 
+@export var wave_label : Label
+
 ## handles the transform of a label, such as a health bar floating above an enemy
 @export var is_enemy_gui = false
 
@@ -23,9 +25,12 @@ var showing : bool = true
 func _ready() -> void:
 	EventBus.xp_changed.connect(handle_xp_labels)
 	EventBus.game_paused.connect(handle_labels_visibility)
+	EventBus.wave_started.connect(handle_wave_number)
+
 
 func _process(delta: float) -> void:
 	handle_health_labels()
+
 
 func handle_labels_visibility(paused : bool):
 	if !paused:
@@ -33,6 +38,7 @@ func handle_labels_visibility(paused : bool):
 	
 	if paused:
 		player_labels.hide()
+
 
 func handle_xp_labels(xp_amount, xp_to_next_level):
 	xp_label.text = str(xp_amount,"/", xp_to_next_level, " xp")
@@ -50,3 +56,7 @@ func handle_health_labels():
 
 func handle_label_gui_position():
 	health_label_pivot.rotation = -get_parent().rotation
+
+
+func handle_wave_number(wave_number):
+	wave_label.text = str("WAVE ", wave_number)
