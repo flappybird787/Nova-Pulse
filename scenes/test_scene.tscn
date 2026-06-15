@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://b070e13xnndif" path="res://prefabs/player_ship.tscn" id="2_j8ivh"]
 [ext_resource type="Script" uid="uid://ddsge25h4bww1" path="res://scripts/components/xp_instantiator_component.gd" id="3_nd71p"]
 [ext_resource type="Script" uid="uid://cbagpr7b1t6bb" path="res://scripts/components/attack_instantiator_component.gd" id="4_7ddre"]
-[ext_resource type="PackedScene" uid="uid://dmwvllc8moedk" path="res://prefabs/enemy_fighter.tscn" id="4_qjeyg"]
-[ext_resource type="PackedScene" uid="uid://dukkd5ydied5j" path="res://prefabs/enemy_heavy_fighter.tscn" id="5_qjeyg"]
-[ext_resource type="PackedScene" uid="uid://cm28hiqceiw0" path="res://prefabs/enemy_bomber.tscn" id="6_3qnke"]
+[ext_resource type="PackedScene" uid="uid://dmwvllc8moedk" path="res://prefabs/enemies/enemy_fighter.tscn" id="4_qjeyg"]
+[ext_resource type="PackedScene" uid="uid://dukkd5ydied5j" path="res://prefabs/enemies/enemy_heavy_fighter.tscn" id="5_qjeyg"]
+[ext_resource type="PackedScene" uid="uid://cm28hiqceiw0" path="res://prefabs/enemies/enemy_bomber.tscn" id="6_3qnke"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(4243, 9718)

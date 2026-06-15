@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bupqiq858202t"]
+
+[ext_resource type="PackedScene" uid="uid://b070e13xnndif" path="res://prefabs/player_ship.tscn" id="1_is7cx"]
+[ext_resource type="Script" uid="uid://ddsge25h4bww1" path="res://scripts/components/xp_instantiator_component.gd" id="2_p1j7u"]
+[ext_resource type="Script" uid="uid://cbagpr7b1t6bb" path="res://scripts/components/attack_instantiator_component.gd" id="3_yld8g"]
+[ext_resource type="PackedScene" uid="uid://dmwvllc8moedk" path="res://prefabs/enemies/enemy_fighter.tscn" id="4_hdflw"]
+[ext_resource type="Script" uid="uid://doilpyo1ns38i" path="res://scripts/game_managers/wave_manager_component.gd" id="4_mev14"]
+[ext_resource type="Script" uid="uid://b8vttecwo2c8x" path="res://scripts/data/wave_config.gd" id="5_yld8g"]
+[ext_resource type="Script" uid="uid://muvq1s3x2ldq" path="res://scripts/data/enemy_formation.gd" id="6_hdflw"]
+[ext_resource type="PackedScene" uid="uid://cm28hiqceiw0" path="res://prefabs/enemies/enemy_bomber.tscn" id="6_uswuf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
+size = Vector2(4243, 9718)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j8ivh"]
+size = Vector2(12197, 3722)
+
+[sub_resource type="Resource" id="Resource_ms40l"]
+script = ExtResource("6_hdflw")
+enemies_list = Array[PackedScene]([ExtResource("6_uswuf"), ExtResource("4_hdflw")])
+spawn_layout = 0
+metadata/_custom_type_script = "uid://muvq1s3x2ldq"
+
+[sub_resource type="Resource" id="Resource_uswuf"]
+script = ExtResource("6_hdflw")
+enemies_list = Array[PackedScene]([ExtResource("4_hdflw"), ExtResource("4_hdflw"), ExtResource("4_hdflw")])
+spawn_layout = 1
+metadata/_custom_type_script = "uid://muvq1s3x2ldq"
+
+[sub_resource type="Resource" id="Resource_e7e6y"]
+script = ExtResource("5_yld8g")
+wave_number = 1
+formation_pool = Array[ExtResource("6_hdflw")]([SubResource("Resource_ms40l"), SubResource("Resource_uswuf")])
+formations_number = 2
+metadata/_custom_type_script = "uid://b8vttecwo2c8x"
+
+[node name="NormalMode" type="Node2D" unique_id=762031175]
+
+[node name="PlayerShip" parent="." unique_id=1089880255 instance=ExtResource("1_is7cx")]
+position = Vector2(-3, 11)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=122638207]
+zoom = Vector2(0.5, 0.5)
+
+[node name="PlayableAreaBorderX" type="Area2D" parent="." unique_id=1390804149]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="PlayableAreaBorderX" unique_id=1056715224]
+position = Vector2(4000, 38.5)
+shape = SubResource("RectangleShape2D_nd71p")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="PlayableAreaBorderX" unique_id=826574996]
+position = Vector2(-4000, -21)
+shape = SubResource("RectangleShape2D_nd71p")
+
+[node name="PlayableAreaBorderY" type="Area2D" parent="." unique_id=953603421]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayableAreaBorderY" unique_id=1252237711]
+position = Vector2(-16.5, -3000)
+shape = SubResource("RectangleShape2D_j8ivh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayableAreaBorderY" unique_id=205358434]
+position = Vector2(1.5, 3000)
+shape = SubResource("RectangleShape2D_j8ivh")
+
+[node name="XPInstantiatorComponent" type="Node" parent="." unique_id=381059157]
+script = ExtResource("2_p1j7u")
+
+[node name="AttackInstantiatorComponent" type="Node" parent="." unique_id=44602759]
+script = ExtResource("3_yld8g")
+metadata/_custom_type_script = "uid://cbagpr7b1t6bb"
+
+[node name="WaveManagerComponent" type="Node" parent="." unique_id=420366516 node_paths=PackedStringArray("scene_root")]
+script = ExtResource("4_mev14")
+scene_root = NodePath("..")
+wave_configs = Array[ExtResource("5_yld8g")]([SubResource("Resource_e7e6y")])
