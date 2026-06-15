@@ -14,6 +14,7 @@ var can_fire = true
 
 @export var attack_trigger_component : AttackTriggerComponent
 
+@export var health_component : HealthComponent
 
 func _ready() -> void:
 	EventBus.upgrade_chosen.connect(apply_upgrades)
@@ -29,6 +30,9 @@ func _physics_process(delta: float) -> void:
 	ship_body.velocity = velocity
 	
 	ship_body.move_and_slide()
+	
+	if health_component.health <= 0:
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 
 func get_player_input():

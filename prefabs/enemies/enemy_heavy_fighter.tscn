@@ -84,10 +84,11 @@ state_machine_manager = NodePath("..")
 state_name = "ATTACKING"
 metadata/_custom_type_script = "uid://bmemjl566ltus"
 
-[node name="HealthComponent" type="Node" parent="." unique_id=1245034984]
+[node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("health_label")]
 script = ExtResource("7_vd12t")
 health = 15
 max_health = 15
+health_label = NodePath("../PlayerHealthLabelPivot/PlayerHealthLabel")
 
 [node name="DeathComponent" type="Node" parent="." unique_id=3514482 node_paths=PackedStringArray("health_component", "root")]
 script = ExtResource("8_obet4")

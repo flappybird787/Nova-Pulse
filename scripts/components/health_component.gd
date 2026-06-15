@@ -15,11 +15,15 @@ class_name HealthComponent
 
 @export var is_player : bool = false
 
+@export var health_label : Label
 
 func _ready() -> void:
 	if is_player:
 		EventBus.upgrade_chosen.connect(apply_upgrade)
 
+func _process(delta: float) -> void:
+	if !is_player:
+		health_label.text = str(health, "/", max_health)
 
 func deal_damage(amount: int):
 	for i in range(amount):
