@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 	for enemy in active_enemies:
 		active_enemies_count += 1
 	
-	print("active enemies count: ", active_enemies_count, " active enemies: ", active_enemies)
+	#print("active enemies count: ", active_enemies_count, " active enemies: ", active_enemies)
 	
 	if active_enemies_count == 0:
 		current_wave_number += 1
@@ -39,11 +39,14 @@ func start_wave(wave_number : int):
 	if wave_configs.size() > wave_number:
 		active_wave_config = wave_configs[wave_number]
 	
+	else: 
+		active_wave_config = wave_configs[wave_configs.size() - 1]
+	
 	var all_formations = active_wave_config.formation_pool
 	
 	all_formations.shuffle()
 	
-	print("formations: ", all_formations)
+	#print("formations: ", all_formations)
 	
 	active_formation = all_formations[0]
 	
@@ -56,3 +59,4 @@ func start_wave(wave_number : int):
 		active_enemies.append(e)
 	
 	EventBus.wave_started.emit(wave_number)
+	#print("wave number: ", wave_number, "wave config: ", active_wave_config.wave_number)

@@ -30,7 +30,7 @@ script = ExtResource("1_r0t0g")
 health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=333681641]
-modulate = Color(1, 0, 0, 1)
+modulate = Color(0, 1, 0, 1)
 rotation = 1.5707964
 texture = ExtResource("2_3mahu")
 

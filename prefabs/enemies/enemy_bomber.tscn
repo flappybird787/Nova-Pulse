@@ -23,13 +23,13 @@ radius = 3252.5996
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pmvo"]
 size = Vector2(20, 2036.5)
 
-[node name="enemy_ship_base" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component") groups=["ENEMIES"]]
+[node name="enemy_ship_base" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component") groups=["ENEMY"]]
 collision_layer = 37
 collision_mask = 5
 script = ExtResource("1_nee1c")
 health_component = NodePath("HealthComponent")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=333681641]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=333681641 groups=["ENEMY"]]
 modulate = Color(1, 0, 0, 1)
 rotation = 1.5707964
 texture = ExtResource("2_1pmbd")

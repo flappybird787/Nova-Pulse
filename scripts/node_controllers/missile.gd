@@ -25,8 +25,11 @@ var spawned = false
 func _physics_process(delta: float) -> void:
 	
 	if !spawned:
-		rotation_degrees += randi_range(-30, 30)
+		rotation_degrees += randi_range(-10, 10)
 		spawned = true
+	
+	#if type == "PLAYER":
+	#	guidance_speed = 0.15
 	
 	if target == null:
 		target = get_closest_enemy(type)

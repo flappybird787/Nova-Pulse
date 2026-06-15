@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://b8vttecwo2c8x" path="res://scripts/data/wave_config.gd" id="5_yld8g"]
 [ext_resource type="Script" uid="uid://muvq1s3x2ldq" path="res://scripts/data/enemy_formation.gd" id="6_hdflw"]
 [ext_resource type="PackedScene" uid="uid://cm28hiqceiw0" path="res://prefabs/enemies/enemy_bomber.tscn" id="6_uswuf"]
+[ext_resource type="PackedScene" uid="uid://dukkd5ydied5j" path="res://prefabs/enemies/enemy_heavy_fighter.tscn" id="9_hdflw"]
+[ext_resource type="PackedScene" uid="uid://ceu6chiy2woqe" path="res://prefabs/enemies/enemy_miniboss_1.tscn" id="10_ms40l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(4243, 9718)
@@ -27,11 +29,29 @@ enemies_list = Array[PackedScene]([ExtResource("4_hdflw"), ExtResource("4_hdflw"
 spawn_layout = 1
 metadata/_custom_type_script = "uid://muvq1s3x2ldq"
 
+[sub_resource type="Resource" id="Resource_w5ftc"]
+script = ExtResource("6_hdflw")
+enemies_list = Array[PackedScene]([ExtResource("9_hdflw"), ExtResource("9_hdflw")])
+spawn_layout = null
+metadata/_custom_type_script = "uid://muvq1s3x2ldq"
+
 [sub_resource type="Resource" id="Resource_e7e6y"]
 script = ExtResource("5_yld8g")
 wave_number = 1
-formation_pool = Array[ExtResource("6_hdflw")]([SubResource("Resource_ms40l"), SubResource("Resource_uswuf")])
+formation_pool = Array[ExtResource("6_hdflw")]([SubResource("Resource_ms40l"), SubResource("Resource_uswuf"), SubResource("Resource_w5ftc")])
 formations_number = 2
+metadata/_custom_type_script = "uid://b8vttecwo2c8x"
+
+[sub_resource type="Resource" id="Resource_hdflw"]
+script = ExtResource("6_hdflw")
+enemies_list = Array[PackedScene]([ExtResource("10_ms40l")])
+spawn_layout = 0
+metadata/_custom_type_script = "uid://muvq1s3x2ldq"
+
+[sub_resource type="Resource" id="Resource_r8pms"]
+script = ExtResource("5_yld8g")
+wave_number = 5
+formation_pool = Array[ExtResource("6_hdflw")]([SubResource("Resource_hdflw")])
 metadata/_custom_type_script = "uid://b8vttecwo2c8x"
 
 [node name="NormalMode" type="Node2D" unique_id=762031175]
@@ -76,4 +96,4 @@ metadata/_custom_type_script = "uid://cbagpr7b1t6bb"
 [node name="WaveManagerComponent" type="Node" parent="." unique_id=420366516 node_paths=PackedStringArray("scene_root")]
 script = ExtResource("4_mev14")
 scene_root = NodePath("..")
-wave_configs = Array[ExtResource("5_yld8g")]([SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y")])
+wave_configs = Array[ExtResource("5_yld8g")]([SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y"), SubResource("Resource_r8pms")])
