@@ -36,7 +36,8 @@ func _process(delta: float) -> void:
 		wave_active = false
 
 func start_wave(wave_number : int):
-	active_wave_config = wave_configs[wave_number]
+	if wave_configs.size() > wave_number:
+		active_wave_config = wave_configs[wave_number]
 	
 	var all_formations = active_wave_config.formation_pool
 	

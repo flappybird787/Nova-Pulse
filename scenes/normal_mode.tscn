@@ -76,4 +76,4 @@ metadata/_custom_type_script = "uid://cbagpr7b1t6bb"
 [node name="WaveManagerComponent" type="Node" parent="." unique_id=420366516 node_paths=PackedStringArray("scene_root")]
 script = ExtResource("4_mev14")
 scene_root = NodePath("..")
-wave_configs = Array[ExtResource("5_yld8g")]([SubResource("Resource_e7e6y")])
+wave_configs = Array[ExtResource("5_yld8g")]([SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y")])
