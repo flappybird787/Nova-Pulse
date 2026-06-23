@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b070e13xnndif"]
 
-[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="1_ons34"]
 [ext_resource type="Script" uid="uid://lshpwtol7dpf" path="res://scripts/node_controllers/player_ship.gd" id="1_yfrvl"]
 [ext_resource type="Script" uid="uid://c48p3t8du48vm" path="res://scripts/components/player_ship_controller_component.gd" id="2_iwps3"]
+[ext_resource type="Texture2D" uid="uid://cdlfddd0pnbkq" path="res://assets/Ships/player_basic_ship.png" id="2_rf2va"]
 [ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="3_fto5i"]
 [ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="4_iwps3"]
 [ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="5_fto5i"]
@@ -13,12 +13,13 @@
 [ext_resource type="Script" uid="uid://fkgpnmup3hiv" path="res://scripts/components/collision_manager_component.gd" id="10_rf2va"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfrvl"]
-size = Vector2(128, 128)
+size = Vector2(170, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fto5i"]
-size = Vector2(127, 128)
+size = Vector2(169, 128)
 
 [node name="PlayerShip" type="CharacterBody2D" unique_id=1089880255 node_paths=PackedStringArray("health_component") groups=["PLAYER"]]
+texture_filter = 1
 collision_layer = 194
 collision_mask = 2
 script = ExtResource("1_yfrvl")
@@ -26,7 +27,8 @@ health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1036919982]
 rotation = 1.5707964
-texture = ExtResource("1_ons34")
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_rf2va")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85070103]
 shape = SubResource("RectangleShape2D_yfrvl")
@@ -52,8 +54,8 @@ ship_body = NodePath("..")
 [node name="HealthComponent" type="Node" parent="." unique_id=2028290838]
 script = ExtResource("5_fto5i")
 health = 50
-max_health = 5000
-health_regen = 500
+max_health = 50
+health_regen = 3
 shields = 50
 max_shields = 50
 shield_regen = 3
@@ -172,6 +174,7 @@ grow_horizontal = 2
 text = "WAVE 1"
 
 [node name="AttackPoint" type="Marker2D" parent="." unique_id=1700526706]
+position = Vector2(85, 0)
 
 [node name="PrimaryWeaponCooldownTimer" type="Timer" parent="." unique_id=1266770065]
 wait_time = 0.25

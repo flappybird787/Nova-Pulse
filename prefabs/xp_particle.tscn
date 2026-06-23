@@ -7,10 +7,10 @@
 radius = 16.552946
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lne56"]
-radius = 468.0171
+radius = 1943.0165
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqx08"]
-radius = 42.296574
+radius = 182.01099
 
 [node name="XPParticle" type="CharacterBody2D" unique_id=1109999764]
 collision_layer = 0

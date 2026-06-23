@@ -6,11 +6,13 @@ func _ready() -> void:
 	xp_to_next_level = calculate_xp_needed()
 	EventBus.gain_xp.connect(gain_xp)
 	EventBus.upgrade_chosen.connect(apply_upgrade)
+	EventBus.player_died.connect(reset)
 	
 	EventBus.xp_changed.emit(GameManager.player_xp, xp_to_next_level)
 
-func _process(delta: float) -> void:
-	pass
+func reset():
+	xp_to_next_level = 0
+	print("RESET EVERYTHING 1")
 
 
 func level_up():

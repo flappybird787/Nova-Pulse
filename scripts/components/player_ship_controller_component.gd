@@ -32,6 +32,7 @@ func _physics_process(delta: float) -> void:
 	ship_body.move_and_slide()
 	
 	if health_component.health <= 0:
+		EventBus.player_died.emit()
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 
@@ -47,10 +48,10 @@ func get_player_input():
 		move_dir += ship_body.transform.x # Forward
 	if Input.is_action_pressed("move_down"):
 		move_dir -= ship_body.transform.x # Backward
-	if Input.is_action_pressed("move_left"):
-		move_dir -= ship_body.transform.y # Strafe Left
-	if Input.is_action_pressed("move_right"):
-		move_dir += ship_body.transform.y # Strafe Right
+	#if Input.is_action_pressed("move_left"):
+	#	move_dir -= ship_body.transform.y # Strafe Left
+	#if Input.is_action_pressed("move_right"):
+	#	move_dir += ship_body.transform.y # Strafe Right
 
 	# 3. Normalize to keep diagonal speed consistent
 	if move_dir != Vector2.ZERO:

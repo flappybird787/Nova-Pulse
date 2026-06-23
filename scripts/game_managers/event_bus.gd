@@ -12,6 +12,8 @@ signal upgrade_chosen(upgrade : UpgradeBase)
 
 signal game_paused(paused : bool)
 
+signal player_died()
+
 # position is the position that the attack is at, 
 # velocity is the velocity of the parent body,
 # attack_scene is the packed scene to instantiate,
