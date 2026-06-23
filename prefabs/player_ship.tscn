@@ -52,8 +52,8 @@ ship_body = NodePath("..")
 [node name="HealthComponent" type="Node" parent="." unique_id=2028290838]
 script = ExtResource("5_fto5i")
 health = 50
-max_health = 50
-health_regen = 3
+max_health = 5000
+health_regen = 500
 shields = 50
 max_shields = 50
 shield_regen = 3

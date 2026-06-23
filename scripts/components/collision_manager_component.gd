@@ -12,8 +12,8 @@ class_name CollisionManagerComponent
 
 
 func _on_ship_collision_area_body_entered(body: Node2D) -> void:
-	var damage_dealt = body.health_component.max_health + body.health_component.max_shields * (ship_data_component.ship_speed / ship_body.velocity.length())
+	var damage_dealt = body.health_component.health + body.health_component.shields * (ship_data_component.ship_speed / ship_body.velocity.length())
 	
-	body.health_component.deal_damage(damage_dealt)
+	#body.health_component.deal_damage(damage_dealt)
 	
-	health_component.deal_damage(damage_dealt)
+	#health_component.deal_damage(damage_dealt)

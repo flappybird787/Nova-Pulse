@@ -40,6 +40,9 @@ offset_right = 767.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "if your here you either died (sorry for no death screen i ran out of time) or decided that you wanted to play this game for some reason. in either case, press the play button. or don't. I don't really care."
+text = "if your here you either died (sorry for no death screen i ran out of time)
+ or decided that you wanted to play this game for some reason. in either case, press the play button. 
+or don't. I don't really care."
+horizontal_alignment = 1
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
