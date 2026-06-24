@@ -10,5 +10,5 @@ class_name MissileTrailComponent
 func _physics_process(delta: float) -> void:
 	missile_trail.add_point(trail_spawn_point.global_position)
 	
-	#if missile_trail.get_point_count() > missile_trail_points_amount:
-		#missile_trail.remove_point(0)
+	if missile_trail.get_point_count() > missile_trail_points_amount:
+		missile_trail.remove_point(0)

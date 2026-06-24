@@ -11,6 +11,10 @@ point_count = 3
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44iiu"]
 size = Vector2(20, 61)
 
+[sub_resource type="Curve" id="Curve_463tv"]
+_data = [Vector2(0, 0), 0.0, 1.5090153, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Missile" type="CharacterBody2D" unique_id=1337109926]
 texture_filter = 1
 collision_layer = 0
@@ -59,7 +63,9 @@ autostart = true
 [node name="MissileTrail" type="Line2D" parent="." unique_id=1174585904]
 top_level = true
 z_index = 1
-default_color = Color(1, 0, 0, 1)
+width = 20.0
+width_curve = SubResource("Curve_463tv")
+default_color = Color(0.3254902, 1, 1, 0.23529412)
 
 [node name="MissileTrailComponent" type="Node" parent="." unique_id=1200128920 node_paths=PackedStringArray("missile_trail", "trail_spawn_point")]
 script = ExtResource("3_463tv")
