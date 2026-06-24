@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cim1clktyjwwt"]
 
 [ext_resource type="Script" uid="uid://brmx4qpre0kqu" path="res://scripts/node_controllers/missile.gd" id="1_kd0w6"]
-[ext_resource type="Texture2D" uid="uid://cfpvj7bbredj6" path="res://assets/weapons/missile_base.svg" id="2_77ow3"]
+[ext_resource type="Texture2D" uid="uid://bssik3aoq1wrg" path="res://assets/weapons/missile_base.svg" id="2_463tv"]
 [ext_resource type="Script" uid="uid://bfufrjb1xg0qs" path="res://scripts/components/VFX/MissileTrailComponent.gd" id="3_463tv"]
 
 [sub_resource type="Curve" id="Curve_kd0w6"]
@@ -36,7 +36,7 @@ modulate = Color(0.3137255, 0.70980394, 1, 1)
 position = Vector2(0, 1)
 rotation = 1.5707964
 scale = Vector2(1.145, 1.145)
-texture = ExtResource("2_77ow3")
+texture = ExtResource("2_463tv")
 
 [node name="EnemyArea" type="Area2D" parent="." unique_id=1830245049]
 visible = false

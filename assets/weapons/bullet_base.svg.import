@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bssik3aoq1wrg"
-path="res://.godot/imported/missile_base.svg-fefed161b75898669b06364cccb3cc37.ctex"
+uid="uid://cfpvj7bbredj6"
+path="res://.godot/imported/bullet_base.svg-535a547911fc0872ed1693c42b85a352.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/missile_base.svg"
-dest_files=["res://.godot/imported/missile_base.svg-fefed161b75898669b06364cccb3cc37.ctex"]
+source_file="res://assets/weapons/bullet_base.svg"
+dest_files=["res://.godot/imported/bullet_base.svg-535a547911fc0872ed1693c42b85a352.ctex"]
 
 [params]
 
