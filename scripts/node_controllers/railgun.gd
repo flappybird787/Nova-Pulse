@@ -8,6 +8,8 @@ class_name Railgun
 ## set this to PLAYER or ENEMY
 @export var type : String
 
+@export var color_manager_component : ColorManagerComponent
+
 func _physics_process(delta: float) -> void:
 	velocity = transform.x * speed
 	

@@ -35,6 +35,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_jnnv2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594214138]
+visible = false
 shape = SubResource("RectangleShape2D_l0son")
 
 [node name="AttackPoint" type="Marker2D" parent="." unique_id=2082869617]
@@ -102,9 +103,11 @@ attack_scene = ExtResource("10_db5qr")
 position = NodePath("../AttackPoint")
 physics_body = NodePath("..")
 attack_team = "ENEMY"
+attack_color = Color(0.99999994, 0.42056417, 0.17572492, 1)
 metadata/_custom_type_script = "uid://2fvomf084pna"
 
 [node name="MapEdgeOverflowAreaX" type="Area2D" parent="." unique_id=1658422668]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
@@ -113,6 +116,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_a71dp")
 
 [node name="MapEdgeOverflowAreaY" type="Area2D" parent="." unique_id=1291504183]
+visible = false
 collision_layer = 0
 collision_mask = 16
 
@@ -121,6 +125,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_a71dp")
 
 [node name="AttackRange" type="Area2D" parent="." unique_id=824184974]
+visible = false
 collision_layer = 0
 collision_mask = 64
 
@@ -128,6 +133,7 @@ collision_mask = 64
 shape = SubResource("CircleShape2D_i12am")
 
 [node name="FireRange" type="Area2D" parent="." unique_id=1223002913]
+visible = false
 collision_layer = 0
 collision_mask = 64
 

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://brmx4qpre0kqu" path="res://scripts/node_controllers/missile.gd" id="1_kd0w6"]
 [ext_resource type="Texture2D" uid="uid://bssik3aoq1wrg" path="res://assets/weapons/missile_base.svg" id="2_463tv"]
 [ext_resource type="Script" uid="uid://bfufrjb1xg0qs" path="res://scripts/components/VFX/MissileTrailComponent.gd" id="3_463tv"]
+[ext_resource type="Script" uid="uid://fveerh8fug2j" path="res://scripts/components/VFX/color_manager_component.gd" id="4_abofp"]
 
 [sub_resource type="Curve" id="Curve_kd0w6"]
 _data = [Vector2(0, 0.20279288), 0.0, 0.0, 0, 0, Vector2(0.689394, 0.54547405), 1.104247, 1.104247, 0, 0, Vector2(1, 1), 1.2698845, 0.0, 0, 0]
@@ -15,7 +16,7 @@ size = Vector2(20, 61)
 _data = [Vector2(0, 0), 0.0, 1.5090153, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Missile" type="CharacterBody2D" unique_id=1337109926]
+[node name="Missile" type="CharacterBody2D" unique_id=1337109926 node_paths=PackedStringArray("color_manager_component")]
 texture_filter = 1
 collision_layer = 0
 collision_mask = 0
@@ -25,6 +26,7 @@ speed = 3000
 acceleration_curve = SubResource("Curve_kd0w6")
 acceleration_time = 2
 guidance_speed = 0.05
+color_manager_component = NodePath("ColorManagerComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=106435143]
 visible = false
@@ -65,7 +67,6 @@ top_level = true
 z_index = 1
 width = 20.0
 width_curve = SubResource("Curve_463tv")
-default_color = Color(0.3254902, 1, 1, 0.23529412)
 
 [node name="MissileTrailComponent" type="Node" parent="." unique_id=1200128920 node_paths=PackedStringArray("missile_trail", "trail_spawn_point")]
 script = ExtResource("3_463tv")
@@ -75,6 +76,12 @@ trail_spawn_point = NodePath("../MissileTrailSpawn")
 
 [node name="MissileTrailSpawn" type="Marker2D" parent="." unique_id=1392301596]
 position = Vector2(-32, 0)
+
+[node name="ColorManagerComponent" type="Node" parent="." unique_id=540969613 node_paths=PackedStringArray("sprite", "trail")]
+script = ExtResource("4_abofp")
+sprite = NodePath("../Sprite2D")
+trail = NodePath("../MissileTrail")
+metadata/_custom_type_script = "uid://fveerh8fug2j"
 
 [connection signal="body_entered" from="EnemyArea" to="." method="_on_enemy_area_body_entered"]
 [connection signal="body_entered" from="PlayerArea" to="." method="_on_player_area_body_entered"]

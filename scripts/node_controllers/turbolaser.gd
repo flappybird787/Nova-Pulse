@@ -12,6 +12,8 @@ class_name Turbolaser
 
 @export var right : Node2D
 
+@export var color_manager_component : ColorManagerComponent
+
 func _physics_process(delta: float) -> void:
 	velocity = transform.x * speed
 	move_and_slide()

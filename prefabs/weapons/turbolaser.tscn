@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b04jrjeu021kn" path="res://scripts/node_controllers/turbolaser.gd" id="1_8ycml"]
 [ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="2_fqjql"]
+[ext_resource type="Script" uid="uid://fveerh8fug2j" path="res://scripts/components/VFX/color_manager_component.gd" id="3_hkp3v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44iiu"]
 size = Vector2(20, 84)
@@ -9,7 +10,7 @@ size = Vector2(20, 84)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ycml"]
 size = Vector2(70, 84)
 
-[node name="Turbolaser" type="CharacterBody2D" unique_id=1337109926 node_paths=PackedStringArray("left", "right")]
+[node name="Turbolaser" type="CharacterBody2D" unique_id=1337109926 node_paths=PackedStringArray("left", "right", "color_manager_component")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_8ycml")
@@ -17,6 +18,7 @@ damage = 3
 speed = 1200
 left = NodePath("Left")
 right = NodePath("Right")
+color_manager_component = NodePath("ColorManagerComponent")
 
 [node name="Timer" type="Timer" parent="." unique_id=453438577]
 wait_time = 5.0
@@ -71,6 +73,10 @@ texture = ExtResource("2_fqjql")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1254112299]
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_8ycml")
+
+[node name="ColorManagerComponent" type="Node" parent="." unique_id=808136102]
+script = ExtResource("3_hkp3v")
+metadata/_custom_type_script = "uid://fveerh8fug2j"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Left/LeftEnemyArea" to="." method="_on_left_enemy_area_body_entered"]

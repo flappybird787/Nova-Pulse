@@ -2,16 +2,18 @@
 
 [ext_resource type="Script" uid="uid://beelnpqgb6d4o" path="res://scripts/node_controllers/railgun.gd" id="1_x8m7k"]
 [ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="2_vjyfn"]
+[ext_resource type="Script" uid="uid://fveerh8fug2j" path="res://scripts/components/VFX/color_manager_component.gd" id="3_ty4ax"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44iiu"]
 size = Vector2(20, 84)
 
-[node name="Railgun" type="CharacterBody2D" unique_id=1337109926]
+[node name="Railgun" type="CharacterBody2D" unique_id=1337109926 node_paths=PackedStringArray("color_manager_component")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_x8m7k")
 damage = 15
 speed = 3000
+color_manager_component = NodePath("ColorManagerComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=106435143]
 rotation = 1.5707964
@@ -41,6 +43,10 @@ shape = SubResource("RectangleShape2D_44iiu")
 [node name="Timer" type="Timer" parent="." unique_id=453438577]
 wait_time = 5.0
 autostart = true
+
+[node name="ColorManagerComponent" type="Node" parent="." unique_id=2100592004]
+script = ExtResource("3_ty4ax")
+metadata/_custom_type_script = "uid://fveerh8fug2j"
 
 [connection signal="body_entered" from="EnemyArea" to="." method="_on_enemy_area_body_entered"]
 [connection signal="body_entered" from="PlayerArea" to="." method="_on_player_area_body_entered"]

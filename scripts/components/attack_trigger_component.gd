@@ -14,6 +14,8 @@ class_name AttackTriggerComponent
 
 @export var spread = 0
 
+@export var attack_color : Color = Color("50b5ff")
+
 func _ready() -> void:
 	if attack_team == "PLAYER":
 		EventBus.upgrade_chosen.connect(apply_upgrades)
@@ -21,13 +23,12 @@ func _ready() -> void:
 
 func trigger_attack():
 	position.rotation_degrees = randi_range(-spread, spread)
-	EventBus.fire_attack.emit(position.global_transform, physics_body.velocity, attack_scene, attack_team, damage_multiplier)
+	EventBus.fire_attack.emit(position.global_transform, physics_body.velocity, attack_scene, attack_team, damage_multiplier, attack_color)
 
 
 func apply_upgrades(upgrade : UpgradeBase):
 	if upgrade.upgrade_type == "WEAPON":
 		spread = upgrade.spread
-		print("spread: ", spread)
 	
 	if upgrade.upgrade_name == "Damage Booster":
 		damage_multiplier += 1

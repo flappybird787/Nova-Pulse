@@ -22,6 +22,8 @@ var time_alive = 0.0
 
 var spawned = false
 
+@export var color_manager_component : ColorManagerComponent
+
 func _physics_process(delta: float) -> void:
 	
 	if !spawned:
@@ -88,7 +90,7 @@ func get_closest_enemy(group) -> Node2D:
 	elif group == "ENEMY":
 		enemies = get_tree().get_nodes_in_group("PLAYER")
 	
-	print("group: ", group, " enemies: ", enemies)
+	#print("group: ", group, " enemies: ", enemies)
 	if enemies.is_empty():
 		return null
 	
