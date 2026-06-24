@@ -20,9 +20,10 @@ size = Vector2(12197, 3722)
 position = Vector2(-3, 11)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=122638207]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.7, 0.7)
 
 [node name="PlayableAreaBorderX" type="Area2D" parent="." unique_id=1390804149]
+visible = false
 collision_layer = 8
 collision_mask = 8
 
@@ -35,6 +36,7 @@ position = Vector2(-4000, -21)
 shape = SubResource("RectangleShape2D_nd71p")
 
 [node name="PlayableAreaBorderY" type="Area2D" parent="." unique_id=953603421]
+visible = false
 collision_layer = 16
 collision_mask = 16
 
@@ -62,9 +64,11 @@ scale = Vector2(2.3674998, 2.5666666)
 texture = ExtResource("4_3qnke")
 
 [node name="enemy_ship_base" parent="." unique_id=1776559298 instance=ExtResource("4_qjeyg")]
+visible = false
 position = Vector2(1109, -119)
 
 [node name="enemy_heavy_fighter" parent="." unique_id=1581456561 instance=ExtResource("5_qjeyg")]
+visible = false
 position = Vector2(1105, 470)
 
 [node name="enemy_ship_base2" parent="." unique_id=1599662422 instance=ExtResource("6_3qnke")]
