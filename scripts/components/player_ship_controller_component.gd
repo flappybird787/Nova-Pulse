@@ -16,6 +16,8 @@ var can_fire = true
 
 @export var health_component : HealthComponent
 
+@export var thrusters : Node2D
+
 func _ready() -> void:
 	EventBus.upgrade_chosen.connect(apply_upgrades)
 
@@ -42,12 +44,18 @@ func get_player_input():
 
 	var move_dir = Vector2.ZERO
 
+	thrusters.visible = false
+
 	# 2. Use the ship's local transform vectors for direction
 	# transform.x is "Forward" because look_at() aligns the +X axis with the mouse
 	if Input.is_action_pressed("move_up"):
 		move_dir += ship_body.transform.x # Forward
+		thrusters.visible = true
+		
 	if Input.is_action_pressed("move_down"):
 		move_dir -= ship_body.transform.x # Backward
+		thrusters.visible = true
+		
 	#if Input.is_action_pressed("move_left"):
 	#	move_dir -= ship_body.transform.y # Strafe Left
 	#if Input.is_action_pressed("move_right"):

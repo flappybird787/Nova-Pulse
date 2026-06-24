@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://cbckntufcfkox" path="res://scripts/components/gui_manager_component.gd" id="9_gehul"]
 [ext_resource type="PackedScene" uid="uid://cgwrjfokpw8st" path="res://prefabs/upgrade_menu.tscn" id="10_ksl8n"]
 [ext_resource type="Script" uid="uid://fkgpnmup3hiv" path="res://scripts/components/collision_manager_component.gd" id="10_rf2va"]
+[ext_resource type="Texture2D" uid="uid://dxnpjrhdrjsaq" path="res://assets/Ships/thruster_blue.png" id="12_6ibjm"]
+[ext_resource type="Texture2D" uid="uid://do136q73e0g3" path="res://assets/Ships/thruster_blue.svg" id="13_ytn04"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfrvl"]
 size = Vector2(170, 128)
@@ -26,6 +28,7 @@ script = ExtResource("1_yfrvl")
 health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1036919982]
+modulate = Color(0.96474224, 0.96474224, 0.9647421, 1)
 rotation = 1.5707964
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_rf2va")
@@ -33,13 +36,14 @@ texture = ExtResource("2_rf2va")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85070103]
 shape = SubResource("RectangleShape2D_yfrvl")
 
-[node name="PlayerShipControllerComponent" type="Node" parent="." unique_id=573145881 node_paths=PackedStringArray("ship_data_component", "ship_body", "primary_weapon_cooldown_timer", "attack_trigger_component", "health_component")]
+[node name="PlayerShipControllerComponent" type="Node" parent="." unique_id=573145881 node_paths=PackedStringArray("ship_data_component", "ship_body", "primary_weapon_cooldown_timer", "attack_trigger_component", "health_component", "thrusters")]
 script = ExtResource("2_iwps3")
 ship_data_component = NodePath("../ShipDataComponent")
 ship_body = NodePath("..")
 primary_weapon_cooldown_timer = NodePath("../PrimaryWeaponCooldownTimer")
 attack_trigger_component = NodePath("../AttackTriggerComponent")
 health_component = NodePath("../HealthComponent")
+thrusters = NodePath("../Thrusters")
 
 [node name="ShipDataComponent" type="Node" parent="." unique_id=1005858283]
 script = ExtResource("3_fto5i")
@@ -183,6 +187,38 @@ one_shot = true
 [node name="HealingTimer" type="Timer" parent="." unique_id=1471007299]
 wait_time = 0.7
 autostart = true
+
+[node name="Thrusters" type="Node2D" parent="." unique_id=69515424]
+
+[node name="Thruster1" type="Sprite2D" parent="Thrusters" unique_id=1281672561]
+modulate = Color(1, 1, 1, 0.49411765)
+position = Vector2(-135.99998, 15.999999)
+rotation = 1.5707964
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("12_6ibjm")
+
+[node name="Thruster2" type="Sprite2D" parent="Thrusters" unique_id=1818810526]
+modulate = Color(1, 1, 1, 0.49411765)
+position = Vector2(-136, -16)
+rotation = 1.5707964
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("12_6ibjm")
+
+[node name="ThrusterLight1" type="PointLight2D" parent="Thrusters" unique_id=2085012170]
+position = Vector2(-136, 16)
+rotation = 1.5707964
+scale = Vector2(0.1, 0.1)
+color = Color(0.8419075, 0.99999994, 0.9967044, 1)
+energy = 10.0
+texture = ExtResource("13_ytn04")
+
+[node name="ThrusterLight2" type="PointLight2D" parent="Thrusters" unique_id=855238091]
+position = Vector2(-136, -16)
+rotation = 1.5707964
+scale = Vector2(0.1, 0.1)
+color = Color(0.8419075, 0.99999994, 0.9967044, 1)
+energy = 10.0
+texture = ExtResource("13_ytn04")
 
 [connection signal="area_entered" from="MapEdgeOverflowAreaX" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_x"]
 [connection signal="area_entered" from="MapEdgeOverflowAreaY" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_y"]

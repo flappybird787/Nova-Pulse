@@ -14,6 +14,8 @@ signal game_paused(paused : bool)
 
 signal player_died()
 
+signal player_thrusters_on(on : bool)
+
 # position is the position that the attack is at, 
 # velocity is the velocity of the parent body,
 # attack_scene is the packed scene to instantiate,

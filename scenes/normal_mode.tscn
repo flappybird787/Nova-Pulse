@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cm28hiqceiw0" path="res://prefabs/enemies/enemy_bomber.tscn" id="6_uswuf"]
 [ext_resource type="PackedScene" uid="uid://dukkd5ydied5j" path="res://prefabs/enemies/enemy_heavy_fighter.tscn" id="9_hdflw"]
 [ext_resource type="PackedScene" uid="uid://ceu6chiy2woqe" path="res://prefabs/enemies/enemy_miniboss_1.tscn" id="10_ms40l"]
+[ext_resource type="Texture2D" uid="uid://ohowmriae14n" path="res://assets/backgrounds/default_background.png" id="11_uswuf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(4243, 9718)
@@ -97,3 +98,9 @@ metadata/_custom_type_script = "uid://cbagpr7b1t6bb"
 script = ExtResource("4_mev14")
 scene_root = NodePath("..")
 wave_configs = Array[ExtResource("5_yld8g")]([SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y"), SubResource("Resource_r8pms")])
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=350324074]
+z_index = -1
+position = Vector2(0.00012207031, -3.0517578e-05)
+scale = Vector2(2.3674998, 2.5666666)
+texture = ExtResource("11_uswuf")
