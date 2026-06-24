@@ -70,6 +70,8 @@ reroll_upgrade={
 
 [layer_names]
 
+2d_render/layer_1="primary"
+2d_render/layer_2="thruster VFX"
 2d_physics/layer_1="player_to_enemy_weapons"
 2d_physics/layer_2="enemy_to_player_weapons"
 2d_physics/layer_3="enemy_and_player_collisions"

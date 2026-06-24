@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmwvllc8moedk"]
 
 [ext_resource type="Script" uid="uid://ctutk1j64rj07" path="res://scripts/node_controllers/enemy_ship_base.gd" id="1_db5qr"]
-[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="2_wf8wc"]
+[ext_resource type="Texture2D" uid="uid://tty5u6a7aidf" path="res://assets/Ships/enemy_basic_fighter.svg" id="2_jnnv2"]
 [ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="3_ges4g"]
 [ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="4_nfvlw"]
 [ext_resource type="Script" uid="uid://byfkxe3bur7me" path="res://scripts/game_managers/state_machine_manager.gd" id="5_f6810"]
@@ -30,14 +30,15 @@ script = ExtResource("1_db5qr")
 health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=333681641]
-modulate = Color(1, 1, 0, 1)
 rotation = 1.5707964
-texture = ExtResource("2_wf8wc")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_jnnv2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594214138]
 shape = SubResource("RectangleShape2D_l0son")
 
 [node name="AttackPoint" type="Marker2D" parent="." unique_id=2082869617]
+position = Vector2(80, 0)
 
 [node name="PlayerHealthLabelPivot" type="Control" parent="." unique_id=1286020171]
 layout_mode = 3
@@ -132,6 +133,7 @@ collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireRange" unique_id=1271456785]
 rotation = -1.5707964
+scale = Vector2(2.5, 2.5)
 shape = SubResource("ConvexPolygonShape2D_db5qr")
 
 [node name="WeaponCooldownTimer" type="Timer" parent="." unique_id=1184776392]

@@ -100,6 +100,8 @@ scene_root = NodePath("..")
 wave_configs = Array[ExtResource("5_yld8g")]([SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y"), SubResource("Resource_r8pms")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=350324074]
+light_mask = 3
+visibility_layer = 3
 z_index = -1
 position = Vector2(0.00012207031, -3.0517578e-05)
 scale = Vector2(2.3674998, 2.5666666)
