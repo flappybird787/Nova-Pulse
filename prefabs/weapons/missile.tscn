@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://brmx4qpre0kqu" path="res://scripts/node_controllers/missile.gd" id="1_kd0w6"]
 [ext_resource type="Texture2D" uid="uid://cfpvj7bbredj6" path="res://assets/weapons/missile_base.svg" id="2_77ow3"]
+[ext_resource type="Script" uid="uid://bfufrjb1xg0qs" path="res://scripts/components/VFX/MissileTrailComponent.gd" id="3_463tv"]
 
 [sub_resource type="Curve" id="Curve_kd0w6"]
 _data = [Vector2(0, 0.20279288), 0.0, 0.0, 0, 0, Vector2(0.689394, 0.54547405), 1.104247, 1.104247, 0, 0, Vector2(1, 1), 1.2698845, 0.0, 0, 0]
@@ -54,6 +55,20 @@ shape = SubResource("RectangleShape2D_44iiu")
 [node name="Timer" type="Timer" parent="." unique_id=453438577]
 wait_time = 5.0
 autostart = true
+
+[node name="MissileTrail" type="Line2D" parent="." unique_id=1174585904]
+top_level = true
+z_index = 1
+default_color = Color(1, 0, 0, 1)
+
+[node name="MissileTrailComponent" type="Node" parent="." unique_id=1200128920 node_paths=PackedStringArray("missile_trail", "trail_spawn_point")]
+script = ExtResource("3_463tv")
+missile_trail = NodePath("../MissileTrail")
+missile_trail_points_amount = 20
+trail_spawn_point = NodePath("../MissileTrailSpawn")
+
+[node name="MissileTrailSpawn" type="Marker2D" parent="." unique_id=1392301596]
+position = Vector2(-32, 0)
 
 [connection signal="body_entered" from="EnemyArea" to="." method="_on_enemy_area_body_entered"]
 [connection signal="body_entered" from="PlayerArea" to="." method="_on_player_area_body_entered"]
