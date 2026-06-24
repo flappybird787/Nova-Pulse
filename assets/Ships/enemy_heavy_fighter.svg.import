@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdlfddd0pnbkq"
-path="res://.godot/imported/player_basic_ship.png-5b800ca9935e060dae40aa718c4d010e.ctex"
+uid="uid://b2qut3b4ekkcp"
+path="res://.godot/imported/enemy_heavy_fighter.svg-7356ab86714b2a7f0b4d9561d51d019f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Ships/player_basic_ship.png"
-dest_files=["res://.godot/imported/player_basic_ship.png-5b800ca9935e060dae40aa718c4d010e.ctex"]
+source_file="res://assets/Ships/enemy_heavy_fighter.svg"
+dest_files=["res://.godot/imported/enemy_heavy_fighter.svg-7356ab86714b2a7f0b4d9561d51d019f.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

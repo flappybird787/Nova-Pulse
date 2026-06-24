@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxnpjrhdrjsaq"
-path="res://.godot/imported/thruster_blue.png-5ff226b0b7385f904c35c004f996826f.ctex"
+uid="uid://d1jcr0rw0q85u"
+path="res://.godot/imported/enemy_basic_fighter.svg.2026_06_24_14_10_26.0.svg-6563663ebc3e643af184bf49e23eb340.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Ships/thruster_blue.png"
-dest_files=["res://.godot/imported/thruster_blue.png-5ff226b0b7385f904c35c004f996826f.ctex"]
+source_file="res://assets/Ships/enemy_basic_fighter.svg.2026_06_24_14_10_26.0.svg"
+dest_files=["res://.godot/imported/enemy_basic_fighter.svg.2026_06_24_14_10_26.0.svg-6563663ebc3e643af184bf49e23eb340.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

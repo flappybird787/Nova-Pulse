@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dukkd5ydied5j"]
 
 [ext_resource type="Script" uid="uid://ctutk1j64rj07" path="res://scripts/node_controllers/enemy_ship_base.gd" id="1_r0t0g"]
-[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="2_3mahu"]
+[ext_resource type="Texture2D" uid="uid://b2qut3b4ekkcp" path="res://assets/Ships/enemy_heavy_fighter.svg" id="2_4t56j"]
 [ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="3_up2ut"]
 [ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="4_rf33e"]
 [ext_resource type="Script" uid="uid://byfkxe3bur7me" path="res://scripts/game_managers/state_machine_manager.gd" id="5_mya75"]
@@ -30,14 +30,17 @@ script = ExtResource("1_r0t0g")
 health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=333681641]
-modulate = Color(0, 1, 0, 1)
+position = Vector2(17.999998, -6.3948846e-14)
 rotation = 1.5707964
-texture = ExtResource("2_3mahu")
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_4t56j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594214138]
 shape = SubResource("RectangleShape2D_l0son")
 
 [node name="AttackPoint" type="Marker2D" parent="." unique_id=2082869617]
+position = Vector2(96, 0)
+gizmo_extents = 219.4
 
 [node name="PlayerHealthLabelPivot" type="Control" parent="." unique_id=1286020171]
 layout_mode = 3

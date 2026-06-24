@@ -99,7 +99,7 @@ script = ExtResource("4_mev14")
 scene_root = NodePath("..")
 wave_configs = Array[ExtResource("5_yld8g")]([SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y"), SubResource("Resource_e7e6y"), SubResource("Resource_r8pms")])
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=350324074]
+[node name="background" type="Sprite2D" parent="." unique_id=350324074]
 light_mask = 3
 visibility_layer = 3
 z_index = -1
