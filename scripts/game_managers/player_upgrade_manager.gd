@@ -12,6 +12,8 @@ func _ready() -> void:
 
 func reset():
 	xp_to_next_level = 0
+	GameManager.player_level = 1
+	xp_to_next_level = calculate_xp_needed()
 	print("RESET EVERYTHING 1")
 
 

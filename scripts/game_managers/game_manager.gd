@@ -9,7 +9,13 @@ extends Node
 
 func _ready() -> void:
 	EventBus.player_died.connect(reset_values)
+	
 
+var started = false
+func _process(delta: float) -> void:
+	if !started:
+		EventBus.xp_changed.emit(player_xp, PlayerUpgradeManager.xp_to_next_level)
+		started = true
 
 func reset_values():
 	player_level = 1
