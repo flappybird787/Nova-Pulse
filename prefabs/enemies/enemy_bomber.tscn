@@ -31,7 +31,7 @@ health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=333681641 groups=["ENEMY"]]
 rotation = 1.5707964
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_0ou4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594214138]

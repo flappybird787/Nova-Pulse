@@ -64,11 +64,9 @@ scale = Vector2(2.3674998, 2.5666666)
 texture = ExtResource("4_3qnke")
 
 [node name="enemy_ship_base" parent="." unique_id=1776559298 instance=ExtResource("4_qjeyg")]
-visible = false
 position = Vector2(1109, -119)
 
 [node name="enemy_heavy_fighter" parent="." unique_id=1581456561 instance=ExtResource("5_qjeyg")]
-visible = false
 position = Vector2(1105, 470)
 
 [node name="enemy_ship_base2" parent="." unique_id=1599662422 instance=ExtResource("6_3qnke")]
