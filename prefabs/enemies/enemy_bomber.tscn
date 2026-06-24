@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cm28hiqceiw0"]
 
 [ext_resource type="Script" uid="uid://ctutk1j64rj07" path="res://scripts/node_controllers/enemy_ship_base.gd" id="1_nee1c"]
-[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="2_1pmbd"]
+[ext_resource type="Texture2D" uid="uid://byi6hu12ij5dj" path="res://assets/Ships/enemy_bomber.svg" id="2_0ou4t"]
 [ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="3_0kuvw"]
 [ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="4_12m1j"]
 [ext_resource type="Script" uid="uid://byfkxe3bur7me" path="res://scripts/game_managers/state_machine_manager.gd" id="5_iis1e"]
@@ -23,16 +23,16 @@ radius = 3252.5996
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pmvo"]
 size = Vector2(20, 2036.5)
 
-[node name="enemy_ship_base" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component") groups=["ENEMY"]]
+[node name="enemy_bomber" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component") groups=["ENEMY"]]
 collision_layer = 37
 collision_mask = 5
 script = ExtResource("1_nee1c")
 health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=333681641 groups=["ENEMY"]]
-modulate = Color(1, 0, 0, 1)
 rotation = 1.5707964
-texture = ExtResource("2_1pmbd")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_0ou4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594214138]
 shape = SubResource("RectangleShape2D_l0son")

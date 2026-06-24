@@ -23,7 +23,7 @@ radius = 3252.5996
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_db5qr"]
 points = PackedVector2Array(0, 0, 400, 1400, -400, 1400)
 
-[node name="enemy_ship_base" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component") groups=["ENEMY"]]
+[node name="enemy_fighter" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component") groups=["ENEMY"]]
 collision_layer = 37
 collision_mask = 5
 script = ExtResource("1_db5qr")

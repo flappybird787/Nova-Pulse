@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cbagpr7b1t6bb" path="res://scripts/components/attack_instantiator_component.gd" id="4_7ddre"]
 [ext_resource type="PackedScene" uid="uid://dmwvllc8moedk" path="res://prefabs/enemies/enemy_fighter.tscn" id="4_qjeyg"]
 [ext_resource type="PackedScene" uid="uid://dukkd5ydied5j" path="res://prefabs/enemies/enemy_heavy_fighter.tscn" id="5_qjeyg"]
+[ext_resource type="PackedScene" uid="uid://cm28hiqceiw0" path="res://prefabs/enemies/enemy_bomber.tscn" id="6_3qnke"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(4243, 9718)
@@ -65,3 +66,6 @@ position = Vector2(1109, -119)
 
 [node name="enemy_heavy_fighter" parent="." unique_id=1581456561 instance=ExtResource("5_qjeyg")]
 position = Vector2(1105, 470)
+
+[node name="enemy_ship_base2" parent="." unique_id=1599662422 instance=ExtResource("6_3qnke")]
+position = Vector2(1126, -516)
