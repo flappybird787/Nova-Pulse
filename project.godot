@@ -26,6 +26,8 @@ Upgrades="*uid://cuabm4pm58met"
 
 window/size/viewport_width=2560
 window/size/viewport_height=1440
+window/size/resizable=false
+window/stretch/mode="canvas_items"
 
 [global_group]
 
