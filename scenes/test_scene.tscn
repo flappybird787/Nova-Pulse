@@ -56,8 +56,6 @@ script = ExtResource("4_7ddre")
 metadata/_custom_type_script = "uid://cbagpr7b1t6bb"
 
 [node name="background" type="Sprite2D" parent="." unique_id=1494400113]
-light_mask = 3
-visibility_layer = 3
 z_index = -1
 position = Vector2(0.00012207031, -3.0517578e-05)
 scale = Vector2(2.3674998, 2.5666666)

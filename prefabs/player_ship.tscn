@@ -190,7 +190,7 @@ autostart = true
 [node name="Thrusters" type="Node2D" parent="." unique_id=69515424]
 
 [node name="Thruster1" type="Sprite2D" parent="Thrusters" unique_id=1281672561]
-modulate = Color(1, 1, 1, 0.49411765)
+modulate = Color(1, 1, 1, 0.9372549)
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-135.99998, 15.999999)
@@ -199,7 +199,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("13_ytn04")
 
 [node name="Thruster2" type="Sprite2D" parent="Thrusters" unique_id=1818810526]
-modulate = Color(1, 1, 1, 0.49411765)
+modulate = Color(1, 1, 1, 0.9372549)
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-136, -16)
@@ -208,19 +208,19 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("13_ytn04")
 
 [node name="ThrusterLight1" type="PointLight2D" parent="Thrusters" unique_id=2085012170]
+visible = false
 position = Vector2(-136, 16)
 rotation = 1.5707964
 scale = Vector2(0.1, 0.1)
-color = Color(0.8419075, 0.99999994, 0.9967044, 1)
 energy = 10.0
 range_item_cull_mask = 2
 texture = ExtResource("13_ytn04")
 
 [node name="ThrusterLight2" type="PointLight2D" parent="Thrusters" unique_id=855238091]
+visible = false
 position = Vector2(-136, -16)
 rotation = 1.5707964
 scale = Vector2(0.1, 0.1)
-color = Color(0.8419075, 0.99999994, 0.9967044, 1)
 energy = 10.0
 range_item_cull_mask = 2
 texture = ExtResource("13_ytn04")
