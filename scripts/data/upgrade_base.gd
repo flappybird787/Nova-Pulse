@@ -7,8 +7,6 @@ class_name UpgradeBase
 
 @export var upgrade_description : String
 
-@export var icon : Image
-
-@export var art : Image
+@export var icon : String
 
 @export var spread = 0
