@@ -1,11 +1,28 @@
 [gd_scene format=3 uid="uid://g5kp03i611a3"]
 
 [ext_resource type="Script" uid="uid://bbylb0i3ivdnq" path="res://scripts/GUI/upgrade_card.gd" id="1_xhwot"]
-[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="2_74i8t"]
+[ext_resource type="StyleBox" uid="uid://cxjlgyb46hj8m" path="res://assets/GUI/upgrade_card_sylebox.tres" id="2_p4jcm"]
+[ext_resource type="Texture2D" uid="uid://b57tfbra2u8rc" path="res://assets/upgrades/hull_booster.svg" id="3_j1jyg"]
 [ext_resource type="FontFile" uid="uid://lbfg7acmp23t" path="res://assets/Quantico/Quantico-Regular.ttf" id="3_jv45g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhwot"]
-bg_color = Color(0.25490198, 0.25490198, 0.25490198, 0.78431374)
+bg_color = Color(0.2520276, 0.25202766, 0.25202757, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.86467505, 0.86467516, 0.864675, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxwpm"]
+bg_color = Color(0.1638613, 0.1638613, 0.16386124, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_502jd"]
+bg_color = Color(0.42557132, 0.42557135, 0.42557132, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.68721485, 0.6872151, 0.6872147, 1)
 
 [node name="UpgradeCard" type="Control" unique_id=1175914363 node_paths=PackedStringArray("upgrade_name_label", "upgrade_description_label", "upgrade_texture")]
 custom_minimum_size = Vector2(320, 380)
@@ -53,10 +70,12 @@ offset_right = 68.0
 offset_bottom = 84.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 12
 
 [node name="TitlePanel" type="Panel" parent="Panel/VBoxContainer" unique_id=388382006]
 custom_minimum_size = Vector2(330, 60)
 layout_mode = 2
+theme_override_styles/panel = ExtResource("2_p4jcm")
 
 [node name="UpgradeName" type="Label" parent="Panel/VBoxContainer/TitlePanel" unique_id=1786983332]
 layout_mode = 1
@@ -77,8 +96,12 @@ text = "test 1"
 horizontal_alignment = 1
 
 [node name="ImagePanel" type="Panel" parent="Panel/VBoxContainer" unique_id=479732719]
-custom_minimum_size = Vector2(210, 250)
+custom_minimum_size = Vector2(220, 220)
+custom_maximum_size = Vector2(220, 220)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_wxwpm")
 
 [node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/ImagePanel" unique_id=247144414]
 custom_maximum_size = Vector2(200, 200)
@@ -94,11 +117,12 @@ offset_right = 128.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_74i8t")
+texture = ExtResource("3_j1jyg")
 
 [node name="DescriptionPanel" type="Panel" parent="Panel/VBoxContainer" unique_id=1379666555]
 custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
+theme_override_styles/panel = ExtResource("2_p4jcm")
 
 [node name="UpgradeDescription" type="Label" parent="Panel/VBoxContainer/DescriptionPanel" unique_id=1853484377]
 custom_minimum_size = Vector2(2, 2)
@@ -119,6 +143,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="UpgradePicker" type="Button" parent="Panel/VBoxContainer" unique_id=1642666530]
 layout_mode = 2
+theme_override_styles/normal = ExtResource("2_p4jcm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_502jd")
 text = "Choose Upgrade"
 
 [connection signal="pressed" from="Panel/VBoxContainer/UpgradePicker" to="." method="_on_upgrade_picker_pressed"]
