@@ -1,48 +1,120 @@
 [gd_scene format=3 uid="uid://g5kp03i611a3"]
 
 [ext_resource type="Script" uid="uid://bbylb0i3ivdnq" path="res://scripts/GUI/upgrade_card.gd" id="1_xhwot"]
+[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="2_74i8t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhwot"]
+bg_color = Color(0.25490198, 0.25490198, 0.25490198, 0.78431374)
 
 [node name="UpgradeCard" type="Control" unique_id=1175914363 node_paths=PackedStringArray("upgrade_name_label", "upgrade_description_label")]
+custom_minimum_size = Vector2(320, 380)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_xhwot")
-upgrade_name_label = NodePath("VBoxContainer/UpgradeName")
-upgrade_description_label = NodePath("VBoxContainer/UpgradeDescription")
+upgrade_name_label = NodePath("Panel/VBoxContainer/TitlePanel/UpgradeName")
+upgrade_description_label = NodePath("Panel/VBoxContainer/DescriptionPanel/UpgradeDescription")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1917447327]
+[node name="Panel" type="Panel" parent="." unique_id=292023380]
+custom_minimum_size = Vector2(350, 560)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.49160156
-anchor_top = 0.47361112
-anchor_right = 0.5083984
-anchor_bottom = 0.5263889
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_xhwot")
 
-[node name="UpgradeName" type="Label" parent="VBoxContainer" unique_id=1786983332]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1917447327]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -84.5
+offset_right = 68.0
+offset_bottom = 84.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitlePanel" type="Panel" parent="Panel/VBoxContainer" unique_id=388382006]
+custom_minimum_size = Vector2(330, 60)
 layout_mode = 2
+
+[node name="UpgradeName" type="Label" parent="Panel/VBoxContainer/TitlePanel" unique_id=1786983332]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -11.5
+offset_right = 68.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
 text = "test 1"
-metadata/_edit_use_anchors_ = true
+horizontal_alignment = 1
 
-[node name="UpgradeDescription" type="Label" parent="VBoxContainer" unique_id=1853484377]
-custom_minimum_size = Vector2(2, 2)
+[node name="ImagePanel" type="Panel" parent="Panel/VBoxContainer" unique_id=479732719]
+custom_minimum_size = Vector2(210, 180)
 layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/ImagePanel" unique_id=247144414]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_74i8t")
+
+[node name="DescriptionPanel" type="Panel" parent="Panel/VBoxContainer" unique_id=1379666555]
+custom_minimum_size = Vector2(0, 260)
+layout_mode = 2
+
+[node name="UpgradeDescription" type="Label" parent="Panel/VBoxContainer/DescriptionPanel" unique_id=1853484377]
+custom_minimum_size = Vector2(2, 2)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029411765
+anchor_right = 0.5200001
+anchor_bottom = 0.775
+offset_top = 4.0
+offset_right = 136.0
+offset_bottom = 53.0
 size_flags_vertical = 6
 text = "test 2
 "
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="UpgradePicker" type="Button" parent="VBoxContainer" unique_id=1642666530]
+[node name="UpgradePicker" type="Button" parent="Panel/VBoxContainer" unique_id=1642666530]
 layout_mode = 2
 text = "Choose Upgrade"
 
-[connection signal="pressed" from="VBoxContainer/UpgradePicker" to="." method="_on_upgrade_picker_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/UpgradePicker" to="." method="_on_upgrade_picker_pressed"]
