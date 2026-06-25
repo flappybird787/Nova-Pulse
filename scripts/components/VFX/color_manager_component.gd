@@ -1,7 +1,7 @@
 extends Node
 class_name ColorManagerComponent
 
-@export var sprite : Sprite2D
+@export var sprite : Node2D
 
 @export var trail : Line2D
 
