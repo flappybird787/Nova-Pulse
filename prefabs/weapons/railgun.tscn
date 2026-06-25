@@ -3,27 +3,36 @@
 [ext_resource type="Script" uid="uid://beelnpqgb6d4o" path="res://scripts/node_controllers/railgun.gd" id="1_x8m7k"]
 [ext_resource type="Texture2D" uid="uid://cfpvj7bbredj6" path="res://assets/weapons/bullet_base.svg" id="2_ty4ax"]
 [ext_resource type="Script" uid="uid://fveerh8fug2j" path="res://scripts/components/VFX/color_manager_component.gd" id="3_ty4ax"]
+[ext_resource type="Texture2D" uid="uid://btvh466ipsgg1" path="res://assets/weapons/static_base.svg" id="4_gmwc6"]
+[ext_resource type="Script" uid="uid://bfufrjb1xg0qs" path="res://scripts/components/VFX/MissileTrailComponent.gd" id="4_wfrfc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44iiu"]
 size = Vector2(20, 84)
+
+[sub_resource type="Curve" id="Curve_gmwc6"]
+_data = [Vector2(0, 1), 0.0, -0.38147226, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ofm3g"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, -45.131195), 0.0, 0.0, 0, 0, Vector2(0.25071225, 30.437317), 0.0, 0.0, 0, 0, Vector2(0.5014245, -49.329468), 0.0, 0.0, 0, 0, Vector2(0.75498575, 30.437317), 0.0, 0.0, 0, 0, Vector2(0.988604, -45.28302), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="Curve" id="Curve_wfrfc"]
+_data = [Vector2(0, 0.56010926), 0.0, 2.358491, 0, 0, Vector2(0.34666666, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.2109568, 0.0, 0, 0]
+point_count = 3
 
 [node name="Railgun" type="CharacterBody2D" unique_id=1337109926 node_paths=PackedStringArray("color_manager_component")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_x8m7k")
 damage = 15
-speed = 3000
+speed = 4500
 color_manager_component = NodePath("ColorManagerComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=106435143]
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_44iiu")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1493556652]
-position = Vector2(1.9999981, -2.0000029)
-rotation = 1.5707964
-scale = Vector2(3, 2)
-texture = ExtResource("2_ty4ax")
 
 [node name="EnemyArea" type="Area2D" parent="." unique_id=1830245049]
 rotation = 1.5707964
@@ -44,10 +53,107 @@ shape = SubResource("RectangleShape2D_44iiu")
 wait_time = 5.0
 autostart = true
 
-[node name="ColorManagerComponent" type="Node" parent="." unique_id=2100592004 node_paths=PackedStringArray("sprite")]
+[node name="ColorManagerComponent" type="Node" parent="." unique_id=2100592004 node_paths=PackedStringArray("sprite", "trail", "transparent_effects")]
 script = ExtResource("3_ty4ax")
-sprite = NodePath("../Sprite2D")
+sprite = NodePath("../opaque_effects")
+trail = NodePath("../transparent_effects/MissileTrail2")
+transparent_effects = NodePath("../transparent_effects")
 metadata/_custom_type_script = "uid://fveerh8fug2j"
+
+[node name="MissileTrail" type="Line2D" parent="." unique_id=1874565765]
+top_level = true
+z_index = 1
+width = 15.0
+width_curve = SubResource("Curve_gmwc6")
+
+[node name="MissileTrailComponent" type="Node" parent="." unique_id=390377556 node_paths=PackedStringArray("missile_trail", "trail_spawn_point")]
+script = ExtResource("4_wfrfc")
+missile_trail = NodePath("../MissileTrail")
+missile_trail_points_amount = 40
+trail_spawn_point = NodePath("../MissileTrailSpawn")
+
+[node name="MissileTrailSpawn" type="Marker2D" parent="." unique_id=1494955128]
+position = Vector2(-32, 0)
+
+[node name="MissileTrailComponent2" type="Node" parent="." unique_id=425176101 node_paths=PackedStringArray("missile_trail", "trail_spawn_point")]
+script = ExtResource("4_wfrfc")
+missile_trail = NodePath("../transparent_effects/MissileTrail2")
+missile_trail_points_amount = 40
+trail_spawn_point = NodePath("../MissileTrailSpawn")
+
+[node name="opaque_effects" type="Node2D" parent="." unique_id=1213968419]
+
+[node name="Sprite2D" type="Sprite2D" parent="opaque_effects" unique_id=1493556652]
+position = Vector2(1.9999981, -2.0000029)
+rotation = 1.5707964
+scale = Vector2(3, 2)
+texture = ExtResource("2_ty4ax")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="opaque_effects" unique_id=92732484]
+amount = 24
+texture = ExtResource("2_ty4ax")
+lifetime = 0.65
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 500.0
+angular_velocity_curve = SubResource("Curve_ofm3g")
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="opaque_effects" unique_id=484839900]
+amount = 24
+texture = ExtResource("4_gmwc6")
+lifetime = 0.65
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 500.0
+angular_velocity_curve = SubResource("Curve_ofm3g")
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+
+[node name="transparent_effects" type="Node2D" parent="." unique_id=1966027494]
+modulate = Color(1, 1, 1, 0.46666667)
+
+[node name="MissileTrail2" type="Line2D" parent="transparent_effects" unique_id=358898874]
+top_level = true
+z_index = 1
+width = 40.0
+width_curve = SubResource("Curve_wfrfc")
+default_color = Color(1, 1, 1, 0.49019608)
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="transparent_effects" unique_id=422414136]
+amount = 24
+texture = ExtResource("2_ty4ax")
+lifetime = 0.65
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 500.0
+angular_velocity_curve = SubResource("Curve_ofm3g")
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="transparent_effects" unique_id=579139050]
+amount = 24
+texture = ExtResource("4_gmwc6")
+lifetime = 0.65
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 500.0
+angular_velocity_curve = SubResource("Curve_ofm3g")
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
 
 [connection signal="body_entered" from="EnemyArea" to="." method="_on_enemy_area_body_entered"]
 [connection signal="body_entered" from="PlayerArea" to="." method="_on_player_area_body_entered"]
