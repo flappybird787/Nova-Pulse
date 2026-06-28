@@ -18,9 +18,9 @@ func _process(delta: float) -> void:
 		upgrade_description_label.text = upgrade.upgrade_description
 		print(upgrade.icon)
 		if upgrade.icon != "":
-			var image = Image.load_from_file(upgrade.icon)
-			var texture = ImageTexture.create_from_image(image)
-			print(texture, " Texture")
+			var image = load(upgrade.icon)
+			var texture = image
+			#print(texture, " Texture")
 			upgrade_texture.texture = texture
 
 

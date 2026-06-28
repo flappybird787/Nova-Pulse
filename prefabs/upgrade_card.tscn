@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bbylb0i3ivdnq" path="res://scripts/GUI/upgrade_card.gd" id="1_xhwot"]
 [ext_resource type="StyleBox" uid="uid://cxjlgyb46hj8m" path="res://assets/GUI/upgrade_card_sylebox.tres" id="2_p4jcm"]
-[ext_resource type="Texture2D" uid="uid://b57tfbra2u8rc" path="res://assets/upgrades/hull_booster.svg" id="3_j1jyg"]
 [ext_resource type="FontFile" uid="uid://lbfg7acmp23t" path="res://assets/Quantico/Quantico-Regular.ttf" id="3_jv45g"]
+[ext_resource type="FontFile" uid="uid://c5jvl08nf4qth" path="res://assets/Quantico/Quantico-Bold.ttf" id="3_p4jcm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhwot"]
 bg_color = Color(0.2520276, 0.25202766, 0.25202757, 1)
@@ -42,17 +42,17 @@ upgrade_description_label = NodePath("Panel/VBoxContainer/DescriptionPanel/Upgra
 upgrade_texture = NodePath("Panel/VBoxContainer/ImagePanel/TextureRect")
 
 [node name="Panel" type="Panel" parent="." unique_id=292023380]
-custom_minimum_size = Vector2(350, 600)
+custom_minimum_size = Vector2(360, 615)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -175.0
+offset_top = -300.0
+offset_right = 175.0
+offset_bottom = 307.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xhwot")
@@ -91,6 +91,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("3_p4jcm")
 theme_override_font_sizes/font_size = 30
 text = "test 1"
 horizontal_alignment = 1
@@ -117,7 +118,6 @@ offset_right = 128.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_j1jyg")
 
 [node name="DescriptionPanel" type="Panel" parent="Panel/VBoxContainer" unique_id=1379666555]
 custom_minimum_size = Vector2(0, 230)
@@ -128,14 +128,13 @@ theme_override_styles/panel = ExtResource("2_p4jcm")
 custom_minimum_size = Vector2(2, 2)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.029411765
-anchor_right = 0.5200001
-anchor_bottom = 0.775
-offset_top = 4.0
-offset_right = 136.0
-offset_bottom = 53.0
+anchor_left = 0.029411763
+anchor_top = 0.017391304
+anchor_right = 0.96666646
+anchor_bottom = 0.95434785
 size_flags_vertical = 6
 theme_override_fonts/font = ExtResource("3_jv45g")
+theme_override_font_sizes/font_size = 20
 text = "test 2
 "
 autowrap_mode = 3
@@ -143,6 +142,8 @@ metadata/_edit_use_anchors_ = true
 
 [node name="UpgradePicker" type="Button" parent="Panel/VBoxContainer" unique_id=1642666530]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_p4jcm")
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = ExtResource("2_p4jcm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_502jd")
 text = "Choose Upgrade"
