@@ -105,7 +105,7 @@ func _on_timer_timeout() -> void:
 func apply_upgrades(upgrade : UpgradeBase):
 	if upgrade.upgrade_name == "Fire Rate Booster":
 		if primary_weapon_cooldown_timer.wait_time >= 0.1:
-			primary_weapon_cooldown_timer.wait_time *= 0.5
+			primary_weapon_cooldown_timer.wait_time *= 0.7
 		
 		else:
 			primary_weapon_cooldown_timer.wait_time = 0.1

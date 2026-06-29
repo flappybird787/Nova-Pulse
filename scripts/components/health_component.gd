@@ -48,15 +48,15 @@ func _on_healing_timer_timeout() -> void:
 
 func apply_upgrade(upgrade: UpgradeBase):
 	if upgrade.upgrade_name == "Hull Booster":
-		max_health += 15
-		health += 15
+		max_health *= 1.2
+		health *= 1.2
 	
 	if upgrade.upgrade_name == "Shield Booster":
-		max_shields += 15
-		shields += 15
+		max_shields *= 1.2
+		shields *= 1.2
 	
 	if upgrade.upgrade_name == "Hull Regen Booster":
-		health_regen += 2
+		health_regen *= 1.3
 	
 	if upgrade.upgrade_name == "Shield Regen Booster":
-		shield_regen += 2
+		shield_regen *= 1.3

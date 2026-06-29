@@ -31,7 +31,7 @@ func apply_upgrades(upgrade : UpgradeBase):
 		spread = upgrade.spread
 	
 	if upgrade.upgrade_name == "Damage Booster":
-		damage_multiplier += 1
+		damage_multiplier *= 1.35
 	
 	if upgrade.upgrade_name == "Turbolaser":
 		attack_scene = load("res://prefabs/weapons/turbolaser.tscn")

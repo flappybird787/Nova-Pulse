@@ -3,9 +3,13 @@ class_name UpgradeMenu
 
 @export var upgrade_card_scene : PackedScene
 
+@export var upgrade_icon_scene : PackedScene
+
 @export var available_upgrades : Array
 
 @export var card_container : HBoxContainer
+
+@export var icon_container : GridContainer
 
 func _ready() -> void:
 	EventBus.leveled_up.connect(display_upgrades)
@@ -21,7 +25,19 @@ func _process(delta: float) -> void:
 		display_upgrades(1)
 
 
+func display_upgrade_icons():
+	for icon in icon_container.get_children():
+		icon.queue_free()
+	
+	for upgrade in PlayerUpgradeManager.current_upgrades:
+		var i = upgrade_icon_scene.instantiate()
+		icon_container.add_child(i)
+		i.upgrade = upgrade
+
+
 func display_upgrades(level : int):
+	display_upgrade_icons()
+	
 	for card in card_container.get_children():
 		card.queue_free()
 	

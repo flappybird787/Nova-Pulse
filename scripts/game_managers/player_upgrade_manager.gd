@@ -2,6 +2,8 @@ extends Node
 
 @export var xp_to_next_level : int
 
+@export var current_upgrades : Array[UpgradeBase]
+
 func _ready() -> void:
 	xp_to_next_level = calculate_xp_needed()
 	EventBus.gain_xp.connect(gain_xp)
@@ -43,3 +45,4 @@ func calculate_xp_needed():
 func apply_upgrade(upgrade : UpgradeBase):
 	get_tree().paused = false
 	EventBus.game_paused.emit(false)
+	current_upgrades.append(upgrade)
