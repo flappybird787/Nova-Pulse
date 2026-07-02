@@ -5,11 +5,11 @@ class_name GUIManagerComponent
 
 @export_group("labels")
 
-@export var shield_label : Label
+@export var shield_bar : ProgressBar
 
-@export var health_label : Label
+@export var health_bar : ProgressBar
 
-@export var xp_label : Label
+@export var xp_bar : ProgressBar
 
 @export var health_label_pivot : Control
 
@@ -42,14 +42,18 @@ func handle_labels_visibility(paused : bool):
 
 
 func handle_xp_labels(xp_amount, xp_to_next_level):
-	xp_label.text = str(xp_amount,"/", xp_to_next_level, " xp")
+	xp_bar.value = lerp(xp_bar.value, float(xp_amount), 0.1)
+	xp_bar.max_value = xp_to_next_level
 
 
 func handle_health_labels():
 	if health_component.max_shields != 0:
-		shield_label.text = str(health_component.shields, "/", health_component.max_shields, " shields")
-		
-	health_label.text = str(health_component.health, "/", health_component.max_health, " health")
+		shield_bar.value = lerp(shield_bar.value, float(health_component.shields), 0.1)
+		shield_bar.max_value = health_component.max_shields
+
+	if health_component.max_health != 0:
+		health_bar.value = lerp(health_bar.value, float(health_component.health), 0.1)
+		health_bar.max_value = health_component.max_health
 
 	if is_enemy_gui:
 		handle_label_gui_position()
