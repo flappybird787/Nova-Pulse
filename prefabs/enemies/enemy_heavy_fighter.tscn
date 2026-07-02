@@ -98,7 +98,7 @@ health_label = NodePath("../PlayerHealthLabelPivot/PlayerHealthLabel")
 script = ExtResource("8_obet4")
 health_component = NodePath("../HealthComponent")
 root = NodePath("..")
-xp_on_death = 500
+xp_on_death = 5
 
 [node name="AttackTriggerComponent" type="Node" parent="." unique_id=1173456750 node_paths=PackedStringArray("position", "physics_body")]
 script = ExtResource("9_6vxj2")

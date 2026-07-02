@@ -8,6 +8,5 @@ class_name DeathComponent
 
 func _process(delta: float) -> void:
 	if health_component.health <= 0:
-		EventBus.drop_xp.emit(root.global_position, xp_on_death)
-		print("xp on death: ", xp_on_death)
+		EventBus.gain_xp.emit(xp_on_death)
 		root.queue_free()

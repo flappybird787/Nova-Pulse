@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://ru0tp3sc0c7d"]
 
 [ext_resource type="PackedScene" uid="uid://b070e13xnndif" path="res://prefabs/player_ship.tscn" id="2_j8ivh"]
-[ext_resource type="Script" uid="uid://ddsge25h4bww1" path="res://scripts/components/xp_instantiator_component.gd" id="3_nd71p"]
 [ext_resource type="Texture2D" uid="uid://ohowmriae14n" path="res://assets/backgrounds/default_background.png" id="4_3qnke"]
 [ext_resource type="Script" uid="uid://cbagpr7b1t6bb" path="res://scripts/components/attack_instantiator_component.gd" id="4_7ddre"]
 [ext_resource type="PackedScene" uid="uid://dmwvllc8moedk" path="res://prefabs/enemies/enemy_fighter.tscn" id="4_qjeyg"]
@@ -47,9 +46,6 @@ shape = SubResource("RectangleShape2D_j8ivh")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayableAreaBorderY" unique_id=205358434]
 position = Vector2(1.5, 3000)
 shape = SubResource("RectangleShape2D_j8ivh")
-
-[node name="XPInstantiatorComponent" type="Node" parent="." unique_id=381059157]
-script = ExtResource("3_nd71p")
 
 [node name="AttackInstantiatorComponent" type="Node" parent="." unique_id=44602759]
 script = ExtResource("4_7ddre")
