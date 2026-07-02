@@ -14,3 +14,4 @@ func drop_xp(xp_position: Vector2, xp_amount: int):
 	var x = xp_particle.instantiate()
 	add_child(x)
 	x.global_position = xp_position
+	x.xp_amount = xp_amount

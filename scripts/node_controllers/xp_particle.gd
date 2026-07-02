@@ -6,11 +6,13 @@ class_name XPParticle
 var player_in_range = false
 var player
 
+var lerp_weight = 0.1
 
 func _physics_process(delta: float) -> void:
 	if player:
-		global_position = global_position.lerp(player.global_position, 1 * delta)
-
+		global_position = global_position.lerp(player.global_position, lerp_weight)
+		
+	print("XP amount: ", xp_amount)
 	move_and_slide()
 
 
