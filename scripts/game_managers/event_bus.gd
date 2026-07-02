@@ -6,6 +6,8 @@ signal gain_xp(xp_amount : int)
 
 signal xp_changed(xp_amount : int, xp_to_next_level : int)
 
+signal ready_to_level_up(times : int)
+
 signal leveled_up(level : int)
 
 signal upgrade_chosen(upgrade : UpgradeBase)

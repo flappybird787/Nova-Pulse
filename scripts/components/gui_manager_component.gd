@@ -17,6 +17,8 @@ class_name GUIManagerComponent
 
 @export var wave_label : Label
 
+@export var upgrade_ready_label : Label
+
 ## handles the transform of a label, such as a health bar floating above an enemy
 @export var is_enemy_gui = false
 
@@ -31,6 +33,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	handle_health_labels()
 	handle_xp_labels(GameManager.player_xp, PlayerUpgradeManager.xp_to_next_level)
+	if GameManager.potential_levels > 0:
+		upgrade_ready_label.show()
+	
+	else:
+		upgrade_ready_label.hide()
 
 
 func handle_labels_visibility(paused : bool):

@@ -16,19 +16,17 @@ func reset():
 	xp_to_next_level = 0
 	GameManager.player_level = 1
 	xp_to_next_level = calculate_xp_needed()
-	print("RESET EVERYTHING 1")
+	print("RESET EVERYTHING")
 
 
 func level_up():
 	GameManager.player_level += 1
 	xp_to_next_level = calculate_xp_needed()
-	EventBus.leveled_up.emit(GameManager.player_level)
-	print("leveled up")
+	EventBus.ready_to_level_up.emit(GameManager.potential_levels)
 
 
 func gain_xp(amount : int):
 	GameManager.player_xp += amount
-	print(amount)
 	
 	# While loop handles cases where the player gains enough XP to level up multiple times at once
 	while GameManager.player_xp >= xp_to_next_level:

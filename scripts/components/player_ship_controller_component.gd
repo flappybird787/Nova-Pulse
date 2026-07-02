@@ -10,6 +10,9 @@ class_name  PlayerShipControllerComponent
 var velocity : Vector2
 
 var can_fire = true
+
+
+
 @export var primary_weapon_cooldown_timer : Timer
 
 @export var attack_trigger_component : AttackTriggerComponent
@@ -18,8 +21,10 @@ var can_fire = true
 
 @export var thrusters : Node2D
 
+
 func _ready() -> void:
 	EventBus.upgrade_chosen.connect(apply_upgrades)
+	EventBus.ready_to_level_up.connect(manage_player_level)
 
 
 func _physics_process(delta: float) -> void:
@@ -39,33 +44,23 @@ func _physics_process(delta: float) -> void:
 
 
 func get_player_input():
-	# 1. Rotate the ship to face the mouse first
 	ship_body.look_at(get_viewport().get_camera_2d().get_global_mouse_position())
 
 	var move_dir = Vector2.ZERO
 
 	thrusters.visible = false
 
-	# 2. Use the ship's local transform vectors for direction
-	# transform.x is "Forward" because look_at() aligns the +X axis with the mouse
 	if Input.is_action_pressed("move_up"):
-		move_dir += ship_body.transform.x # Forward
+		move_dir += ship_body.transform.x 
 		thrusters.visible = true
 		
 	if Input.is_action_pressed("move_down"):
-		move_dir -= ship_body.transform.x # Backward
+		move_dir -= ship_body.transform.x 
 		thrusters.visible = true
-		
-	#if Input.is_action_pressed("move_left"):
-	#	move_dir -= ship_body.transform.y # Strafe Left
-	#if Input.is_action_pressed("move_right"):
-	#	move_dir += ship_body.transform.y # Strafe Right
 
-	# 3. Normalize to keep diagonal speed consistent
 	if move_dir != Vector2.ZERO:
 		move_dir = move_dir.normalized()
 
-	# 4. Apply acceleration
 	velocity += move_dir * ship_data_component.ship_acceleration 
 	
 	if Input.is_action_pressed("primary_attack"):
@@ -73,6 +68,15 @@ func get_player_input():
 			attack_trigger_component.trigger_attack()
 			can_fire = false
 			primary_weapon_cooldown_timer.start()
+	
+	if Input.is_action_pressed("level_up") and GameManager.potential_levels > 0:
+		EventBus.leveled_up.emit(GameManager.player_level)
+		GameManager.potential_levels -= 1
+
+
+func manage_player_level(level):
+	GameManager.potential_levels += 1
+	print("can level up ", GameManager.potential_levels, " times")
 
 
 func limit_velocity(max_velocity):

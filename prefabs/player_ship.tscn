@@ -84,14 +84,15 @@ position = NodePath("../AttackPoint")
 physics_body = NodePath("..")
 attack_team = "PLAYER"
 
-[node name="GUIManagerComponent" type="Node" parent="." unique_id=1677021560 node_paths=PackedStringArray("health_component", "shield_bar", "health_bar", "xp_bar", "player_labels", "wave_label")]
+[node name="GUIManagerComponent" type="Node" parent="." unique_id=1677021560 node_paths=PackedStringArray("health_component", "shield_bar", "health_bar", "xp_bar", "player_labels", "wave_label", "upgrade_ready_label")]
 script = ExtResource("9_gehul")
 health_component = NodePath("../HealthComponent")
-shield_bar = NodePath("../CanvasLayer/PlayerLabels/shield_bar")
-health_bar = NodePath("../CanvasLayer/PlayerLabels/health_bar")
-xp_bar = NodePath("../CanvasLayer/PlayerLabels/xp_bar")
+shield_bar = NodePath("../CanvasLayer/PlayerLabels/ShieldBar")
+health_bar = NodePath("../CanvasLayer/PlayerLabels/HealthBar")
+xp_bar = NodePath("../CanvasLayer/PlayerLabels/XPBar")
 player_labels = NodePath("../CanvasLayer/PlayerLabels")
 wave_label = NodePath("../CanvasLayer/PlayerLabels/WaveLabel")
+upgrade_ready_label = NodePath("../CanvasLayer/PlayerLabels/UpgradeReadyLabel")
 
 [node name="CollisionManagerComponent" type="Node" parent="." unique_id=981425801 node_paths=PackedStringArray("health_component", "ship_data_component", "ship_body", "ship_controller_component")]
 script = ExtResource("10_rf2va")
@@ -154,7 +155,7 @@ theme_override_fonts/font = ExtResource("12_ytn04")
 theme_override_font_sizes/font_size = 35
 text = "WAVE 1"
 
-[node name="health_bar" type="ProgressBar" parent="CanvasLayer/PlayerLabels" unique_id=520726075]
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/PlayerLabels" unique_id=520726075]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -173,7 +174,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_5e8l8")
 value = 61.93
 show_percentage = false
 
-[node name="xp_bar" type="ProgressBar" parent="CanvasLayer/PlayerLabels" unique_id=54593525]
+[node name="XPBar" type="ProgressBar" parent="CanvasLayer/PlayerLabels" unique_id=54593525]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -192,7 +193,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ytn04")
 value = 61.93
 show_percentage = false
 
-[node name="shield_bar" type="ProgressBar" parent="CanvasLayer/PlayerLabels" unique_id=957782976]
+[node name="ShieldBar" type="ProgressBar" parent="CanvasLayer/PlayerLabels" unique_id=957782976]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -210,6 +211,23 @@ theme_override_styles/background = SubResource("StyleBoxFlat_f3n8n")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6ibjm")
 value = 75.0
 show_percentage = false
+
+[node name="UpgradeReadyLabel" type="Label" parent="CanvasLayer/PlayerLabels" unique_id=391279200]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -306.5
+offset_top = -511.5
+offset_right = 306.5
+offset_bottom = -464.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_ytn04")
+theme_override_font_sizes/font_size = 32
+text = "PRESS SPACE TO SELECT AND UPGRADE"
 
 [node name="AttackPoint" type="Marker2D" parent="." unique_id=1700526706]
 position = Vector2(85, 0)
