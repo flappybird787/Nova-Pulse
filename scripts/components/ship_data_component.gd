@@ -11,7 +11,7 @@ class_name ShipDataComponent
 @export var ship_shield_health = 0
 
 ## how fast the ship turns
-@export var ship_agility = 0
+@export var ship_agility = 0.0
 
 ## how fast the ship accelerates forwards
 @export var ship_acceleration = 0

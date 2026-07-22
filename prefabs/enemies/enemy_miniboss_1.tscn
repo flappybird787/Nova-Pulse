@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://ceu6chiy2woqe"]
 
 [ext_resource type="Script" uid="uid://ctutk1j64rj07" path="res://scripts/node_controllers/enemy_ship_base.gd" id="1_3lixt"]
-[ext_resource type="Texture2D" uid="uid://biu7rr500qbyl" path="res://assets/icon.svg" id="2_uinqk"]
+[ext_resource type="Texture2D" uid="uid://dtqbotgsp7nxa" path="res://assets/Ships/boss_1.svg" id="2_3lixt"]
 [ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="3_6goat"]
-[ext_resource type="Script" uid="uid://1xb3hjxq8u07" path="res://scripts/components/map_edge_overflow_component.gd" id="4_lmd1c"]
 [ext_resource type="Script" uid="uid://byfkxe3bur7me" path="res://scripts/game_managers/state_machine_manager.gd" id="5_dp1xx"]
-[ext_resource type="Script" uid="uid://bek72p5pasbro" path="res://scripts/states/attacking_state.gd" id="6_xagkd"]
 [ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="7_khyie"]
+[ext_resource type="Script" uid="uid://de135k6m5a4jd" path="res://scripts/states/spawn_state.gd" id="7_uinqk"]
 [ext_resource type="Script" uid="uid://cm2jchhaaqnpt" path="res://scripts/components/death_component.gd" id="8_7aqlb"]
 [ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="9_sukrg"]
 [ext_resource type="PackedScene" uid="uid://biux6iqd8ja3i" path="res://prefabs/weapons/turbolaser.tscn" id="10_3lixt"]
@@ -30,12 +29,12 @@ script = ExtResource("1_3lixt")
 health_component = NodePath("HealthComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=333681641]
-modulate = Color(1, 0, 0, 1)
 rotation = 1.5707964
 scale = Vector2(2, 2)
-texture = ExtResource("2_uinqk")
+texture = ExtResource("2_3lixt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594214138]
+visible = false
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_l0son")
 
@@ -66,25 +65,19 @@ horizontal_alignment = 1
 
 [node name="ShipDataComponent" type="Node" parent="." unique_id=327887610]
 script = ExtResource("3_6goat")
-ship_speed = 150.0
-ship_agility = 1
-
-[node name="MapEdgeOverflowComponent" type="Node" parent="." unique_id=1781027639 node_paths=PackedStringArray("ship_body")]
-script = ExtResource("4_lmd1c")
-ship_body = NodePath("..")
+ship_speed = 80.0
+ship_agility = 0.2
 
 [node name="StateMachineManager" type="Node" parent="." unique_id=1065371948]
 script = ExtResource("5_dp1xx")
 
-[node name="AttackingState" type="Node" parent="StateMachineManager" unique_id=357116728 node_paths=PackedStringArray("ship_data_component", "ship_base", "weapons_cooldown_timer", "attack_trigger_component", "state_machine_manager")]
-script = ExtResource("6_xagkd")
+[node name="SpawnState" type="Node" parent="StateMachineManager" unique_id=1098972757 node_paths=PackedStringArray("physics_body", "ship_data_component", "state_machine_manager")]
+script = ExtResource("7_uinqk")
+spawn_coords = Vector2(1000, 1000)
+physics_body = NodePath("../..")
 ship_data_component = NodePath("../../ShipDataComponent")
-ship_base = NodePath("../..")
-weapons_cooldown_timer = NodePath("../../WeaponCooldownTimer")
-attack_trigger_component = NodePath("../../AttackTriggerComponent")
 state_machine_manager = NodePath("..")
-state_name = "ATTACKING"
-metadata/_custom_type_script = "uid://bmemjl566ltus"
+state_name = "SPAWN"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("health_label") groups=["ENEMY"]]
 script = ExtResource("7_khyie")
@@ -109,6 +102,7 @@ spread = 10
 metadata/_custom_type_script = "uid://2fvomf084pna"
 
 [node name="MapEdgeOverflowAreaX" type="Area2D" parent="." unique_id=1658422668]
+visible = false
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 8
@@ -118,6 +112,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_a71dp")
 
 [node name="MapEdgeOverflowAreaY" type="Area2D" parent="." unique_id=1291504183]
+visible = false
 scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 16
@@ -127,6 +122,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_a71dp")
 
 [node name="AttackRange" type="Area2D" parent="." unique_id=824184974]
+visible = false
 collision_layer = 0
 collision_mask = 64
 
@@ -134,6 +130,7 @@ collision_mask = 64
 shape = SubResource("CircleShape2D_i12am")
 
 [node name="FireRange" type="Area2D" parent="." unique_id=1223002913]
+visible = false
 collision_layer = 0
 collision_mask = 64
 
@@ -145,11 +142,3 @@ shape = SubResource("RectangleShape2D_5pmvo")
 [node name="WeaponCooldownTimer" type="Timer" parent="." unique_id=1184776392]
 wait_time = 0.1
 one_shot = true
-
-[connection signal="area_entered" from="MapEdgeOverflowAreaX" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_x"]
-[connection signal="area_entered" from="MapEdgeOverflowAreaY" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_y"]
-[connection signal="body_entered" from="AttackRange" to="StateMachineManager/AttackingState" method="_on_attack_range_body_entered"]
-[connection signal="body_exited" from="AttackRange" to="StateMachineManager/AttackingState" method="_on_attack_range_body_exited"]
-[connection signal="body_entered" from="FireRange" to="StateMachineManager/AttackingState" method="_on_fire_range_body_entered"]
-[connection signal="body_exited" from="FireRange" to="StateMachineManager/AttackingState" method="_on_fire_range_body_exited"]
-[connection signal="timeout" from="WeaponCooldownTimer" to="StateMachineManager/AttackingState" method="_on_weapon_cooldown_timer_timeout"]
