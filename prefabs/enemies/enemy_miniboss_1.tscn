@@ -95,6 +95,10 @@ state_name = "PHASE1ATTACK"
 wait_time = 3.0
 autostart = true
 
+[node name="SpawnWaveTimer" type="Timer" parent="StateMachineManager/Phase1Attack" unique_id=419129698]
+wait_time = 10.0
+autostart = true
+
 [node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("health_label") groups=["ENEMY"]]
 script = ExtResource("7_khyie")
 health = 300
@@ -166,3 +170,4 @@ position = Vector2(-150, -300)
 position = Vector2(-150, 300)
 
 [connection signal="timeout" from="StateMachineManager/Phase1Attack/SpawnDelayTimer" to="StateMachineManager/Phase1Attack" method="_on_spawn_delay_timer_timeout"]
+[connection signal="timeout" from="StateMachineManager/Phase1Attack/SpawnWaveTimer" to="StateMachineManager/Phase1Attack" method="_on_spawn_wave_timer_timeout"]

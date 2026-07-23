@@ -7,7 +7,7 @@ class_name Phase1Attack
 @export var fighter_spawn_2 : Marker2D
 
 ## half the number of fighters that spawn (one from each spawn)
-@export var fighter_number : int = 4
+@export var fighter_number : int = 2
 
 var spawned_enemies = false
 var enemies_amount = 0
@@ -38,3 +38,7 @@ func spawn_enemies():
 
 func _on_spawn_delay_timer_timeout() -> void:
 	can_spawn_enemies = true
+
+
+func _on_spawn_wave_timer_timeout() -> void:
+	spawned_enemies = false
