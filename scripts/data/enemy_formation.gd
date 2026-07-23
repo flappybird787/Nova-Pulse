@@ -5,4 +5,4 @@ class_name EnemyFormationBase
 
 @export var min_spawn_wave : int = 1
 
-@export_enum("RANDOM", "LINE", "SERIES") var spawn_layout 
+@export_enum("RANDOM", "LINE", "SERIES", "OFFSCREENR") var spawn_layout 

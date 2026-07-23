@@ -2,6 +2,8 @@ extends StateMachineState
 class_name SpawnState
 
 @export var spawn_coords = Vector2(0, 0)
+@export var spawn_rotation = 0.0
+
 
 @export var move_to = Vector2(0, 0)
 
@@ -9,21 +11,26 @@ class_name SpawnState
 
 @export var ship_data_component : ShipDataComponent
 
+@export var next_state = ""
+
 var at_target_coords = false
 
 func _ready() -> void:
-	state_machine_manager.set_state(state_name, "")
+	state_machine_manager.set_state(state_name, next_state)
+
 
 var at_spawn_cords = false
 func _physics_process(delta: float) -> void:
-	if !at_spawn_cords:
-		physics_body.global_position = spawn_coords
-		at_spawn_cords = true
-	
-	move_to_coords(physics_body, move_to, delta, ship_data_component.ship_speed, ship_data_component.ship_agility)
-	
-	if at_target_coords:
-		state_machine_manager.go_to_next_state("")
+	if state_machine_manager.current_state == state_name:
+		if !at_spawn_cords:
+			physics_body.global_position = spawn_coords
+			physics_body.rotation_degrees = spawn_rotation
+			at_spawn_cords = true
+		
+		move_to_coords(physics_body, move_to, delta, ship_data_component.ship_speed, ship_data_component.ship_agility)
+		
+		if at_target_coords:
+			state_machine_manager.go_to_next_state("")
 
 
 func move_to_coords(

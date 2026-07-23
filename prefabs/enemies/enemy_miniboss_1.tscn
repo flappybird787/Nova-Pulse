@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dtqbotgsp7nxa" path="res://assets/Ships/boss_1.svg" id="2_3lixt"]
 [ext_resource type="Script" uid="uid://ct2r43bt8hjni" path="res://scripts/components/ship_data_component.gd" id="3_6goat"]
 [ext_resource type="Script" uid="uid://byfkxe3bur7me" path="res://scripts/game_managers/state_machine_manager.gd" id="5_dp1xx"]
+[ext_resource type="Script" uid="uid://drsrfpkgsaje0" path="res://prefabs/enemies/phase_1_attack.gd" id="6_3lixt"]
+[ext_resource type="PackedScene" uid="uid://dmwvllc8moedk" path="res://prefabs/enemies/enemy_fighter.tscn" id="7_6goat"]
 [ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="7_khyie"]
 [ext_resource type="Script" uid="uid://de135k6m5a4jd" path="res://scripts/states/spawn_state.gd" id="7_uinqk"]
 [ext_resource type="Script" uid="uid://cm2jchhaaqnpt" path="res://scripts/components/death_component.gd" id="8_7aqlb"]
@@ -65,7 +67,7 @@ horizontal_alignment = 1
 
 [node name="ShipDataComponent" type="Node" parent="." unique_id=327887610]
 script = ExtResource("3_6goat")
-ship_speed = 80.0
+ship_speed = 200.0
 ship_agility = 0.2
 
 [node name="StateMachineManager" type="Node" parent="." unique_id=1065371948]
@@ -73,11 +75,25 @@ script = ExtResource("5_dp1xx")
 
 [node name="SpawnState" type="Node" parent="StateMachineManager" unique_id=1098972757 node_paths=PackedStringArray("physics_body", "ship_data_component", "state_machine_manager")]
 script = ExtResource("7_uinqk")
-spawn_coords = Vector2(1000, 1000)
+spawn_coords = Vector2(3000, 0)
+spawn_rotation = -180.0
 physics_body = NodePath("../..")
 ship_data_component = NodePath("../../ShipDataComponent")
+next_state = "PHASE1ATTACK"
 state_machine_manager = NodePath("..")
 state_name = "SPAWN"
+
+[node name="Phase1Attack" type="Node" parent="StateMachineManager" unique_id=1432046268 node_paths=PackedStringArray("fighter_spawn_1", "fighter_spawn_2", "state_machine_manager")]
+script = ExtResource("6_3lixt")
+enemy_fighter_scene = ExtResource("7_6goat")
+fighter_spawn_1 = NodePath("../../FighterSpawn1")
+fighter_spawn_2 = NodePath("../../FighterSpawn2")
+state_machine_manager = NodePath("..")
+state_name = "PHASE1ATTACK"
+
+[node name="SpawnDelayTimer" type="Timer" parent="StateMachineManager/Phase1Attack" unique_id=1416749200]
+wait_time = 3.0
+autostart = true
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("health_label") groups=["ENEMY"]]
 script = ExtResource("7_khyie")
@@ -142,3 +158,11 @@ shape = SubResource("RectangleShape2D_5pmvo")
 [node name="WeaponCooldownTimer" type="Timer" parent="." unique_id=1184776392]
 wait_time = 0.1
 one_shot = true
+
+[node name="FighterSpawn1" type="Marker2D" parent="." unique_id=1836967365]
+position = Vector2(-150, -300)
+
+[node name="FighterSpawn2" type="Marker2D" parent="." unique_id=1714215185]
+position = Vector2(-150, 300)
+
+[connection signal="timeout" from="StateMachineManager/Phase1Attack/SpawnDelayTimer" to="StateMachineManager/Phase1Attack" method="_on_spawn_delay_timer_timeout"]

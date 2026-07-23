@@ -3,6 +3,8 @@ class_name WaveManagerComponent
 
 @export var scene_root : Node2D
 
+@export var enemy_spawn_point : Marker2D
+
 @export var current_wave_number : int
 
 @export var active_enemies_count : int
@@ -54,8 +56,13 @@ func start_wave(wave_number : int):
 	
 	for enemy in enemies_in_formation:
 		var e = enemy.instantiate()
-		scene_root.add_child(e)
-		e.global_position = Vector2(randi_range(-800, 800), randi_range(-800, 800))
+		enemy_spawn_point.add_child(e)
+		print("active formation: ", active_formation, " spawn layout: ", active_formation.spawn_layout)
+		if active_formation.spawn_layout == 0: # check the enemy formation for the enum with the layouts, i cant be fucked to figure out how to put that here and its easier to just use an int
+			e.global_position = Vector2(randi_range(-800, 800), randi_range(-800, 800))
+		
+		if active_formation.spawn_layout == 4:
+			e.global_position = Vector2(4000, 0)
 		active_enemies.append(e)
 	
 	EventBus.wave_started.emit(wave_number)
