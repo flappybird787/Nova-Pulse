@@ -83,11 +83,13 @@ next_state = "PHASE1ATTACK"
 state_machine_manager = NodePath("..")
 state_name = "SPAWN"
 
-[node name="Phase1Attack" type="Node" parent="StateMachineManager" unique_id=1432046268 node_paths=PackedStringArray("fighter_spawn_1", "fighter_spawn_2", "state_machine_manager")]
+[node name="Phase1Attack" type="Node" parent="StateMachineManager" unique_id=1432046268 node_paths=PackedStringArray("fighter_spawn_1", "fighter_spawn_2", "physics_body", "ship_data_component", "state_machine_manager")]
 script = ExtResource("6_3lixt")
 enemy_fighter_scene = ExtResource("7_6goat")
 fighter_spawn_1 = NodePath("../../FighterSpawn1")
 fighter_spawn_2 = NodePath("../../FighterSpawn2")
+physics_body = NodePath("../..")
+ship_data_component = NodePath("../../ShipDataComponent")
 state_machine_manager = NodePath("..")
 state_name = "PHASE1ATTACK"
 
@@ -101,8 +103,8 @@ autostart = true
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("health_label") groups=["ENEMY"]]
 script = ExtResource("7_khyie")
-health = 300
-max_health = 300
+health = 1500
+max_health = 1500
 health_label = NodePath("../PlayerHealthLabelPivot/PlayerHealthLabel")
 
 [node name="DeathComponent" type="Node" parent="." unique_id=3514482 node_paths=PackedStringArray("health_component", "root")]
@@ -164,10 +166,10 @@ wait_time = 0.1
 one_shot = true
 
 [node name="FighterSpawn1" type="Marker2D" parent="." unique_id=1836967365]
-position = Vector2(-150, -300)
+position = Vector2(-150, -700)
 
 [node name="FighterSpawn2" type="Marker2D" parent="." unique_id=1714215185]
-position = Vector2(-150, 300)
+position = Vector2(-150, 700)
 
 [connection signal="timeout" from="StateMachineManager/Phase1Attack/SpawnDelayTimer" to="StateMachineManager/Phase1Attack" method="_on_spawn_delay_timer_timeout"]
 [connection signal="timeout" from="StateMachineManager/Phase1Attack/SpawnWaveTimer" to="StateMachineManager/Phase1Attack" method="_on_spawn_wave_timer_timeout"]
