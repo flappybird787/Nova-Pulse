@@ -12,8 +12,8 @@
 [ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="9_sukrg"]
 [ext_resource type="PackedScene" uid="uid://biux6iqd8ja3i" path="res://prefabs/weapons/turbolaser.tscn" id="10_3lixt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0son"]
-size = Vector2(128, 128)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_uinqk"]
+points = PackedVector2Array(457, 3.5, 447.5, -20, 14, -171.5, -39.5, -141, -120, -141, -295.5, -231, -439, -154, -494.5, -73.5, -495, 81, -438.5, 161.5, -295.5, 238.5, -120.5, 148.5, -38.5, 148, 14, 178, 448, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a71dp"]
 size = Vector2(127, 128)
@@ -36,9 +36,8 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_3lixt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594214138]
-visible = false
 scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_l0son")
+shape = SubResource("ConvexPolygonShape2D_uinqk")
 
 [node name="AttackPoint" type="Marker2D" parent="." unique_id=2082869617]
 
