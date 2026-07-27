@@ -15,7 +15,9 @@ class_name HealthComponent
 
 @export var is_player : bool = false
 
-@export var health_label : Label
+@export var health_bar : ProgressBar
+
+@export var health_bar_pivot : Control
 
 func _ready() -> void:
 	if is_player:
@@ -23,7 +25,16 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if !is_player:
-		health_label.text = str(health, "/", max_health)
+		health_bar.max_value = max_health
+		health_bar.value = health
+		
+		handle_healthbar_rotation()
+
+
+func handle_healthbar_rotation():
+	if !is_player:
+		print("health bar rotation: ", health_bar_pivot.rotation_degrees)
+
 
 func deal_damage(amount: int):
 	for i in range(amount):

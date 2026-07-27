@@ -14,6 +14,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0son"]
 size = Vector2(128, 128)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4t56j"]
+bg_color = Color(0.27204677, 0.27204683, 0.27204666, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2osm"]
+bg_color = Color(1, 1, 1, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a71dp"]
 size = Vector2(127, 128)
 
@@ -49,20 +55,22 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="PlayerHealthLabel" type="Label" parent="PlayerHealthLabelPivot" unique_id=1438954244]
+[node name="PlayerHealthLabel" type="ProgressBar" parent="PlayerHealthLabelPivot" unique_id=364412775]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.008
 anchor_top = 0.010000001
 anchor_right = 0.008
 anchor_bottom = 0.010000001
-offset_left = -97.32
-offset_top = -119.399994
-offset_right = 95.680016
-offset_bottom = -76.4
+offset_left = -88.32
+offset_top = 77.6
+offset_right = 86.68
+offset_bottom = 95.6
 theme_override_font_sizes/font_size = 30
-text = "test"
-horizontal_alignment = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_4t56j")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b2osm")
+value = 50.0
+show_percentage = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1717269673]
 
@@ -88,11 +96,12 @@ state_machine_manager = NodePath("..")
 state_name = "ATTACKING"
 metadata/_custom_type_script = "uid://bmemjl566ltus"
 
-[node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("health_label")]
+[node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("health_bar", "health_bar_pivot")]
 script = ExtResource("7_vd12t")
 health = 15
 max_health = 15
-health_label = NodePath("../PlayerHealthLabelPivot/PlayerHealthLabel")
+health_bar = NodePath("../PlayerHealthLabelPivot/PlayerHealthLabel")
+health_bar_pivot = NodePath("../PlayerHealthLabelPivot")
 
 [node name="DeathComponent" type="Node" parent="." unique_id=3514482 node_paths=PackedStringArray("health_component", "root")]
 script = ExtResource("8_obet4")
