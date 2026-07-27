@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	
 	if health_component.health <= 0:
 		EventBus.player_died.emit()
-		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+		get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
 
 
 func get_player_input():

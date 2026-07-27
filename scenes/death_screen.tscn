@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://blr1ic5858hbc"]
+[gd_scene format=3 uid="uid://d1wbe1lp2fh3e"]
 
-[ext_resource type="Script" uid="uid://707x1baoolyl" path="res://scripts/GUI/main_menu.gd" id="1_l6cm7"]
-[ext_resource type="Texture2D" uid="uid://ohowmriae14n" path="res://assets/backgrounds/default_background.png" id="2_bqqt6"]
-[ext_resource type="FontFile" uid="uid://c5jvl08nf4qth" path="res://assets/Quantico/Quantico-Bold.ttf" id="2_ekxnf"]
+[ext_resource type="Script" uid="uid://bwov8pxks37l6" path="res://scripts/GUI/death_screen.gd" id="1_mqh5l"]
+[ext_resource type="Texture2D" uid="uid://ohowmriae14n" path="res://assets/backgrounds/default_background.png" id="2_7ns25"]
+[ext_resource type="FontFile" uid="uid://c5jvl08nf4qth" path="res://assets/Quantico/Quantico-Bold.ttf" id="3_gwety"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
 bg_color = Color(0.3372549, 0.3372549, 0.3372549, 1)
@@ -28,20 +28,20 @@ border_width_right = 7
 border_width_bottom = 7
 border_color = Color(0.6862745, 0.6862745, 0.6862745, 1)
 
-[node name="MainMenu" type="Control" unique_id=1201531271]
+[node name="DeathScreen" type="Control" unique_id=1201531271]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_l6cm7")
+script = ExtResource("1_mqh5l")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=560898468]
 layout_mode = 0
 offset_right = 2576.0
 offset_bottom = 1486.0
-texture = ExtResource("2_bqqt6")
+texture = ExtResource("2_7ns25")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=148305070]
 layout_mode = 1
@@ -52,18 +52,29 @@ anchor_right = 0.60117185
 anchor_bottom = 0.84375
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 40
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=1301503032]
+[node name="RestartButton" type="Button" parent="VBoxContainer" unique_id=1301503032]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_fonts/font = ExtResource("3_gwety")
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_f3n8n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
-text = "PLAY
+text = "RESTART
 "
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer" unique_id=87075194]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_gwety")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_l6cm7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f3n8n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
+text = "MAIN MENU"
 
 [node name="Label" type="Label" parent="." unique_id=1820535837]
 layout_mode = 1
@@ -73,9 +84,11 @@ anchor_top = 0.027777778
 anchor_right = 0.73691404
 anchor_bottom = 0.22708334
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_fonts/font = ExtResource("3_gwety")
 theme_override_font_sizes/font_size = 200
-text = "NOVA PULSE"
+text = "YOU DIED"
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
