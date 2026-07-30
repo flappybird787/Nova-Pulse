@@ -10,6 +10,7 @@ extends Node
 
 func _ready() -> void:
 	EventBus.player_died.connect(reset_values)
+	EventBus.boss_killed.connect(display_win_screen)
 	
 
 var started = false
@@ -22,3 +23,7 @@ func reset_values():
 	player_level = 1
 	player_xp = 0
 	print("RESET EVERYTHING 1")
+
+
+func display_win_screen():
+	get_tree().change_scene_to_file("res://scenes/win_screen.tscn")

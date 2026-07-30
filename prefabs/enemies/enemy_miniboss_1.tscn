@@ -117,6 +117,7 @@ script = ExtResource("8_7aqlb")
 health_component = NodePath("../HealthComponent")
 root = NodePath("..")
 xp_on_death = 20
+is_boss = true
 
 [node name="AttackTriggerComponent" type="Node" parent="." unique_id=1173456750 node_paths=PackedStringArray("position", "physics_body")]
 script = ExtResource("9_sukrg")

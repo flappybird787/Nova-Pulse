@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://d1wbe1lp2fh3e"]
+[gd_scene format=3 uid="uid://1ewevkflwg88"]
 
-[ext_resource type="Script" uid="uid://bwov8pxks37l6" path="res://scripts/GUI/death_screen.gd" id="1_mqh5l"]
-[ext_resource type="Texture2D" uid="uid://ohowmriae14n" path="res://assets/backgrounds/default_background.png" id="2_7ns25"]
-[ext_resource type="FontFile" uid="uid://c5jvl08nf4qth" path="res://assets/Quantico/Quantico-Bold.ttf" id="3_gwety"]
+[ext_resource type="Script" uid="uid://bwov8pxks37l6" path="res://scripts/GUI/death_screen.gd" id="1_2l6cc"]
+[ext_resource type="Texture2D" uid="uid://ohowmriae14n" path="res://assets/backgrounds/default_background.png" id="2_e41g7"]
+[ext_resource type="FontFile" uid="uid://c5jvl08nf4qth" path="res://assets/Quantico/Quantico-Bold.ttf" id="3_0lrm4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
 bg_color = Color(0.3372549, 0.3372549, 0.3372549, 1)
@@ -35,13 +35,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mqh5l")
+script = ExtResource("1_2l6cc")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=560898468]
 layout_mode = 0
 offset_right = 2576.0
 offset_bottom = 1486.0
-texture = ExtResource("2_7ns25")
+texture = ExtResource("2_e41g7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=148305070]
 layout_mode = 1
@@ -58,19 +58,18 @@ metadata/_edit_use_anchors_ = true
 [node name="RestartButton" type="Button" parent="VBoxContainer" unique_id=1301503032]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_gwety")
+theme_override_fonts/font = ExtResource("3_0lrm4")
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_f3n8n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
-text = "RESTART
-
+text = "PLAY AGAIN
 "
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer" unique_id=87075194]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_gwety")
+theme_override_fonts/font = ExtResource("3_0lrm4")
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_f3n8n")
@@ -85,9 +84,9 @@ anchor_top = 0.027777778
 anchor_right = 0.73691404
 anchor_bottom = 0.22708334
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("3_gwety")
+theme_override_fonts/font = ExtResource("3_0lrm4")
 theme_override_font_sizes/font_size = 200
-text = "YOU DIED"
+text = "YOU WIN"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
