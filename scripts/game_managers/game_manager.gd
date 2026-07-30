@@ -22,6 +22,9 @@ func _process(delta: float) -> void:
 func reset_values():
 	player_level = 1
 	player_xp = 0
+	PlayerUpgradeManager.current_upgrades = []
+	PlayerUpgradeManager.reset()
+	potential_levels = 0
 	print("RESET EVERYTHING 1")
 
 

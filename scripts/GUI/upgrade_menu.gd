@@ -7,6 +7,8 @@ class_name UpgradeMenu
 
 @export var available_upgrades : Array
 
+@export var available_level_1_upgrades : Array
+
 @export var card_container : HBoxContainer
 
 @export var icon_container : GridContainer
@@ -18,6 +20,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	available_upgrades = Upgrades.all_upgrades
+	available_level_1_upgrades = Upgrades.level_1_upgrades
 
 
 func _process(delta: float) -> void:
@@ -36,6 +39,7 @@ func display_upgrade_icons():
 
 
 func display_upgrades(level : int):
+	print("LEVEL: ", level)
 	display_upgrade_icons()
 	
 	for card in card_container.get_children():
@@ -44,7 +48,14 @@ func display_upgrades(level : int):
 	get_tree().paused = true
 	EventBus.game_paused.emit(true)
 	
-	var upgrade_choices = get_random_upgrades(3)
+	var upgrade_choices
+	
+	if level != 2:
+	
+		upgrade_choices = get_random_upgrades(3, 0)
+	
+	else:
+		upgrade_choices = get_random_upgrades(3, 1)
 	
 	for upgrade in upgrade_choices:
 		var c = upgrade_card_scene.instantiate()
@@ -59,7 +70,14 @@ func handle_visibility(paused : bool):
 	if !paused:
 		hide()
 
-func get_random_upgrades(amount: int):
-	var pool = available_upgrades.duplicate()
-	pool.shuffle()
-	return pool.slice(0, amount)
+## deck is the upgrade deck to pull from, 0 for all upgrades and 1 for level 1 upgrades
+func get_random_upgrades(amount: int, deck: int):
+	if deck == 0:
+		var pool = available_upgrades.duplicate()
+		pool.shuffle()
+		return pool.slice(0, amount)
+	
+	elif deck == 1:
+		var pool = available_level_1_upgrades.duplicate()
+		pool.shuffle()
+		return pool.slice(0, amount)
