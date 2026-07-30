@@ -2,9 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://b070e13xnndif" path="res://prefabs/player_ship.tscn" id="1_is7cx"]
 [ext_resource type="Script" uid="uid://cbagpr7b1t6bb" path="res://scripts/components/attack_instantiator_component.gd" id="3_yld8g"]
+[ext_resource type="PackedScene" uid="uid://dmwvllc8moedk" path="res://prefabs/enemies/enemy_fighter.tscn" id="4_hdflw"]
 [ext_resource type="Script" uid="uid://doilpyo1ns38i" path="res://scripts/game_managers/wave_manager_component.gd" id="4_mev14"]
 [ext_resource type="Script" uid="uid://b8vttecwo2c8x" path="res://scripts/data/wave_config.gd" id="5_yld8g"]
 [ext_resource type="Script" uid="uid://muvq1s3x2ldq" path="res://scripts/data/enemy_formation.gd" id="6_hdflw"]
+[ext_resource type="PackedScene" uid="uid://cm28hiqceiw0" path="res://prefabs/enemies/enemy_bomber.tscn" id="6_uswuf"]
+[ext_resource type="PackedScene" uid="uid://dukkd5ydied5j" path="res://prefabs/enemies/enemy_heavy_fighter.tscn" id="9_ms40l"]
 [ext_resource type="PackedScene" uid="uid://ceu6chiy2woqe" path="res://prefabs/enemies/enemy_miniboss_1.tscn" id="10_ms40l"]
 [ext_resource type="Texture2D" uid="uid://ohowmriae14n" path="res://assets/backgrounds/default_background.png" id="11_uswuf"]
 
@@ -13,6 +16,41 @@ size = Vector2(4243, 9718)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j8ivh"]
 size = Vector2(12197, 3722)
+
+[sub_resource type="Resource" id="Resource_7ns25"]
+script = ExtResource("6_hdflw")
+enemies_list = Array[PackedScene]([ExtResource("6_uswuf"), ExtResource("6_uswuf"), ExtResource("4_hdflw")])
+spawn_layout = 0
+metadata/_custom_type_script = "uid://muvq1s3x2ldq"
+
+[sub_resource type="Resource" id="Resource_gwety"]
+script = ExtResource("6_hdflw")
+enemies_list = Array[PackedScene]([ExtResource("9_ms40l"), ExtResource("9_ms40l")])
+spawn_layout = 0
+metadata/_custom_type_script = "uid://muvq1s3x2ldq"
+
+[sub_resource type="Resource" id="Resource_wfw3d"]
+script = ExtResource("6_hdflw")
+enemies_list = Array[PackedScene]([ExtResource("4_hdflw"), ExtResource("4_hdflw"), ExtResource("4_hdflw")])
+spawn_layout = 0
+metadata/_custom_type_script = "uid://muvq1s3x2ldq"
+
+[sub_resource type="Resource" id="Resource_wtkkp"]
+script = ExtResource("6_hdflw")
+enemies_list = Array[PackedScene]([ExtResource("6_uswuf"), ExtResource("9_ms40l")])
+spawn_layout = 0
+metadata/_custom_type_script = "uid://muvq1s3x2ldq"
+
+[sub_resource type="Resource" id="Resource_wraau"]
+script = ExtResource("6_hdflw")
+enemies_list = Array[PackedScene]([ExtResource("9_ms40l"), ExtResource("4_hdflw"), ExtResource("4_hdflw")])
+spawn_layout = 0
+metadata/_custom_type_script = "uid://muvq1s3x2ldq"
+
+[sub_resource type="Resource" id="Resource_mqh5l"]
+script = ExtResource("5_yld8g")
+formation_pool = Array[ExtResource("6_hdflw")]([SubResource("Resource_7ns25"), SubResource("Resource_gwety"), SubResource("Resource_wfw3d"), SubResource("Resource_wtkkp"), SubResource("Resource_wraau")])
+metadata/_custom_type_script = "uid://b8vttecwo2c8x"
 
 [sub_resource type="Resource" id="Resource_hdflw"]
 script = ExtResource("6_hdflw")
@@ -66,7 +104,7 @@ metadata/_custom_type_script = "uid://cbagpr7b1t6bb"
 script = ExtResource("4_mev14")
 scene_root = NodePath("..")
 enemy_spawn_point = NodePath("../EnemySpawnPoint")
-wave_configs = Array[ExtResource("5_yld8g")]([SubResource("Resource_r8pms")])
+wave_configs = Array[ExtResource("5_yld8g")]([SubResource("Resource_mqh5l"), SubResource("Resource_mqh5l"), SubResource("Resource_mqh5l"), SubResource("Resource_mqh5l"), SubResource("Resource_mqh5l"), SubResource("Resource_r8pms")])
 
 [node name="background" type="Sprite2D" parent="." unique_id=350324074]
 light_mask = 3
