@@ -247,12 +247,13 @@ wait_time = 0.7
 autostart = true
 
 [node name="Thrusters" type="Node2D" parent="." unique_id=69515424]
+position = Vector2(-85, 0)
 
 [node name="Thruster1" type="Sprite2D" parent="Thrusters" unique_id=1281672561]
 modulate = Color(1, 1, 1, 0.9372549)
 light_mask = 2
 visibility_layer = 2
-position = Vector2(-135.99998, 15.999999)
+position = Vector2(-51, 16)
 rotation = 1.5707964
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("13_ytn04")
@@ -261,7 +262,7 @@ texture = ExtResource("13_ytn04")
 modulate = Color(1, 1, 1, 0.9372549)
 light_mask = 2
 visibility_layer = 2
-position = Vector2(-136, -16)
+position = Vector2(-51, -16)
 rotation = 1.5707964
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("13_ytn04")

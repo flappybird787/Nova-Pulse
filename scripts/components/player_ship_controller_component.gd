@@ -11,7 +11,7 @@ var velocity : Vector2
 
 var can_fire = true
 
-
+var thruster_tween: Tween
 
 @export var primary_weapon_cooldown_timer : Timer
 
@@ -45,22 +45,43 @@ func _physics_process(delta: float) -> void:
 
 func get_player_input():
 	ship_body.look_at(get_viewport().get_camera_2d().get_global_mouse_position())
-
 	var move_dir = Vector2.ZERO
-
-	thrusters.visible = false
-
+	var thrusters_active = false
 	if Input.is_action_pressed("move_up"):
 		move_dir += ship_body.transform.x 
-		thrusters.visible = true
+		thrusters_active = true
 		
 	if Input.is_action_pressed("move_down"):
 		move_dir -= ship_body.transform.x 
+		thrusters_active = true
+
+	# only kick off the "power up" animation on the frame thrusters switch on
+	if thrusters_active and not thrusters.visible:
 		thrusters.visible = true
+		thrusters.scale = Vector2.ZERO
+		thrusters.modulate.a = 1.0
+		if thruster_tween:
+			thruster_tween.kill()
+		thruster_tween = create_tween()
+		thruster_tween.tween_property(thrusters, "scale", Vector2.ONE, 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	elif thrusters_active:
+		# subtle idle wobble while thrusters stay on
+		thrusters.scale = Vector2.ONE * randf_range(0.95, 1.05)
+	elif thrusters.visible and (not thruster_tween or not thruster_tween.is_running()):
+		# thrusters just switched off, fade them out instead of an instant cut
+		# (visible stays true until the fade finishes, or alpha changes wouldn't show)
+		thrusters.modulate.a = 1.0
+		if thruster_tween:
+			thruster_tween.kill()
+		thruster_tween = create_tween()
+		thruster_tween.tween_property(thrusters, "modulate:a", 0.0, 0.2)
+		thruster_tween.tween_callback(func():
+			thrusters.visible = false
+			thrusters.modulate.a = 1.0
+		)
 
 	if move_dir != Vector2.ZERO:
 		move_dir = move_dir.normalized()
-
 	velocity += move_dir * ship_data_component.ship_acceleration 
 	
 	if Input.is_action_pressed("primary_attack"):
@@ -72,6 +93,7 @@ func get_player_input():
 	if Input.is_action_pressed("level_up") and GameManager.potential_levels > 0:
 		EventBus.leveled_up.emit(GameManager.player_level)
 		GameManager.potential_levels -= 1
+
 
 
 func manage_player_level(level):
