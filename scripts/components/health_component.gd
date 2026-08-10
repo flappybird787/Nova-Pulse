@@ -47,9 +47,10 @@ func deal_damage(amount: int):
 		else:
 			health -= 1
 	
-	if !is_player:
+	hit_scale_component.trigger_scale_effect()
 	
-		hit_scale_component.trigger_scale_effect()
+	if is_player:
+		EventBus.player_hit.emit()
 
 
 func _on_healing_timer_timeout() -> void:

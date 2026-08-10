@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://fkgpnmup3hiv" path="res://scripts/components/collision_manager_component.gd" id="10_rf2va"]
 [ext_resource type="FontFile" uid="uid://c5jvl08nf4qth" path="res://assets/Quantico/Quantico-Bold.ttf" id="12_ytn04"]
 [ext_resource type="Texture2D" uid="uid://do136q73e0g3" path="res://assets/Ships/thruster_blue.svg" id="13_ytn04"]
+[ext_resource type="Script" uid="uid://dvcxqw8yb3fiw" path="res://scripts/components/VFX/hit_scale_component.gd" id="14_636wf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfrvl"]
 size = Vector2(170, 128)
@@ -31,6 +32,10 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ibjm"]
 bg_color = Color(0.15782726, 0.50073665, 0.93333024, 1)
+
+[sub_resource type="Curve" id="Curve_f3n8n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5107527, 0.04494381), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="PlayerShip" type="CharacterBody2D" unique_id=1089880255 node_paths=PackedStringArray("health_component") groups=["PLAYER"]]
 texture_filter = 1
@@ -67,7 +72,7 @@ is_player = true
 script = ExtResource("4_iwps3")
 ship_body = NodePath("..")
 
-[node name="HealthComponent" type="Node" parent="." unique_id=2028290838]
+[node name="HealthComponent" type="Node" parent="." unique_id=2028290838 node_paths=PackedStringArray("hit_scale_component")]
 script = ExtResource("5_fto5i")
 health = 50
 max_health = 50
@@ -76,6 +81,7 @@ shields = 50
 max_shields = 50
 shield_regen = 3
 is_player = true
+hit_scale_component = NodePath("../HitScaleComponent")
 
 [node name="AttackTriggerComponent" type="Node" parent="." unique_id=1850881911 node_paths=PackedStringArray("position", "physics_body")]
 script = ExtResource("7_xkgcq")
@@ -277,6 +283,14 @@ scale = Vector2(0.1, 0.1)
 energy = 10.0
 range_item_cull_mask = 2
 texture = ExtResource("13_ytn04")
+
+[node name="HitScaleComponent" type="Node" parent="." unique_id=1077813107 node_paths=PackedStringArray("sprite")]
+script = ExtResource("14_636wf")
+sprite = NodePath("../Sprite2D")
+scale_curve = SubResource("Curve_f3n8n")
+base_scale = Vector2(0.7, 0.7)
+effect_duration = 0.3
+metadata/_custom_type_script = "uid://dvcxqw8yb3fiw"
 
 [connection signal="area_entered" from="MapEdgeOverflowAreaX" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_x"]
 [connection signal="area_entered" from="MapEdgeOverflowAreaY" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_y"]

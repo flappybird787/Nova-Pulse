@@ -13,23 +13,37 @@ class_name HitScaleComponent
 
 var is_scaling = false
 
-func trigger_scale_effect():
+func trigger_scale_effect() -> void:
+	if is_scaling:
+		return
+	if not is_inside_tree():
+		return
 
 	is_scaling = true
 	var elapsed := 0.0
+	var tree := get_tree()
 
 	while elapsed < effect_duration:
 		elapsed += get_process_delta_time()
 		var t = clamp(elapsed / effect_duration, 0.0, 1.0)
-
-		# curve.sample expects 0-1 input, returns 0-1 output by default
 		var curve_value := scale_curve.sample(t)
-
-		# lerp between base_scale and the shrunk scale based on curve value
 		var target_scale = base_scale.lerp(base_scale * min_scale, curve_value)
+
+		if not is_instance_valid(sprite):
+			is_scaling = false
+			return
+
 		sprite.scale = target_scale
 
-		await get_tree().process_frame
+		if not is_instance_valid(tree):
+			is_scaling = false
+			return
 
-	sprite.scale = base_scale
+		await tree.process_frame
+
+		if not is_instance_valid(self) or not is_instance_valid(sprite):
+			return
+
+	if is_instance_valid(sprite):
+		sprite.scale = base_scale
 	is_scaling = false

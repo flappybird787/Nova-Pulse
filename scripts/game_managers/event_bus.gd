@@ -16,6 +16,8 @@ signal game_paused(paused : bool)
 
 signal player_died()
 
+signal player_hit()
+
 signal player_thrusters_on(on : bool)
 
 # position is the position that the attack is at, 

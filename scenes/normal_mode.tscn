@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bupqiq858202t"]
 
 [ext_resource type="PackedScene" uid="uid://b070e13xnndif" path="res://prefabs/player_ship.tscn" id="1_is7cx"]
+[ext_resource type="Script" uid="uid://xl3bv7bee4l1" path="res://scripts/node_controllers/camera_2d.gd" id="2_uswuf"]
 [ext_resource type="Script" uid="uid://cbagpr7b1t6bb" path="res://scripts/components/attack_instantiator_component.gd" id="3_yld8g"]
 [ext_resource type="PackedScene" uid="uid://dmwvllc8moedk" path="res://prefabs/enemies/enemy_fighter.tscn" id="4_hdflw"]
 [ext_resource type="Script" uid="uid://doilpyo1ns38i" path="res://scripts/game_managers/wave_manager_component.gd" id="4_mev14"]
@@ -71,6 +72,7 @@ position = Vector2(-3, 11)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=122638207]
 zoom = Vector2(0.7, 0.7)
+script = ExtResource("2_uswuf")
 
 [node name="PlayableAreaBorderX" type="Area2D" parent="." unique_id=1390804149]
 collision_layer = 8
