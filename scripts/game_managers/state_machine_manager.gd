@@ -17,7 +17,3 @@ func set_state(state_to_set, next_state_to_set, interrupt_current = false):
 func go_to_next_state(next_state_to_set):
 	current_state = next_state
 	next_state = next_state_to_set
-
-
-func _process(delta: float) -> void:
-	print("current state: ", current_state)

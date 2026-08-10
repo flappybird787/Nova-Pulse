@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://b070e13xnndif" path="res://prefabs/player_ship.tscn" id="2_j8ivh"]
 [ext_resource type="Texture2D" uid="uid://ohowmriae14n" path="res://assets/backgrounds/default_background.png" id="4_3qnke"]
 [ext_resource type="Script" uid="uid://cbagpr7b1t6bb" path="res://scripts/components/attack_instantiator_component.gd" id="4_7ddre"]
-[ext_resource type="PackedScene" uid="uid://ceu6chiy2woqe" path="res://prefabs/enemies/enemy_miniboss_1.tscn" id="4_qjeyg"]
+[ext_resource type="PackedScene" uid="uid://dmwvllc8moedk" path="res://prefabs/enemies/enemy_fighter.tscn" id="4_qjeyg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(4243, 9718)
@@ -55,6 +55,4 @@ position = Vector2(0.00012207031, -3.0517578e-05)
 scale = Vector2(2.3674998, 2.5666666)
 texture = ExtResource("4_3qnke")
 
-[node name="enemy_ship_base" parent="." unique_id=1776559298 instance=ExtResource("4_qjeyg")]
-position = Vector2(857, 572)
-rotation = -0.4886922
+[node name="enemy_fighter" parent="." unique_id=1776559298 instance=ExtResource("4_qjeyg")]

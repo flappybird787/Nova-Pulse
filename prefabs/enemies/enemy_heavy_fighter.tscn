@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cm2jchhaaqnpt" path="res://scripts/components/death_component.gd" id="8_obet4"]
 [ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="9_6vxj2"]
 [ext_resource type="PackedScene" uid="uid://biux6iqd8ja3i" path="res://prefabs/weapons/turbolaser.tscn" id="10_r0t0g"]
+[ext_resource type="Script" uid="uid://dvcxqw8yb3fiw" path="res://scripts/components/VFX/hit_scale_component.gd" id="11_b2osm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0son"]
 size = Vector2(128, 128)
@@ -28,6 +29,10 @@ radius = 3252.5996
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pmvo"]
 size = Vector2(20, 1327.5)
+
+[sub_resource type="Curve" id="Curve_648ts"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50537634, 0.25842696), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="enemy_heavy_fighter" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component") groups=["ENEMY"]]
 collision_layer = 37
@@ -96,12 +101,13 @@ state_machine_manager = NodePath("..")
 state_name = "ATTACKING"
 metadata/_custom_type_script = "uid://bmemjl566ltus"
 
-[node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("health_bar", "health_bar_pivot")]
+[node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("health_bar", "health_bar_pivot", "hit_scale_component")]
 script = ExtResource("7_vd12t")
 health = 15
 max_health = 15
 health_bar = NodePath("../PlayerHealthLabelPivot/PlayerHealthLabel")
 health_bar_pivot = NodePath("../PlayerHealthLabelPivot")
+hit_scale_component = NodePath("../HitScaleComponent")
 
 [node name="DeathComponent" type="Node" parent="." unique_id=3514482 node_paths=PackedStringArray("health_component", "root")]
 script = ExtResource("8_obet4")
@@ -157,6 +163,14 @@ shape = SubResource("RectangleShape2D_5pmvo")
 [node name="WeaponCooldownTimer" type="Timer" parent="." unique_id=1184776392]
 wait_time = 0.5
 one_shot = true
+
+[node name="HitScaleComponent" type="Node" parent="." unique_id=1626599361 node_paths=PackedStringArray("sprite")]
+script = ExtResource("11_b2osm")
+sprite = NodePath("../Sprite2D")
+scale_curve = SubResource("Curve_648ts")
+base_scale = Vector2(0.3, 0.3)
+effect_duration = 0.3
+metadata/_custom_type_script = "uid://dvcxqw8yb3fiw"
 
 [connection signal="area_entered" from="MapEdgeOverflowAreaX" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_x"]
 [connection signal="area_entered" from="MapEdgeOverflowAreaY" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_y"]

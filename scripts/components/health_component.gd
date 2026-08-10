@@ -19,6 +19,8 @@ class_name HealthComponent
 
 @export var health_bar_pivot : Control
 
+@export var hit_scale_component : HitScaleComponent
+
 func _ready() -> void:
 	if is_player:
 		EventBus.upgrade_chosen.connect(apply_upgrade)
@@ -33,7 +35,8 @@ func _process(delta: float) -> void:
 
 func handle_healthbar_rotation():
 	if !is_player:
-		print("health bar rotation: ", health_bar_pivot.rotation_degrees)
+		#print("health bar rotation: ", health_bar_pivot.rotation_degrees)
+		pass
 
 
 func deal_damage(amount: int):
@@ -43,6 +46,10 @@ func deal_damage(amount: int):
 		
 		else:
 			health -= 1
+	
+	if !is_player:
+	
+		hit_scale_component.trigger_scale_effect()
 
 
 func _on_healing_timer_timeout() -> void:

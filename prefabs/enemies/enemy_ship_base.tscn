@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cm2jchhaaqnpt" path="res://scripts/components/death_component.gd" id="8_sy2du"]
 [ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="9_jki17"]
 [ext_resource type="PackedScene" uid="uid://1w1yjyyiatuf" path="res://prefabs/weapons/bullet.tscn" id="10_8v3n5"]
+[ext_resource type="Script" uid="uid://dvcxqw8yb3fiw" path="res://scripts/components/VFX/hit_scale_component.gd" id="11_qem8d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0son"]
 size = Vector2(128, 128)
@@ -22,6 +23,10 @@ radius = 3252.5996
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pmvo"]
 size = Vector2(20, 931)
+
+[sub_resource type="Curve" id="Curve_qem8d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5089606, 0.8251474), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="enemy_ship_base" type="CharacterBody2D" unique_id=1776559298 node_paths=PackedStringArray("health_component") groups=["ENEMIES"]]
 collision_layer = 37
@@ -84,11 +89,10 @@ state_machine_manager = NodePath("..")
 state_name = "ATTACKING"
 metadata/_custom_type_script = "uid://bmemjl566ltus"
 
-[node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("health_label")]
+[node name="HealthComponent" type="Node" parent="." unique_id=1245034984]
 script = ExtResource("6_l0son")
 health = 15
 max_health = 15
-health_label = NodePath("../PlayerHealthLabelPivot/PlayerHealthLabel")
 
 [node name="DeathComponent" type="Node" parent="." unique_id=3514482 node_paths=PackedStringArray("health_component", "root")]
 script = ExtResource("8_sy2du")
@@ -138,6 +142,11 @@ shape = SubResource("RectangleShape2D_5pmvo")
 [node name="WeaponCooldownTimer" type="Timer" parent="." unique_id=1184776392]
 wait_time = 0.5
 one_shot = true
+
+[node name="HitScaleComponent" type="Node" parent="." unique_id=1263945935 node_paths=PackedStringArray("sprite")]
+script = ExtResource("11_qem8d")
+sprite = NodePath("../Sprite2D")
+scale_curve = SubResource("Curve_qem8d")
 
 [connection signal="area_entered" from="MapEdgeOverflowAreaX" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_x"]
 [connection signal="area_entered" from="MapEdgeOverflowAreaY" to="MapEdgeOverflowComponent" method="on_map_edge_overlap_y"]

@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cm2jchhaaqnpt" path="res://scripts/components/death_component.gd" id="8_mjnqr"]
 [ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="9_sueqv"]
 [ext_resource type="PackedScene" uid="uid://cim1clktyjwwt" path="res://prefabs/weapons/missile.tscn" id="10_db5qr"]
+[ext_resource type="Script" uid="uid://dvcxqw8yb3fiw" path="res://scripts/components/VFX/hit_scale_component.gd" id="11_obxmm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l0son"]
 size = Vector2(128, 128)
@@ -19,6 +20,10 @@ bg_color = Color(0.27204677, 0.27204683, 0.27204666, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obxmm"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_f3n8n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50537634, 0.25842696), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a71dp"]
 size = Vector2(127, 128)
@@ -94,12 +99,13 @@ state_machine_manager = NodePath("..")
 state_name = "ATTACKING"
 metadata/_custom_type_script = "uid://bmemjl566ltus"
 
-[node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("health_bar", "health_bar_pivot")]
+[node name="HealthComponent" type="Node" parent="." unique_id=1245034984 node_paths=PackedStringArray("health_bar", "health_bar_pivot", "hit_scale_component")]
 script = ExtResource("7_vcvwn")
 health = 10
 max_health = 10
 health_bar = NodePath("../PlayerHealthLabelPivot/PlayerHealthLabel")
 health_bar_pivot = NodePath("../PlayerHealthLabelPivot")
+hit_scale_component = NodePath("../HitScaleComponent")
 
 [node name="DeathComponent" type="Node" parent="." unique_id=3514482 node_paths=PackedStringArray("health_component", "root")]
 script = ExtResource("8_mjnqr")
@@ -115,6 +121,14 @@ physics_body = NodePath("..")
 attack_team = "ENEMY"
 attack_color = Color(0.99999994, 0.42056417, 0.17572492, 1)
 metadata/_custom_type_script = "uid://2fvomf084pna"
+
+[node name="HitScaleComponent" type="Node" parent="." unique_id=1980640326 node_paths=PackedStringArray("sprite")]
+script = ExtResource("11_obxmm")
+sprite = NodePath("../Sprite2D")
+scale_curve = SubResource("Curve_f3n8n")
+base_scale = Vector2(0.25, 0.25)
+effect_duration = 0.3
+metadata/_custom_type_script = "uid://dvcxqw8yb3fiw"
 
 [node name="MapEdgeOverflowAreaX" type="Area2D" parent="." unique_id=1658422668]
 visible = false
