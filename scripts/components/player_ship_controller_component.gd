@@ -21,6 +21,9 @@ var thruster_tween: Tween
 
 @export var thrusters : Node2D
 
+var thruster_sound_id = -1  # Tracks the currently playing thruster loop, if any.
+
+
 
 func _ready() -> void:
 	EventBus.upgrade_chosen.connect(apply_upgrades)
@@ -43,6 +46,7 @@ func _physics_process(delta: float) -> void:
 		get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
 
 
+
 func get_player_input():
 	ship_body.look_at(get_viewport().get_camera_2d().get_global_mouse_position())
 	var move_dir = Vector2.ZERO
@@ -54,7 +58,6 @@ func get_player_input():
 	if Input.is_action_pressed("move_down"):
 		move_dir -= ship_body.transform.x 
 		thrusters_active = true
-
 	# only kick off the "power up" animation on the frame thrusters switch on
 	if thrusters_active and not thrusters.visible:
 		thrusters.visible = true
@@ -64,6 +67,9 @@ func get_player_input():
 			thruster_tween.kill()
 		thruster_tween = create_tween()
 		thruster_tween.tween_property(thrusters, "scale", Vector2.ONE, 0.15).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+		# start the looping thruster sound (only on this power-up frame)
+		thruster_sound_id = AudioStreamManager.play("res://assets/audio/thrusterFire_002.ogg", 0.1)
 	elif thrusters_active:
 		# subtle idle wobble while thrusters stay on
 		thrusters.scale = Vector2.ONE * randf_range(0.95, 1.05)
@@ -80,6 +86,11 @@ func get_player_input():
 			thrusters.modulate.a = 1.0
 		)
 
+		# stop the thruster sound with a short fade, matching the visual fade
+		if thruster_sound_id != -1:
+			AudioStreamManager.stop(thruster_sound_id, 0.2)
+			thruster_sound_id = -1
+
 	if move_dir != Vector2.ZERO:
 		move_dir = move_dir.normalized()
 	velocity += move_dir * ship_data_component.ship_acceleration 
@@ -93,8 +104,6 @@ func get_player_input():
 	if Input.is_action_pressed("level_up") and GameManager.potential_levels > 0:
 		EventBus.leveled_up.emit(GameManager.player_level)
 		GameManager.potential_levels -= 1
-
-
 
 func manage_player_level(level):
 	GameManager.potential_levels += 1

@@ -21,6 +21,7 @@ EventBus="*uid://c8v46lg8qoy60"
 GameManager="*uid://c6i2ovndywkbw"
 PlayerUpgradeManager="*uid://cn1f3g15q2cpr"
 Upgrades="*uid://cuabm4pm58met"
+AudioStreamManager="*uid://dvnih3u86vdcv"
 
 [display]
 
