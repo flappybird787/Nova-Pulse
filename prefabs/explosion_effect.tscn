@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cqwitg1yqrk3"]
+
+[ext_resource type="Script" uid="uid://u1amqybi6c8n" path="res://scripts/node_controllers/explosion_effect.gd" id="1_6ipql"]
+[ext_resource type="Texture2D" uid="uid://ddubvxcq761pp" path="res://assets/explosion.svg" id="1_my41f"]
+
+[sub_resource type="Animation" id="Animation_6ipql"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_847xp"]
+resource_name = "explode"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.13333334, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7r0wk"]
+_data = {
+&"RESET": SubResource("Animation_6ipql"),
+&"explode": SubResource("Animation_847xp")
+}
+
+[node name="ExplosionEffect" type="Node2D" unique_id=647256556 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_6ipql")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=850424445]
+libraries/ = SubResource("AnimationLibrary_7r0wk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=14298590]
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("1_my41f")

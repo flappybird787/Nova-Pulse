@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c4mljycdd8vir" path="res://scripts/components/health_component.gd" id="7_xx1f3"]
 [ext_resource type="Script" uid="uid://cm2jchhaaqnpt" path="res://scripts/components/death_component.gd" id="8_t4slb"]
 [ext_resource type="Script" uid="uid://2fvomf084pna" path="res://scripts/components/attack_trigger_component.gd" id="9_er85j"]
+[ext_resource type="PackedScene" uid="uid://cqwitg1yqrk3" path="res://prefabs/explosion_effect.tscn" id="9_x76ht"]
 [ext_resource type="PackedScene" uid="uid://m34sydw528vl" path="res://prefabs/weapons/railgun.tscn" id="10_nee1c"]
 [ext_resource type="Script" uid="uid://dvcxqw8yb3fiw" path="res://scripts/components/VFX/hit_scale_component.gd" id="11_bgdy2"]
 
@@ -111,6 +112,7 @@ script = ExtResource("8_t4slb")
 health_component = NodePath("../HealthComponent")
 root = NodePath("..")
 xp_on_death = 4
+explosion_scene = ExtResource("9_x76ht")
 
 [node name="AttackTriggerComponent" type="Node" parent="." unique_id=1173456750 node_paths=PackedStringArray("position", "physics_body")]
 script = ExtResource("9_er85j")

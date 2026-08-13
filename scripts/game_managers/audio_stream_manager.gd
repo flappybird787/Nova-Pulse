@@ -29,8 +29,9 @@ func _on_stream_finished(stream):
 		available.append(stream)
 
 
-func play(sound_path, fade_in_time = default_fade_time):
-	# Queue a sound to be played. Returns an ID you can pass to stop() later.
+func play(sound_path, fade_in_time = default_fade_time, volume_db = 0.0):
+	# queue a sound to be played, returns an ID you can pass to stop() later
+	# volume_db lets a specific call boost/cut this sound relative to others
 	var id = _next_id
 	_next_id += 1
 
@@ -46,15 +47,21 @@ func play(sound_path, fade_in_time = default_fade_time):
 
 
 func _process(delta):
-	# Drain the whole queue each frame (not just one), so simultaneous sounds
-	# don't get staggered behind each other waiting for free players.
-	while not queue.is_empty() and not available.is_empty():
+	# play a queued sound if any players are available
+	if not queue.is_empty() and not available.is_empty():
 		var player = available[0]
 		available.pop_front()
 
 		var entry = queue.pop_front()
-		_start_player(player, entry["sound_path"], entry["fade_time"], entry["id"])
+		player.stream = load(entry["sound_path"])
+		player.set_meta("play_id", entry["id"])  # tag the player so it can be found by stop()
+		player.volume_db = -80  # start silent for fade in
 
+		player.play()
+
+		# fade in from silence up to this sound's target volume
+		var tween = create_tween()
+		tween.tween_property(player, "volume_db", entry["volume_db"], entry["fade_time"])
 
 func _start_player(player, sound_path, fade_in_time, id):
 	# Shared helper: assigns the stream/id and either fades in or plays instantly.
