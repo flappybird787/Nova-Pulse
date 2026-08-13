@@ -17,5 +17,5 @@ func _process(delta: float) -> void:
 	else:
 		offset = Vector2.ZERO
 
-func shake(amount: float = 1.5) -> void:
+func shake(amount: float = 10) -> void:
 	shake_strength = min(shake_strength + amount, 1.0)

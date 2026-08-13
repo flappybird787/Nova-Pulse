@@ -99,6 +99,8 @@ xp_bar = NodePath("../CanvasLayer/PlayerLabels/XPBar")
 player_labels = NodePath("../CanvasLayer/PlayerLabels")
 wave_label = NodePath("../CanvasLayer/PlayerLabels/WaveLabel")
 upgrade_ready_label = NodePath("../CanvasLayer/PlayerLabels/UpgradeReadyLabel")
+low_health_threshold = 0.8
+flash_duration = 0.5
 
 [node name="CollisionManagerComponent" type="Node" parent="." unique_id=981425801 node_paths=PackedStringArray("health_component", "ship_data_component", "ship_body", "ship_controller_component")]
 script = ExtResource("10_rf2va")
