@@ -30,6 +30,8 @@ func _ready() -> void:
 	EventBus.ready_to_level_up.connect(manage_player_level)
 
 
+var is_dying = false  # guards against re-triggering death while the fade-out is playing
+
 func _physics_process(delta: float) -> void:
 	get_player_input()
 	
@@ -41,10 +43,10 @@ func _physics_process(delta: float) -> void:
 	
 	ship_body.move_and_slide()
 	
-	if health_component.health <= 0:
+	if health_component.health <= 0 and not is_dying:
+		is_dying = true
 		EventBus.player_died.emit()
-		get_tree().change_scene_to_file("res://scenes/death_screen.tscn")
-
+		SceneTransition.change_scene("res://scenes/death_screen.tscn")
 
 
 func get_player_input():

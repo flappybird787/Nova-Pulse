@@ -29,4 +29,5 @@ func reset_values():
 
 
 func display_win_screen():
-	get_tree().change_scene_to_file("res://scenes/win_screen.tscn")
+	# fade into the win screen instead of cutting instantly
+	SceneTransition.change_scene("res://scenes/win_screen.tscn")

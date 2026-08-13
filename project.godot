@@ -22,6 +22,7 @@ GameManager="*uid://c6i2ovndywkbw"
 PlayerUpgradeManager="*uid://cn1f3g15q2cpr"
 Upgrades="*uid://cuabm4pm58met"
 AudioStreamManager="*uid://dvnih3u86vdcv"
+SceneTransition="*uid://c7d5tj0gue8o3"
 
 [display]
 

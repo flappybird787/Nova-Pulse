@@ -2,5 +2,6 @@ extends Control
 
 
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/normal_mode.tscn")
+	# reset first, then fade into the run
 	GameManager.reset_values()
+	SceneTransition.change_scene("res://scenes/normal_mode.tscn")
