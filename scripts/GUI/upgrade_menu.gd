@@ -50,12 +50,13 @@ func display_upgrades(level : int):
 	
 	var upgrade_choices
 	
-	if level != 2:
-	
-		upgrade_choices = get_random_upgrades(3, 0)
-	
-	else:
+	# use the weapon-only deck only for the player's very first upgrade pick,
+	# checking current_upgrades instead of "level" since player_level can
+	# increment multiple times before the player ever opens this menu
+	if PlayerUpgradeManager.current_upgrades.is_empty():
 		upgrade_choices = get_random_upgrades(3, 1)
+	else:
+		upgrade_choices = get_random_upgrades(3, 0)
 	
 	for upgrade in upgrade_choices:
 		var c = upgrade_card_scene.instantiate()
