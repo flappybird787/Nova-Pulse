@@ -1,6 +1,8 @@
 extends StateMachineState
 class_name SpawnState
 
+## HI
+
 @export var spawn_coords = Vector2(0, 0)
 @export var spawn_rotation = 0.0
 
