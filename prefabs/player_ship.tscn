@@ -82,6 +82,7 @@ max_shields = 50
 shield_regen = 3
 is_player = true
 hit_scale_component = NodePath("../HitScaleComponent")
+invincible_on_hit = true
 
 [node name="AttackTriggerComponent" type="Node" parent="." unique_id=1850881911 node_paths=PackedStringArray("position", "physics_body")]
 script = ExtResource("7_xkgcq")
