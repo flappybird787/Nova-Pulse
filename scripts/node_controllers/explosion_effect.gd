@@ -5,7 +5,7 @@ class_name ExplosionEffect
 
 func _ready() -> void:
 	# play the death sound and kick off the explosion animation
-	AudioStreamManager.play("res://assets/audio/explosion.mp3", 0.5, 100.0)
+	AudioStreamManager.play("res://assets/audio/explosion.mp3", 0.5, 15)
 	animation_player.play("explode")
 
 

@@ -1,6 +1,6 @@
 extends Node
 
-var num_players = 16
+var num_players = 32
 var bus = "master"
 
 var available = []  # The available players.
@@ -39,11 +39,32 @@ func play(sound_path, fade_in_time = default_fade_time, volume_db = 0.0):
 	if not available.is_empty():
 		var player = available[0]
 		available.pop_front()
-		_start_player(player, sound_path, fade_in_time, id)
+		_start_player(player, sound_path, fade_in_time, id, volume_db)  # pass volume_db through
 	else:
-		queue.append({"sound_path": sound_path, "fade_time": fade_in_time, "id": id})
+		queue.append({"sound_path": sound_path, "fade_time": fade_in_time, "id": id, "volume_db": volume_db})  # was missing volume_db
 
 	return id
+
+
+func _start_player(player, sound_path, fade_in_time, id, volume_db):
+	# Shared helper: assigns the stream/id and either fades in or plays instantly.
+	# kill any leftover tween from this player's previous sound before reusing it,
+	# otherwise an old fade-out tween can silence/cut this new sound off later
+	_kill_active_tween(player)
+
+	player.stream = load(sound_path)
+	player.set_meta("play_id", id)  # Tag the player so it can be found by stop().
+
+	if fade_in_time > 0:
+		player.volume_db = -80  # Start silent for fade in.
+		player.play()
+		var tween = create_tween()
+		tween.tween_property(player, "volume_db", volume_db, fade_in_time)  # fade to the requested volume, not always 0
+		player.set_meta("active_tween", tween)
+	else:
+		# no fade, play at the requested volume right away
+		player.volume_db = volume_db
+		player.play()
 
 
 func _process(delta):
@@ -62,27 +83,6 @@ func _process(delta):
 		# fade in from silence up to this sound's target volume
 		var tween = create_tween()
 		tween.tween_property(player, "volume_db", entry["volume_db"], entry["fade_time"])
-
-func _start_player(player, sound_path, fade_in_time, id):
-	# Shared helper: assigns the stream/id and either fades in or plays instantly.
-	# kill any leftover tween from this player's previous sound before reusing it,
-	# otherwise an old fade-out tween can silence/cut this new sound off later
-	_kill_active_tween(player)
-
-	player.stream = load(sound_path)
-	player.set_meta("play_id", id)  # Tag the player so it can be found by stop().
-
-	if fade_in_time > 0:
-		player.volume_db = -80  # Start silent for fade in.
-		player.play()
-		var tween = create_tween()
-		tween.tween_property(player, "volume_db", 0, fade_in_time)
-		player.set_meta("active_tween", tween)
-	else:
-		# no fade, play at full volume right away
-		player.volume_db = 0
-		player.play()
-
 
 func stop(id, fade_out_time = default_fade_time):
 	# Fade out and stop the player currently playing the given ID (from play()'s return value).

@@ -40,7 +40,7 @@ func trigger_attack():
 	# only play the blaster sfx for the player's own shots, not enemies
 	# 0.0 fade time = play instantly, no fade-in delay
 	if attack_team == "PLAYER":
-		AudioStreamManager.play(fire_sound, 0.0)
+		AudioStreamManager.play(fire_sound, 0.0, -15)
 
 
 func apply_upgrades(upgrade : UpgradeBase):

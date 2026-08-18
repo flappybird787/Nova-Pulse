@@ -21,6 +21,9 @@ class_name HealthComponent
 
 @export var hit_scale_component : HitScaleComponent
 
+## sound played when this ship (non-player) takes a hit, leave blank to skip
+@export var hit_sound_path : String = "res://assets/audio/hit_sound.mp3"
+
 func _ready() -> void:
 	if is_player:
 		EventBus.upgrade_chosen.connect(apply_upgrade)
@@ -51,6 +54,10 @@ func deal_damage(amount: int):
 	
 	if is_player:
 		EventBus.player_hit.emit()
+	else:
+		# enemy took a hit from the player, not necessarily a kill
+		if hit_sound_path != "":
+			AudioStreamManager.play(hit_sound_path, 0.0) # 0.0 fade so it's snappy, not a slow fade-in
 
 
 func _on_healing_timer_timeout() -> void:
