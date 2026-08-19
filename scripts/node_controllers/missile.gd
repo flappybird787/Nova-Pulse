@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Missile
 
+
+
 @export var damage = 0
 
 @export var speed = 0
@@ -23,6 +25,15 @@ var time_alive = 0.0
 var spawned = false
 
 @export var color_manager_component : ColorManagerComponent
+
+## velocity inherited from whatever fired this
+@export var inherited_velocity : Vector2 = Vector2.ZERO
+
+## how much of the parent's velocity to inherit
+@export var velocity_inheritance : float = 0.5
+
+## floor on total speed as a fraction of the curve-driven speed
+@export var min_speed_ratio : float = 0.7
 
 func _physics_process(delta: float) -> void:
 	
@@ -53,7 +64,10 @@ func _physics_process(delta: float) -> void:
 		rotation = rotate_to_angle(rotation, target_angle, guidance_speed * delta * velocity.length() / 100)
 	
 	# 3. Move forward in the direction the missile is currently facing
-	velocity = Vector2.RIGHT.rotated(rotation) * current_speed
+	var forward := Vector2.RIGHT.rotated(rotation)
+	var forward_boost := forward.dot(inherited_velocity) * velocity_inheritance
+	var total_speed = max(current_speed + forward_boost, current_speed * min_speed_ratio)
+	velocity = forward * total_speed
 	move_and_slide()
 
 ## Helper function to rotate towards an angle without overshooting
