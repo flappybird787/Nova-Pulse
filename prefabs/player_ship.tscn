@@ -127,7 +127,7 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_fto5i")
 
 [node name="ShipCollisionArea" type="Area2D" parent="." unique_id=1811089235]
-collision_layer = 0
+collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipCollisionArea" unique_id=150657875]
