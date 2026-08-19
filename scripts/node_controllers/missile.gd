@@ -15,6 +15,19 @@ class_name Missile
 
 @export var guidance_speed = 0.0
 
+## how much the missile's approach angle wobbles, in degrees
+@export var wobble_amount : float = 18.0
+
+## how fast the wobble oscillates
+@export var wobble_frequency : float = 5.0
+
+## distance from target at which wobble fully fades out, so the final
+## approach is clean and the missile actually connects instead of missing wide
+@export var wobble_falloff_distance : float = 250.0
+
+# random phase per-missile so a salvo doesn't all wobble in perfect sync
+var wobble_seed : float = 0.0
+
 ## set this to PLAYER or ENEMY
 @export var type : String
 
@@ -34,6 +47,12 @@ var spawned = false
 
 ## floor on total speed as a fraction of the curve-driven speed
 @export var min_speed_ratio : float = 0.7
+
+
+func _ready() -> void:
+	# randomize so multiple missiles fired together don't wobble identically
+	wobble_seed = randf() * TAU
+
 
 func _physics_process(delta: float) -> void:
 	
@@ -56,14 +75,20 @@ func _physics_process(delta: float) -> void:
 	var current_speed: float = lerp(starting_speed, speed, curve_t)
 	
 	if is_instance_valid(target):
-		# 1. Find the angle to the target
+		# 1. find the angle to the target
 		var direction_to_target: Vector2 = (target.global_position - global_position).normalized()
 		var target_angle: float = direction_to_target.angle()
+
+		# 2. layer a sine wobble on top of the target angle, so the flight path weaves
+		var distance_to_target: float = global_position.distance_to(target.global_position)
+		var wobble_falloff: float = clamp(distance_to_target / wobble_falloff_distance, 0.0, 1.0)
+		var wobble_offset: float = sin(time_alive * wobble_frequency + wobble_seed) * deg_to_rad(wobble_amount) * wobble_falloff
+		var wobbled_target_angle: float = target_angle + wobble_offset
+
+		# 3. smoothly rotate towards the wobbled angle instead of the raw one
+		rotation = rotate_to_angle(rotation, wobbled_target_angle, guidance_speed * delta * velocity.length() / 100)
 		
-		# 2. Smoothly rotate towards the target angle
-		rotation = rotate_to_angle(rotation, target_angle, guidance_speed * delta * velocity.length() / 100)
-	
-	# 3. Move forward in the direction the missile is currently facing
+	# 4. Move forward in the direction the missile is currently facing
 	var forward := Vector2.RIGHT.rotated(rotation)
 	var forward_boost := forward.dot(inherited_velocity) * velocity_inheritance
 	var total_speed = max(current_speed + forward_boost, current_speed * min_speed_ratio)
