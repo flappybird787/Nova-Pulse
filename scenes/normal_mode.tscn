@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://ceu6chiy2woqe" path="res://prefabs/enemies/enemy_miniboss_1.tscn" id="10_ms40l"]
 [ext_resource type="Texture2D" uid="uid://ohowmriae14n" path="res://assets/backgrounds/default_background.png" id="11_uswuf"]
 [ext_resource type="Script" uid="uid://bsauu0vd6i53g" path="res://scripts/components/VFX/star_field_layer_component.gd" id="12_e7e6y"]
+[ext_resource type="Script" uid="uid://y87aym5lo7y1" path="res://scripts/components/VFX/parallax_background.gd" id="12_w5ftc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(4243, 9718)
@@ -120,8 +121,10 @@ texture = ExtResource("11_uswuf")
 [node name="EnemySpawnPoint" type="Marker2D" parent="." unique_id=687691397]
 position = Vector2(14000, 0)
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=635183554]
-layer = 1
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=635183554 node_paths=PackedStringArray("target")]
+layer = 0
+script = ExtResource("12_w5ftc")
+target = NodePath("../PlayerShip")
 
 [node name="ParallaxLayerFar" type="ParallaxLayer" parent="ParallaxBackground" unique_id=4745250]
 motion_scale = Vector2(0.1, 0.1)
