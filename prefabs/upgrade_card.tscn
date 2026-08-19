@@ -148,4 +148,22 @@ theme_override_styles/normal = ExtResource("2_p4jcm")
 theme_override_styles/hover = SubResource("StyleBoxFlat_502jd")
 text = "Choose Upgrade"
 
+[connection signal="mouse_entered" from="Panel" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/VBoxContainer" to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/TitlePanel" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/VBoxContainer/TitlePanel" to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/TitlePanel/UpgradeName" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/VBoxContainer/TitlePanel/UpgradeName" to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/ImagePanel" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/VBoxContainer/ImagePanel" to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/ImagePanel/TextureRect" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/VBoxContainer/ImagePanel/TextureRect" to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/DescriptionPanel" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/VBoxContainer/DescriptionPanel" to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/DescriptionPanel/UpgradeDescription" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/VBoxContainer/DescriptionPanel/UpgradeDescription" to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/UpgradePicker" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/VBoxContainer/UpgradePicker" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Panel/VBoxContainer/UpgradePicker" to="." method="_on_upgrade_picker_pressed"]

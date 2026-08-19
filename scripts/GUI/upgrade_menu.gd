@@ -32,10 +32,12 @@ func display_upgrade_icons():
 	for icon in icon_container.get_children():
 		icon.queue_free()
 	
-	for upgrade in PlayerUpgradeManager.current_upgrades:
-		var i = upgrade_icon_scene.instantiate()
-		icon_container.add_child(i)
-		i.upgrade = upgrade
+	for i in PlayerUpgradeManager.current_upgrades.size():
+		var upgrade = PlayerUpgradeManager.current_upgrades[i]
+		var i_node = upgrade_icon_scene.instantiate()
+		icon_container.add_child(i_node)
+		i_node.upgrade = upgrade
+		i_node.play_intro(i * 0.05)  # stagger each icon's entrance
 
 
 func display_upgrades(level : int):
@@ -58,10 +60,12 @@ func display_upgrades(level : int):
 	else:
 		upgrade_choices = get_random_upgrades(3, 0)
 	
-	for upgrade in upgrade_choices:
+	for i in upgrade_choices.size():
+		var upgrade = upgrade_choices[i]
 		var c = upgrade_card_scene.instantiate()
 		card_container.add_child(c)
 		c.upgrade = upgrade
+		c.play_intro(i * 0.08) # stagger each card's entrance
 
 
 func handle_visibility(paused : bool):

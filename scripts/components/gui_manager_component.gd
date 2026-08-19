@@ -67,6 +67,18 @@ var shield_flash_tween : Tween
 var shield_punch_tween : Tween
 
 
+## how long the pop-in punch lasts once the label becomes visible
+@export var upgrade_label_punch_duration := 0.25
+
+# countdown for the punch-in effect, > 0 while the punch is playing
+var _upgrade_punch_remaining := 0.0
+
+# continuous timer for the label's idle attention pulse
+var _upgrade_pulse_time := 0.0
+
+# tracks previous visibility so the punch only fires once per state change
+var _upgrade_label_was_active := false
+
 func _ready() -> void:
 	EventBus.xp_changed.connect(handle_xp_labels)
 	EventBus.game_paused.connect(handle_labels_visibility)
@@ -77,12 +89,7 @@ func _process(delta: float) -> void:
 	handle_health_labels()
 	handle_xp_labels(GameManager.player_xp, PlayerUpgradeManager.xp_to_next_level)
 	handle_low_health_pulse(delta)
-	if GameManager.potential_levels > 0:
-		upgrade_ready_label.show()
-
-	else:
-		upgrade_ready_label.hide()
-
+	handle_upgrade_ready_label(delta)
 
 func handle_labels_visibility(paused : bool):
 	if !paused:
@@ -180,5 +187,39 @@ func handle_low_health_pulse(delta: float) -> void:
 	else:
 		health_bar.self_modulate.a = 1.0
 
+
 func handle_wave_number(wave_number):
 	wave_label.text = str("WAVE ", wave_number)
+
+
+## shows the "press space" label with a pop-in punch the moment an upgrade
+## becomes available, then keeps a gentle idle pulse going so it stays noticeable
+func handle_upgrade_ready_label(delta: float) -> void:
+	var active = GameManager.potential_levels > 0
+
+	if active and not _upgrade_label_was_active:
+		upgrade_ready_label.show()
+		_upgrade_punch_remaining = upgrade_label_punch_duration
+	elif not active and _upgrade_label_was_active:
+		upgrade_ready_label.hide()
+		upgrade_ready_label.scale = Vector2.ONE
+
+	_upgrade_label_was_active = active
+
+	if not active:
+		return
+
+	upgrade_ready_label.pivot_offset = upgrade_ready_label.size / 2
+
+	# gentle idle pulse so the label keeps drawing the eye while it's up
+	_upgrade_pulse_time += delta
+	var pulse = 1.0 + sin(_upgrade_pulse_time * 4.0) * 0.04
+
+	# on top of the idle pulse, ease out a bigger "pop" when it first appears
+	var punch = 0.0
+	if _upgrade_punch_remaining > 0.0:
+		_upgrade_punch_remaining -= delta
+		var t = clamp(_upgrade_punch_remaining / upgrade_label_punch_duration, 0.0, 1.0)
+		punch = t * t * 0.4  # quadratic falloff, starts big and eases out fast
+
+	upgrade_ready_label.scale = Vector2.ONE * (pulse + punch)
