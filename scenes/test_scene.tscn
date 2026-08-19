@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ohowmriae14n" path="res://assets/backgrounds/default_background.png" id="4_3qnke"]
 [ext_resource type="Script" uid="uid://cbagpr7b1t6bb" path="res://scripts/components/attack_instantiator_component.gd" id="4_7ddre"]
 [ext_resource type="PackedScene" uid="uid://dmwvllc8moedk" path="res://prefabs/enemies/enemy_fighter.tscn" id="4_qjeyg"]
+[ext_resource type="Script" uid="uid://bsauu0vd6i53g" path="res://scripts/components/VFX/star_field_layer_component.gd" id="5_qjeyg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nd71p"]
 size = Vector2(4243, 9718)
@@ -56,3 +57,38 @@ scale = Vector2(2.3674998, 2.5666666)
 texture = ExtResource("4_3qnke")
 
 [node name="enemy_fighter" parent="." unique_id=1776559298 instance=ExtResource("4_qjeyg")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=206771836]
+layer = 1
+
+[node name="ParallaxLayerFar" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1605237195]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(3000, 3000)
+
+[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerFar" unique_id=985400145]
+script = ExtResource("5_qjeyg")
+star_count = 100
+field_size = Vector2(3000, 3000)
+min_star_size = 2.0
+
+[node name="ParallaxLayerMid" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1731459874]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(3000, 3000)
+
+[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerMid" unique_id=1920510671]
+script = ExtResource("5_qjeyg")
+star_count = 70
+field_size = Vector2(3000, 3000)
+min_star_size = 3.0
+max_star_size = 5.0
+
+[node name="ParallaxLayerNear" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1565558939]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(3000, 3000)
+
+[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerNear" unique_id=1983745997]
+script = ExtResource("5_qjeyg")
+star_count = 30
+field_size = Vector2(3000, 3000)
+min_star_size = 5.0
+max_star_size = 8.0

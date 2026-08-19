@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bwov8pxks37l6" path="res://scripts/GUI/death_screen.gd" id="1_mqh5l"]
 [ext_resource type="Texture2D" uid="uid://ohowmriae14n" path="res://assets/backgrounds/default_background.png" id="2_7ns25"]
 [ext_resource type="FontFile" uid="uid://c5jvl08nf4qth" path="res://assets/Quantico/Quantico-Bold.ttf" id="3_gwety"]
+[ext_resource type="Script" uid="uid://bsauu0vd6i53g" path="res://scripts/components/VFX/star_field_layer_component.gd" id="4_7ns25"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
 bg_color = Color(0.3372549, 0.3372549, 0.3372549, 1)
@@ -90,6 +91,41 @@ theme_override_font_sizes/font_size = 200
 text = "YOU DIED"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=573765593]
+layer = 1
+
+[node name="ParallaxLayerFar" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1919940808]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(3000, 3000)
+
+[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerFar" unique_id=1892751939]
+script = ExtResource("4_7ns25")
+star_count = 100
+field_size = Vector2(3000, 3000)
+min_star_size = 2.0
+
+[node name="ParallaxLayerMid" type="ParallaxLayer" parent="ParallaxBackground" unique_id=450312433]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(3000, 3000)
+
+[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerMid" unique_id=748038436]
+script = ExtResource("4_7ns25")
+star_count = 70
+field_size = Vector2(3000, 3000)
+min_star_size = 3.0
+max_star_size = 5.0
+
+[node name="ParallaxLayerNear" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1390952019]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(3000, 3000)
+
+[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerNear" unique_id=948241716]
+script = ExtResource("4_7ns25")
+star_count = 30
+field_size = Vector2(3000, 3000)
+min_star_size = 5.0
+max_star_size = 8.0
 
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
