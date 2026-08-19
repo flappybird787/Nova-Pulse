@@ -110,50 +110,54 @@ scene_root = NodePath("..")
 enemy_spawn_point = NodePath("../EnemySpawnPoint")
 wave_configs = Array[ExtResource("5_yld8g")]([SubResource("Resource_mqh5l"), SubResource("Resource_mqh5l"), SubResource("Resource_mqh5l"), SubResource("Resource_mqh5l"), SubResource("Resource_mqh5l"), SubResource("Resource_r8pms")])
 
-[node name="background" type="Sprite2D" parent="." unique_id=350324074]
+[node name="EnemySpawnPoint" type="Marker2D" parent="." unique_id=687691397]
+position = Vector2(14000, 0)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=635183554 node_paths=PackedStringArray("target")]
+layer = -1
+script = ExtResource("12_w5ftc")
+target = NodePath("../PlayerShip")
+
+[node name="ParallaxLayerFar" type="ParallaxLayer" parent="ParallaxBackground" unique_id=4745250]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(5000, 5000)
+
+[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerFar" unique_id=1908124823]
+script = ExtResource("12_e7e6y")
+star_count = 200
+field_size = Vector2(5000, 5000)
+min_star_size = 2.0
+
+[node name="ParallaxLayerMid" type="ParallaxLayer" parent="ParallaxBackground" unique_id=377322557]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(5000, 5000)
+
+[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerMid" unique_id=1102931997]
+script = ExtResource("12_e7e6y")
+star_count = 140
+field_size = Vector2(5000, 5000)
+min_star_size = 3.0
+max_star_size = 5.0
+
+[node name="ParallaxLayerNear" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1113386295]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(5000, 5000)
+
+[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerNear" unique_id=233625079]
+script = ExtResource("12_e7e6y")
+star_count = 60
+field_size = Vector2(5000, 5000)
+min_star_size = 5.0
+max_star_size = 8.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=818997816]
+layer = -2
+follow_viewport_enabled = true
+
+[node name="background" type="Sprite2D" parent="CanvasLayer" unique_id=350324074]
 light_mask = 3
 visibility_layer = 3
 z_index = -2
 position = Vector2(0.00012207031, -3.0517578e-05)
 scale = Vector2(2.3674998, 2.5666666)
 texture = ExtResource("11_uswuf")
-
-[node name="EnemySpawnPoint" type="Marker2D" parent="." unique_id=687691397]
-position = Vector2(14000, 0)
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=635183554 node_paths=PackedStringArray("target")]
-layer = 0
-script = ExtResource("12_w5ftc")
-target = NodePath("../PlayerShip")
-
-[node name="ParallaxLayerFar" type="ParallaxLayer" parent="ParallaxBackground" unique_id=4745250]
-motion_scale = Vector2(0.1, 0.1)
-motion_mirroring = Vector2(3000, 3000)
-
-[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerFar" unique_id=1908124823]
-script = ExtResource("12_e7e6y")
-star_count = 100
-field_size = Vector2(3000, 3000)
-min_star_size = 2.0
-
-[node name="ParallaxLayerMid" type="ParallaxLayer" parent="ParallaxBackground" unique_id=377322557]
-motion_scale = Vector2(0.3, 0.3)
-motion_mirroring = Vector2(3000, 3000)
-
-[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerMid" unique_id=1102931997]
-script = ExtResource("12_e7e6y")
-star_count = 70
-field_size = Vector2(3000, 3000)
-min_star_size = 3.0
-max_star_size = 5.0
-
-[node name="ParallaxLayerNear" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1113386295]
-motion_scale = Vector2(0.6, 0.6)
-motion_mirroring = Vector2(3000, 3000)
-
-[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerNear" unique_id=233625079]
-script = ExtResource("12_e7e6y")
-star_count = 30
-field_size = Vector2(3000, 3000)
-min_star_size = 5.0
-max_star_size = 8.0
