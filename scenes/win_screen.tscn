@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bwov8pxks37l6" path="res://scripts/GUI/death_screen.gd" id="1_2l6cc"]
 [ext_resource type="Texture2D" uid="uid://ohowmriae14n" path="res://assets/backgrounds/default_background.png" id="2_e41g7"]
 [ext_resource type="FontFile" uid="uid://c5jvl08nf4qth" path="res://assets/Quantico/Quantico-Bold.ttf" id="3_0lrm4"]
+[ext_resource type="Script" uid="uid://ch7ak8rxu68as" path="res://scripts/components/VFX/menu_parallax_mouse_component.gd" id="4_0lrm4"]
 [ext_resource type="Script" uid="uid://bsauu0vd6i53g" path="res://scripts/components/VFX/star_field_layer_component.gd" id="4_e41g7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
@@ -37,12 +38,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2l6cc")
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=560898468]
-layout_mode = 0
-offset_right = 2576.0
-offset_bottom = 1486.0
-texture = ExtResource("2_e41g7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=148305070]
 layout_mode = 1
@@ -91,40 +86,54 @@ text = "YOU WIN"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1565350591]
-layer = 1
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1327440458]
+layer = -1
+script = ExtResource("4_0lrm4")
+strength = Vector2(-0.5, -0.5)
 
-[node name="ParallaxLayerFar" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1339769284]
+[node name="ParallaxLayerFar" type="ParallaxLayer" parent="ParallaxBackground" unique_id=919163896]
 motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(3000, 3000)
 
-[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerFar" unique_id=242661256]
+[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerFar" unique_id=2096343100]
 script = ExtResource("4_e41g7")
 star_count = 100
 field_size = Vector2(3000, 3000)
 min_star_size = 2.0
 
-[node name="ParallaxLayerMid" type="ParallaxLayer" parent="ParallaxBackground" unique_id=441706027]
+[node name="ParallaxLayerMid" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1386316701]
 motion_scale = Vector2(0.3, 0.3)
 motion_mirroring = Vector2(3000, 3000)
 
-[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerMid" unique_id=372694446]
+[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerMid" unique_id=1645966205]
 script = ExtResource("4_e41g7")
 star_count = 70
 field_size = Vector2(3000, 3000)
 min_star_size = 3.0
 max_star_size = 5.0
 
-[node name="ParallaxLayerNear" type="ParallaxLayer" parent="ParallaxBackground" unique_id=323706591]
+[node name="ParallaxLayerNear" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1898240721]
 motion_scale = Vector2(0.6, 0.6)
 motion_mirroring = Vector2(3000, 3000)
 
-[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerNear" unique_id=961801496]
+[node name="StarFieldLayerComponent" type="Node2D" parent="ParallaxBackground/ParallaxLayerNear" unique_id=1788153495]
 script = ExtResource("4_e41g7")
 star_count = 30
 field_size = Vector2(3000, 3000)
 min_star_size = 5.0
 max_star_size = 8.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=78872871]
+layer = -2
+follow_viewport_enabled = true
+
+[node name="background" type="Sprite2D" parent="CanvasLayer" unique_id=1189733156]
+light_mask = 3
+visibility_layer = 3
+z_index = -2
+position = Vector2(1271, 716.50006)
+scale = Vector2(1.65125, 1.7033334)
+texture = ExtResource("2_e41g7")
 
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

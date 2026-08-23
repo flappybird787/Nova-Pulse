@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 		_last_target_position = target.global_position
 		_initialized = true
 
+
 	var position_delta = target.global_position - _last_target_position
 
 	# normal movement is a small delta each frame; a wrap-around teleport is a
