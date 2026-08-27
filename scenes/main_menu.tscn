@@ -43,9 +43,9 @@ script = ExtResource("1_l6cm7")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.39921874
-anchor_top = 0.44166666
+anchor_top = 0.2638889
 anchor_right = 0.60117185
-anchor_bottom = 0.84375
+anchor_bottom = 0.66597223
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -61,7 +61,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
 text = "PLAY
 "
 
-[node name="Label" type="Label" parent="." unique_id=1820535837]
+[node name="Title" type="Label" parent="." unique_id=1820535837]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.26308593
@@ -72,6 +72,22 @@ grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ekxnf")
 theme_override_font_sizes/font_size = 200
 text = "NOVA PULSE"
+metadata/_edit_use_anchors_ = true
+
+[node name="Controls" type="Label" parent="." unique_id=1464502556]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16875
+anchor_top = 0.5166667
+anchor_right = 0.83125
+anchor_bottom = 1.070139
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 60
+text = "                                           CONTROLS:
+    -    Press W or UP ARROW to move towards the mouse
+    -    Press F or LEFT MOUSE BUTTON to shoot
+    -    press SPACEBAR to level up once you have enough xp"
 metadata/_edit_use_anchors_ = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=809800391]
