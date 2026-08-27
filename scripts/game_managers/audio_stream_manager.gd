@@ -1,7 +1,9 @@
 extends Node
 
 var num_players = 32
-var bus = "master"
+var bus = "Master"	# bus names are case-sensitive; lowercase "master" resolves to
+					# an invalid bus index (-1), which the web audio backend
+					# throws on instead of silently falling back like desktop does
 
 var available = []  # The available players.
 var queue = []  # The queue of sounds to play, as {sound_path, fade_time, id} dicts.
