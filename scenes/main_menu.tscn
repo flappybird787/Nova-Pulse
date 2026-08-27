@@ -5,6 +5,8 @@
 [ext_resource type="FontFile" uid="uid://c5jvl08nf4qth" path="res://assets/Quantico/Quantico-Bold.ttf" id="2_ekxnf"]
 [ext_resource type="Script" uid="uid://ch7ak8rxu68as" path="res://scripts/components/VFX/menu_parallax_mouse_component.gd" id="4_8ln24"]
 [ext_resource type="Script" uid="uid://bsauu0vd6i53g" path="res://scripts/components/VFX/star_field_layer_component.gd" id="4_wu84c"]
+[ext_resource type="Script" uid="uid://rjti4i41oew5" path="res://scripts/GUI/weapon_badge.gd" id="6_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://2w4goqqkm401" path="res://assets/upgrades/firerate_booster.svg" id="7_oa1go"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
 bg_color = Color(0.3372549, 0.3372549, 0.3372549, 1)
@@ -138,5 +140,265 @@ z_index = -2
 position = Vector2(1271, 716.50006)
 scale = Vector2(1.65125, 1.7033334)
 texture = ExtResource("2_bqqt6")
+
+[node name="TurbolaserBadge" type="Control" parent="." unique_id=731645889 node_paths=PackedStringArray("icon_rect", "title_label", "description_label")]
+layout_mode = 1
+anchor_left = 0.033203125
+anchor_top = 0.045833334
+anchor_right = 0.15585938
+anchor_bottom = 0.30416667
+script = ExtResource("6_rtw2f")
+weapon_name = "Turbolaser"
+icon_rect = NodePath("Icon")
+title_label = NodePath("Title")
+description_label = NodePath("Description")
+metadata/_edit_use_anchors_ = true
+
+[node name="Icon" type="TextureRect" parent="TurbolaserBadge" unique_id=1257488341]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.5
+offset_top = -126.5
+offset_right = 126.5
+offset_bottom = 126.5
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Title" type="Label" parent="TurbolaserBadge" unique_id=2122504180]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 35
+text = "???"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="TurbolaserBadge" unique_id=1776973746]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.5
+offset_top = -64.0
+offset_right = 105.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 25
+text = "Beat the game 
+using turbolasers"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="TurbolaserBadge" unique_id=381939641]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3372549, 0.3372549, 0.3372549, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="TurbolaserBadge" unique_id=1103464867]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.50731444, 0.50731444, 0.5073144, 1)
+
+[node name="RailgunBadge" type="Control" parent="." unique_id=2109525334 node_paths=PackedStringArray("icon_rect", "title_label", "description_label")]
+layout_mode = 1
+anchor_left = 0.033203125
+anchor_top = 0.3402778
+anchor_right = 0.15585938
+anchor_bottom = 0.5986111
+script = ExtResource("6_rtw2f")
+weapon_name = "Railgun"
+icon_rect = NodePath("Icon")
+title_label = NodePath("Title")
+description_label = NodePath("Description")
+metadata/_edit_use_anchors_ = true
+
+[node name="Icon" type="TextureRect" parent="RailgunBadge" unique_id=1801804796]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.5
+offset_top = -126.5
+offset_right = 126.5
+offset_bottom = 126.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_oa1go")
+expand_mode = 1
+
+[node name="Title" type="Label" parent="RailgunBadge" unique_id=826225229]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 35
+text = "???"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="RailgunBadge" unique_id=1525222933]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.5
+offset_top = -64.0
+offset_right = 105.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 25
+text = "Beat the game 
+using turbolasers"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="RailgunBadge" unique_id=1563032595]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3372549, 0.3372549, 0.3372549, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="RailgunBadge" unique_id=738171725]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.50731444, 0.50731444, 0.5073144, 1)
+
+[node name="MissileBadge" type="Control" parent="." unique_id=653447801 node_paths=PackedStringArray("icon_rect", "title_label", "description_label")]
+layout_mode = 1
+anchor_left = 0.033203125
+anchor_top = 0.6347223
+anchor_right = 0.15585938
+anchor_bottom = 0.89305556
+script = ExtResource("6_rtw2f")
+weapon_name = "Missile"
+icon_rect = NodePath("Icon")
+title_label = NodePath("Title")
+description_label = NodePath("Description")
+metadata/_edit_use_anchors_ = true
+
+[node name="Icon" type="TextureRect" parent="MissileBadge" unique_id=1684899598]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.5
+offset_top = -126.5
+offset_right = 126.5
+offset_bottom = 126.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_oa1go")
+expand_mode = 1
+
+[node name="Title" type="Label" parent="MissileBadge" unique_id=1474961525]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 35
+text = "???"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="MissileBadge" unique_id=1612226361]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.5
+offset_top = -64.0
+offset_right = 105.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 25
+text = "Beat the game 
+using turbolasers"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MissileBadge" unique_id=177112556]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3372549, 0.3372549, 0.3372549, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MissileBadge" unique_id=1793997906]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.50731444, 0.50731444, 0.5073144, 1)
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

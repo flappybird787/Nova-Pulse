@@ -46,18 +46,20 @@ func trigger_attack():
 func apply_upgrades(upgrade : UpgradeBase):
 	if upgrade.upgrade_type == "WEAPON":
 		spread = upgrade.spread
-	
+		# track which weapon is equipped so we know what to unlock on a win
+		GameManager.last_weapon_used = upgrade.upgrade_name
+
 	if upgrade.upgrade_name == "Damage Booster":
 		damage_multiplier += 1.35
-	
+
 	if upgrade.upgrade_name == "Turbolaser":
 		attack_scene = load("res://prefabs/weapons/turbolaser.tscn")
 		fire_sound = TURBOLASER_SOUND
-	
+
 	if upgrade.upgrade_name == "Railgun":
 		attack_scene = load("res://prefabs/weapons/railgun.tscn")
 		fire_sound = RAILGUN_SOUND
-	
+
 	if upgrade.upgrade_name == "Missile":
 		attack_scene = load("res://prefabs/weapons/missile.tscn")
 		fire_sound = MISSILE_SOUND

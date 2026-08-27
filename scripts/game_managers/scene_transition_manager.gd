@@ -26,6 +26,7 @@ func change_scene(path: String) -> void:
 	get_tree().change_scene_to_file(path)
 	await get_tree().process_frame  # let the new scene finish loading in
 	await fade_in()
+	get_tree().paused = false
 
 
 func fade_out() -> void:

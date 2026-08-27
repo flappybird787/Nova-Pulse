@@ -23,7 +23,8 @@ func level_up():
 	GameManager.player_level += 1
 	xp_to_next_level = calculate_xp_needed()
 	EventBus.ready_to_level_up.emit(GameManager.potential_levels)
-
+	EventBus.leveled_up.emit(GameManager.player_level)
+	GameManager.potential_levels -= 1
 
 func gain_xp(amount : int):
 	GameManager.player_xp += amount

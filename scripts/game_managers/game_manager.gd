@@ -8,10 +8,13 @@ extends Node
 
 @export var potential_levels = 0
 
+## last weapon the player had equipped, checked when the boss dies to decide which badge to unlock
+@export var last_weapon_used : String = "Bullet"
+
 func _ready() -> void:
 	EventBus.player_died.connect(reset_values)
 	EventBus.boss_killed.connect(display_win_screen)
-	
+
 
 var started = false
 func _process(delta: float) -> void:
