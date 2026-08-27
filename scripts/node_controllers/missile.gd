@@ -1,8 +1,6 @@
 extends CharacterBody2D
 class_name Missile
 
-
-
 @export var damage = 0
 
 @export var speed = 0
@@ -48,6 +46,18 @@ var spawned = false
 ## floor on total speed as a fraction of the curve-driven speed
 @export var min_speed_ratio : float = 0.7
 
+## camera used to check if the missile is still visible - cached on first use
+var _camera : Camera2D
+
+## once true, the missile stops homing entirely and just flies straight -
+## set when it leaves the visible screen area, so it can't loop back into view
+var off_screen := false
+
+## extra buffer (world units) added around the camera's visible area before
+## a missile counts as "off screen" - avoids flickering the tracking on/off
+## right at the edge of the view
+@export var offscreen_margin : float = 150.0
+
 
 func _ready() -> void:
 	# randomize so multiple missiles fired together don't wobble identically
@@ -63,7 +73,14 @@ func _physics_process(delta: float) -> void:
 	if type == "PLAYER":
 		guidance_speed = 0.3
 	
-	if target == null:
+	# once a missile leaves the screen, stop it from homing so it can't
+	# loop back around and reappear later - it'll just fly straight until
+	# the Timer frees it
+	if not off_screen and _is_off_screen():
+		off_screen = true
+		target = null
+	
+	if target == null and not off_screen:
 		target = get_closest_enemy(type)
 	
 	time_alive += delta
@@ -74,7 +91,7 @@ func _physics_process(delta: float) -> void:
 
 	var current_speed: float = lerp(starting_speed, speed, curve_t)
 	
-	if is_instance_valid(target):
+	if is_instance_valid(target) and not off_screen:
 		# 1. find the angle to the target
 		var direction_to_target: Vector2 = (target.global_position - global_position).normalized()
 		var target_angle: float = direction_to_target.angle()
@@ -94,6 +111,7 @@ func _physics_process(delta: float) -> void:
 	var total_speed = max(current_speed + forward_boost, current_speed * min_speed_ratio)
 	velocity = forward * total_speed
 	move_and_slide()
+
 
 ## Helper function to rotate towards an angle without overshooting
 func rotate_to_angle(current_angle: float, target_angle: float, max_step: float) -> float:
@@ -145,3 +163,18 @@ func get_closest_enemy(group) -> Node2D:
 				closest_enemy = enemy
 			
 	return closest_enemy
+
+
+## returns true if the missile has flown outside the current camera's view
+func _is_off_screen() -> bool:
+	if not _camera:
+		_camera = get_viewport().get_camera_2d()
+	if not _camera:
+		return false
+
+	var viewport_size := get_viewport_rect().size
+	# convert screen size to world units via zoom, then add the margin
+	var half_extents := (viewport_size / 2.0) / _camera.zoom + Vector2(offscreen_margin, offscreen_margin)
+	var cam_pos := _camera.global_position
+
+	return absf(global_position.x - cam_pos.x) > half_extents.x or absf(global_position.y - cam_pos.y) > half_extents.y
